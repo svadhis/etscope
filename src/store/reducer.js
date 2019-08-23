@@ -1,16 +1,18 @@
 import io from "socket.io-client"
 
 const initialState = {
-	socket: io('http://192.168.1.20:4001'),
+	socket: io('http://localhost:4001'),
 	connected: 1,
 	owner: 0,
 	player: 0,
-	room: {}
+	room: {
+		view: 'Home'
+	}
 }
 
 export default (state = initialState, action) => {
 	switch (action.type) {
-		case 'UPDATE_LOCAL_STATE':
+		case 'UPDATE_ROOM_STATE':
 			return {
 				...state,
 				room: {

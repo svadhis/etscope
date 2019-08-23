@@ -5,8 +5,6 @@ import Lobby from '../views/lobby/Lobby'
 import LobbyPlayer from '../views/lobby/LobbyPlayer'
 
 export const views = {
-    Home:           Home,
-    HomePlayer:     HomePlayer,  
-    Lobby:          Lobby,
-    LobbyPlayer:    LobbyPlayer
+    Home:           [Home, HomePlayer],
+    Lobby:          [Lobby, LobbyPlayer]
 }

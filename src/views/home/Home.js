@@ -22,11 +22,8 @@ export default () => {
         <div>
             <div className="Home">
                 <div>
-                    <button onClick={() => { socket.emit('order', newRoom([...Array(4)].map(i => (~~(Math.random() * 26 + 10)).toString(36)).join(""))) }}>
+                    <button onClick={() => { socket.emit('new-room', [...Array(4)].map(i => (~~(Math.random() * 26 + 10)).toString(36)).join("")) }}>
                         NEW ROOM
-                    </button>
-                    <button onClick={() => { socket.emit('order', startRoom('5d4da689ee88a668f98d2091', { number: '654654' })) }}>
-                        START ROOM
                     </button>
                 </div>   
             </div>

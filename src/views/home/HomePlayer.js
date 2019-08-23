@@ -11,8 +11,8 @@ export default () => {
     return (
         <div>
             <div className="HomePlayer">
-                <div class="form-group mt-5">
-                    <label for="name">Nom</label>
+                <div className="form-group mt-5">
+                    <label htmlFor="name">Nom</label>
                     <input 
                         type="text" 
                         className="form-control" 
@@ -20,8 +20,8 @@ export default () => {
                         placeholder="Entrez votre nom" 
                     />
                 </div>
-                <div class="form-group mt-5">
-                    <label for="room">Room</label>
+                <div className="form-group mt-5">
+                    <label htmlFor="room">Room</label>
                     <input 
                         type="text" 
                         className="form-control" 
@@ -29,12 +29,12 @@ export default () => {
                         placeholder="Entrez l'identifiant de la room"
                     />
                 </div>
-                <div class="mt-5">
+                <div className="mt-5">
                     <button 
-                        onClick={() => { socket.emit('order', joinRoom(
-                            document.querySelector('input#room').value,
-                            document.querySelector('input#name').value
-                        ))}}
+                        onClick={() => { socket.emit('join-room', {
+                            room: document.querySelector('input#room').value,
+                            player: document.querySelector('input#name').value
+                        })}}
                         type="button" 
                         className="btn btn-primary btn-lg btn-block">
                             REJOINDRE LA PARTIE

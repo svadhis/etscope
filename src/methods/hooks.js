@@ -1,7 +1,7 @@
 import { views } from '../mapper/views'
 
-export const useView = (view, suffix) => {
-    return views[view + suffix] || views['Home' + suffix]
+export const useView = (view, client) => {
+    return views[view][client]
 }
 
 export const useSendOrder = order => {

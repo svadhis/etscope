@@ -1,6 +1,6 @@
-export const updateLocalState = state => {
+export const updateRoomState = state => {
     return {
-        type: 'UPDATE_LOCAL_STATE',
+        type: 'UPDATE_ROOM_STATE',
         roomState: state
     }
 }

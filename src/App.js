@@ -16,12 +16,20 @@ export default () => {
   const socket = state.socket
 
   const width = useCurrentWidth()
-  const viewSuffix = state.player === 1 ? 'Player' : state.owner === 1 ? '' : width <= 576 ? 'Player' : ''
+  // Set view to Owner or Player depending on 1: state, 2: viewport width. Value 1 = player, 0 = owner
+  const viewSuffix = state.player === 1 ? 1 : state.owner === 1 ? 0 : width <= 576 ? 1 : 0
 
   useEffect(() => {
     socket.on('connect_error', (error) => {
       dispatch(Actions.isConnected(0))
     })
+
+    useEffect(() => {
+      effect
+      return () => {
+        cleanup
+      };
+    }, [])
 
     socket.on('connect', () => {
       dispatch(Actions.isConnected(1))
