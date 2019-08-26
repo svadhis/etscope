@@ -5,6 +5,13 @@ export const updateRoomState = state => {
     }
 }
 
+export const setFlash = flash => {
+    return {
+        type: 'SET_FLASH',
+        flash: flash
+    }
+}
+
 export const isConnected = bool => {
     return {
         type: 'IS_CONNECTED',

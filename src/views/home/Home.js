@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import snabbt from 'snabbt.js'
 import { useSelector } from 'react-redux'
-import Test from '../../components/Test';
 import { useSendOrder } from '../../methods/hooks'
 import './Home.css'
 import  { Breakpoint } from 'react-socks';

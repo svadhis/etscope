@@ -7,6 +7,11 @@ const initialState = {
 	player: 0,
 	room: {
 		view: 'Home'
+	},
+	flash: {
+		show: 0,
+		type: '',
+		message: ''
 	}
 }
 
@@ -15,9 +20,22 @@ export default (state = initialState, action) => {
 		case 'UPDATE_ROOM_STATE':
 			return {
 				...state,
+				flash: '',
 				room: {
 					...state.room,
 					...action.roomState,		
+				}
+			};
+			break
+
+		case 'SET_FLASH':
+			return {
+				...state,
+				flash: {
+					...state.flash,
+					show: action.flash.show,
+					type: action.flash.type || state.flash.type,
+					message: action.flash.message || state.flash.message
 				}
 			};
 			break

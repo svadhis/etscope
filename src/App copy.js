@@ -7,7 +7,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useView } from './methods/hooks'
 import * as Actions from './store/actions'
 import Connecting from './components/spinners/Connecting'
-import Flash from './components/Flash';
 
 // MAIN APP COMPONENT
 export default () => {
@@ -38,20 +37,25 @@ export default () => {
 
     // Listen to errors and show it
     socket.on('flash', data => {
-      dispatch(Actions.setFlash(data))
+      let element = document.querySelector('.flash-message')
+      element.classList.add('flash-' + data.type)
+      element.innerHTML = data.message
+      element.style.display = "block"
+      setTimeout(() => {
+        element.style.display = "none"
+      }, 2000);
     })
   }, [])
 
   return (
     React.createElement("div", null, 
-      React.createElement(Flash),
+      React.createElement("div", {className: 'flash-message'}),
       React.createElement("div", {className: 'container'}, 
         React.createElement(
           useView(state.room.view, viewSuffix),
           { ...state.room.props } || null
         )
       ),
-      console.log(state),
       state.connected === 0 && React.createElement(Connecting)
     )
   )
