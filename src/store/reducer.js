@@ -1,15 +1,16 @@
 import io from "socket.io-client"
 
 const initialState = {
-	socket: io('http://localhost:4001'),
+	socket: io('http://192.168.1.23:4001'),
 	connected: 1,
 	owner: 0,
 	player: 0,
+	playerName: '',
 	room: {
 		view: 'Home'
 	},
 	flash: {
-		show: 0,
+		show: false,
 		type: '',
 		message: ''
 	}
@@ -23,20 +24,9 @@ export default (state = initialState, action) => {
 				flash: '',
 				room: {
 					...state.room,
-					...action.roomState,		
-				}
-			};
-			break
-
-		case 'SET_FLASH':
-			return {
-				...state,
-				flash: {
-					...state.flash,
-					show: action.flash.show,
-					type: action.flash.type || state.flash.type,
-					message: action.flash.message || state.flash.message
-				}
+					...action.room,		
+				},
+				playerName: action.player || state.playerName
 			};
 			break
 
@@ -59,6 +49,15 @@ export default (state = initialState, action) => {
 				...state,
 				player: action.player
 			};
+			break
+
+		case 'LEAVE_ROOM':
+			return {
+				...state,
+				room: {
+					view: 'Home'
+				}
+			}
 			break
 
 		default:

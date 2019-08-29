@@ -1,11 +1,33 @@
-.lds-container {
+.connecting-container {
     position: absolute;
     overflow: hidden;
     top: 0;
-    min-width: 100vw;
     min-height: 100vh;
-    background-color: white;
+    min-width: 100vw;
     opacity: 0;
+}
+
+.connecting {
+    position: absolute;
+    overflow: hidden;
+    top: -100px;
+    min-width: 100vw;
+    min-height: 130vh;
+    background: linear-gradient(45deg, white 25%,
+      #eee 25%, #eee 50%,
+      white 50%, white 75%,
+      #eee 75%);
+    background-size: 100px 100px;
+    animation: connecting 3s linear infinite;
+}
+
+@keyframes connecting {
+  0% {
+      top: -100px;
+  }
+  100% {
+      top: 0px;
+  }
 }
 
 h5 {

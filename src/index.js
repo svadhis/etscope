@@ -7,13 +7,16 @@ import * as serviceWorker from './serviceWorker'
 import { Provider } from 'react-redux'
 import store from './store/store'
 
-import  { BreakpointProvider } from 'react-socks';
+import  { BreakpointProvider } from 'react-socks'
+import { SnackbarProvider } from 'notistack'
 
 ReactDOM.render(
     <Provider store={store}>
-         <BreakpointProvider>
-            <App />
-         </BreakpointProvider>   
+        <BreakpointProvider>
+            <SnackbarProvider maxSnack={3}>
+                <App />
+            </SnackbarProvider>
+        </BreakpointProvider>   
     </Provider>, 
     document.getElementById('root')
 )

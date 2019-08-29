@@ -32,11 +32,10 @@ body {
   position: absolute;
   top: 0;
   width: 100vw;
-  transition: 
 }
 
 .flash-error {
-  background-color: tomato;
+  background-color: red;
 }
 
 .fade-in-top {

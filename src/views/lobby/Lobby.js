@@ -2,9 +2,10 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { isOwner } from '../../store/actions'
+import { Button } from '@material-ui/core';
 
 export default () => {
-    const state = useSelector(state => state)
+    const room = useSelector(state => state.room)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -13,8 +14,13 @@ export default () => {
 
     return (
         <div>
-            {console.log(state)}
-            LOBBY OWNER
+        LOBBY OWNER : {room.number}
+        <div>
+            {room.players.map((player) => {
+                return <li>{player.name}</li>
+            })}
         </div>
+        {room.players.length >= 3 && <Button>Lancer la partie</Button>}
+    </div>
     )
 }

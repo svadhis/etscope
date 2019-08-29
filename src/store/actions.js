@@ -1,14 +1,8 @@
-export const updateRoomState = state => {
+export const updateRoomState = payload => {
     return {
         type: 'UPDATE_ROOM_STATE',
-        roomState: state
-    }
-}
-
-export const setFlash = flash => {
-    return {
-        type: 'SET_FLASH',
-        flash: flash
+        room: payload.room,
+        player: payload.data
     }
 }
 
@@ -30,5 +24,11 @@ export const isPlayer = bool => {
     return {
         type: 'IS_PLAYER',
         player: bool
+    }
+}
+
+export const leaveRoom = () => {
+    return {
+        type: 'LEAVE_ROOM'
     }
 }
