@@ -8,7 +8,12 @@ import { newRoom, startRoom } from '../../mapper/orders'
 
 export default () => {
 
-    const socket = useSelector(state => state.socket)
+    const [socket, noSleep] = useSelector(state => [state.socket, state.noSleep])
+
+    const newRoom = () => {
+        noSleep.enable()
+        socket.emit('new-room', [...Array(4)].map(i => (~~(Math.random() * 26 + 10)).toString(36)).join(""))
+    }
 
     useEffect(() => {
         let element = document.querySelector('.Home')
@@ -21,7 +26,7 @@ export default () => {
         <div>
             <div className="Home">
                 <div>
-                    <button onClick={() => { socket.emit('new-room', [...Array(4)].map(i => (~~(Math.random() * 26 + 10)).toString(36)).join("")) }}>
+                    <button onClick={() => {newRoom()}}>
                         NEW ROOM
                     </button>
                 </div>   

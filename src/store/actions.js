@@ -32,3 +32,10 @@ export const leaveRoom = () => {
         type: 'LEAVE_ROOM'
     }
 }
+
+export const saveDrawing = drawing => {
+    return {
+        type: 'SAVE_DRAWING',
+        drawing: drawing
+    }
+}

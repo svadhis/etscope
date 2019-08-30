@@ -1,18 +1,16 @@
 import io from "socket.io-client"
+import NoSleep from 'nosleep.js'
 
 const initialState = {
 	socket: io('http://192.168.1.23:4001'),
+	noSleep: new NoSleep(),
+	drawing: '',
 	connected: 1,
 	owner: 0,
 	player: 0,
 	playerName: '',
 	room: {
 		view: 'Home'
-	},
-	flash: {
-		show: false,
-		type: '',
-		message: ''
 	}
 }
 
@@ -57,6 +55,13 @@ export default (state = initialState, action) => {
 				room: {
 					view: 'Home'
 				}
+			}
+			break
+
+		case 'SAVE_DRAWING':
+			return {
+				...state,
+				drawing: action.drawing
 			}
 			break
 

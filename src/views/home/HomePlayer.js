@@ -7,9 +7,10 @@ import { Button, TextField } from '@material-ui/core'
 
 export default () => {
 
-    const socket = useSelector(state => state.socket)
+    const [socket, noSleep] = useSelector(state => [state.socket, state.noSleep])
 
     const join = () => {
+        noSleep.enable()
         socket.emit('join-room', {
             room: document.querySelector('input#room').value,
             player: document.querySelector('input#name').value

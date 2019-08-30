@@ -18,7 +18,7 @@ const App = props => {
 
   const width = useCurrentWidth()
   // Set view to Owner or Player depending on 1: state, 2: viewport width. Value 1 = player, 0 = owner
-  const viewClient = state.player === 1 ? 1 : state.owner === 1 ? 0 : width <= 576 ? 1 : 0
+  const viewClient = state.player === 1 ? 'player' : state.owner === 1 ? 'owner' : width <= 576 ? 'player' : 'owner'
 
   useEffect(() => {
     socket.on('connect_error', (error) => {
@@ -39,7 +39,7 @@ const App = props => {
     // Listen to errors and show it
     socket.on('flash', data => {
       // dispatch(Actions.setFlash(data))
-      props.enqueueSnackbar(data.message, {variant: data.type, autoHideDuration: 3000})
+      (data.target === viewClient || data.target === 'all') && props.enqueueSnackbar(data.message, {variant: data.type, autoHideDuration: 3000})
     })
   }, [])
 
