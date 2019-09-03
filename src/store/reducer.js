@@ -2,9 +2,10 @@ import io from "socket.io-client"
 import NoSleep from 'nosleep.js'
 
 const initialState = {
-	socket: io('http://192.168.1.20:4001'),
+	socket: io('http://192.168.1.23:4001'),
 	noSleep: new NoSleep(),
-	drawing: '',
+	timer: -1,
+	gameData: '',
 	connected: 1,
 	owner: 0,
 	player: 0,
@@ -23,8 +24,14 @@ export default (state = initialState, action) => {
 				room: {
 					...state.room,
 					...action.room,		
-				},
-				playerName: action.player || state.playerName
+				}
+			};
+			break
+
+		case 'UPDATE_GAME_DATA':
+			return {
+				...state,
+				gameData: action.data // array
 			};
 			break
 
@@ -45,8 +52,16 @@ export default (state = initialState, action) => {
 		case 'IS_PLAYER':
 			return {
 				...state,
-				player: action.player
+				player: action.player,
+				playerName: action.name
 			};
+			break
+
+		case 'SET_TIMER' :
+			return {
+				...state,
+				timer: action.time
+			}
 			break
 
 		case 'LEAVE_ROOM':

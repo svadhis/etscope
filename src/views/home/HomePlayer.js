@@ -1,16 +1,19 @@
 import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useSendOrder } from '../../methods/hooks'
 import './Home.css'
+import { isPlayer } from '../../store/actions'
 import { joinRoom } from '../../mapper/orders'
 import { Button, TextField } from '@material-ui/core'
 
 export default () => {
 
     const [socket, noSleep] = useSelector(state => [state.socket, state.noSleep])
+    const dispatch = useDispatch()
 
     const join = () => {
         noSleep.enable()
+        dispatch(isPlayer(1, document.querySelector('input#name').value))
         socket.emit('join-room', {
             room: document.querySelector('input#room').value,
             player: document.querySelector('input#name').value

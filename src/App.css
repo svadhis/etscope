@@ -1,3 +1,8 @@
+html,
+body {
+    overscroll-behavior-y: contain;
+}
+
 .App {
   overflow: hidden;
   text-align: center;
@@ -17,7 +22,24 @@
 }
 
 body {
-  background-color: thistle;
+  background-color: lightblue;
+}
+
+.room-ribbon {
+  position: fixed;
+  width: 150px;
+  background: blue;
+  top: 8px;
+  right: -42px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.3em;
+  line-height: 50px;
+  letter-spacing: 2px;
+  color: white;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
 }
 
 .flash-message {

@@ -6,6 +6,13 @@ export const updateRoomState = payload => {
     }
 }
 
+export const updateGameData = data => {
+    return {
+        type: 'UPDATE_GAME_DATA',
+        data: data
+    }
+}
+
 export const isConnected = bool => {
     return {
         type: 'IS_CONNECTED',
@@ -20,10 +27,18 @@ export const isOwner = bool => {
     }
 }
 
-export const isPlayer = bool => {
+export const isPlayer = (bool, name) => {
     return {
         type: 'IS_PLAYER',
-        player: bool
+        player: bool,
+        name: name
+    }
+}
+
+export const setTimer = time => {
+    return {
+        type: 'SET_TIMER',
+        time: time
     }
 }
 

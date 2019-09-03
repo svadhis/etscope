@@ -6,6 +6,7 @@ import { useCurrentWidth } from 'react-socks'
 import { useSelector, useDispatch } from 'react-redux'
 import { useView } from './methods/hooks'
 import * as Actions from './store/actions'
+import RoomRibbon from './components/RoomRibbon'
 import Connecting from './components/spinners/Connecting'
 import { withSnackbar } from 'notistack';
 
@@ -65,6 +66,7 @@ const App = props => {
         )
       ),
       console.log(state),
+      state.room.number && state.owner === 1 && React.createElement(RoomRibbon),
       state.connected === 0 && React.createElement(Connecting)
     )
   )
