@@ -25,28 +25,49 @@ export default (state = initialState, action) => {
 					...state.room,
 					...action.room,		
 				}
-			};
+			}
+			break
+
+		case 'SET': // Set local state
+			return {
+				...state,
+				[action.state]: action.value
+			}
+			break
+
+		case 'ADD': // Add to int
+			return {
+				...state,
+				[action.state]: state[action.state] + action.value
+			}
+			break
+
+		case 'TOGGLE': // Toggle boolean
+			return {
+				...state,
+				[action.state]: !state[action.state]
+			}
 			break
 
 		case 'UPDATE_GAME_DATA':
 			return {
 				...state,
 				gameData: action.data // array
-			};
+			}
 			break
 
 		case 'IS_CONNECTED':
 			return {
 				...state,
 				connected: action.connected
-			};
+			}
 			break
 
 		case 'IS_OWNER':
 			return {
 				...state,
 				owner: action.owner
-			};
+			}
 			break
 
 		case 'IS_PLAYER':
@@ -54,7 +75,7 @@ export default (state = initialState, action) => {
 				...state,
 				player: action.player,
 				playerName: action.name
-			};
+			}
 			break
 
 		case 'SET_TIMER' :

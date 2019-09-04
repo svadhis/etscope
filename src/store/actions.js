@@ -6,6 +6,29 @@ export const updateRoomState = payload => {
     }
 }
 
+export const setState = (state, value) => {
+    return {
+        type: 'SET',
+        state: state,
+        value: value
+    }
+}
+
+export const addToState = (state, value) => {
+    return {
+        type: 'ADD',
+        state: state,
+        value: value
+    }
+}
+
+export const toggleState = state => {
+    return {
+        type: 'TOGGLE',
+        state: state
+    }
+}
+
 export const updateGameData = data => {
     return {
         type: 'UPDATE_GAME_DATA',

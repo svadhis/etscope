@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { isPlayer, leaveRoom } from '../../store/actions'
+import { leaveRoom } from '../../store/actions'
 import { Button, Checkbox, FormControlLabel } from '@material-ui/core';
 
 export default () => {
