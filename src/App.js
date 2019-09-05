@@ -23,11 +23,11 @@ const App = props => {
 
   useEffect(() => {
     socket.on('connect_error', (error) => {
-      dispatch(Actions.isConnected(0))
+      dispatch(Actions.setState('connected', 0))
     })
 
     socket.on('connect', () => {
-      dispatch(Actions.isConnected(1))
+      dispatch(Actions.setState('connected', 1))
     })
 
     // Listen to action and dispatch it
@@ -39,7 +39,6 @@ const App = props => {
 
     // Listen to errors and show it
     socket.on('flash', data => {
-      // dispatch(Actions.setFlash(data))
       (data.target === viewClient || data.target === 'all') && props.enqueueSnackbar(data.message, {variant: data.type, autoHideDuration: 3000})
     })
   }, [])
@@ -61,8 +60,8 @@ const App = props => {
     React.createElement("div", null, 
       React.createElement("div", {className: 'container'}, 
         React.createElement(
-          useView(state.room.view, viewClient),
-          { ...state.room.props } || null
+          useView(state.room.view, viewClient).view,
+          { ...state.room.props, ...useView(state.room.view, viewClient).props } || null
         )
       ),
       console.log(state),

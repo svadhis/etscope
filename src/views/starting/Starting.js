@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setTimer } from '../../store/actions'
+import { setState } from '../../store/actions'
 
 export default () => {
     const [socket, timer, instructions, players] = useSelector(state => [state.socket, state.timer, state.room.instructions, state.room.players.length])
@@ -29,7 +29,7 @@ export default () => {
     useEffect(() => {
         let time = timer === -1 ? howTo : timer - 1
         let timeout = timer !== 0 && setTimeout(() => {
-            dispatch(setTimer(time))
+            dispatch(setState('timer', time))
         }, 1000);
         return () => {
             clearTimeout(timeout)

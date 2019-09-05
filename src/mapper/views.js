@@ -10,8 +10,8 @@ import MakeProblems from '../views/make-problems/MakeProblems';
 
 
 export const views = {
-    Home:           [Home, HomePlayer],
-    Lobby:          [Lobby, LobbyPlayer],
-    Starting:       [Starting, Idle],
-    MakeProblems:   [Waiting, MakeProblems]
+    Home:           [[Home], [HomePlayer]],
+    Lobby:          [[Lobby], [LobbyPlayer]],
+    Starting:       [[Starting], [Idle]],
+    MakeProblems:   [[Waiting], [MakeProblems]]
 }

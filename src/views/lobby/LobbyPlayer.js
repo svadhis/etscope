@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { leaveRoom } from '../../store/actions'
+import { setState } from '../../store/actions'
 import { Button, Checkbox, FormControlLabel } from '@material-ui/core';
 
 export default () => {
@@ -11,7 +11,7 @@ export default () => {
     const leave = () => {
         noSleep.disable()
         socket.emit('leave-room')
-        dispatch(leaveRoom())
+        dispatch(setState('room', {view: 'Home'}))
     }
 
     const start = () => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { isOwner } from '../../store/actions'
+import { setState } from '../../store/actions'
 import { Button } from '@material-ui/core';
 
 export default () => {
@@ -13,7 +13,7 @@ export default () => {
     }
 
     useEffect(() => {
-        dispatch(isOwner(1))
+        dispatch(setState('owner', 1))
     }, [])
 
     return (

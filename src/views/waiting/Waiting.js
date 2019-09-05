@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import LinearProgress from '@material-ui/core/LinearProgress';
-import { setTimer } from '../../store/actions';
+import { setState } from '../../store/actions';
 
 export default () => {
     const [socket, timer, step] = useSelector(state => [state.socket, state.timer, state.room.step])
@@ -14,11 +14,11 @@ export default () => {
 
         if (timer === 100) {
             socket.emit('end-step')
-            dispatch(setTimer(0))      
+            dispatch(setState('timer', 0))      
         } 
         
         let timeout = setTimeout(() => {  
-            dispatch(setTimer(timer + 1))
+            dispatch(setState('timer', timer + 1))
         }, 100);
         return () => {
             clearTimeout(timeout)

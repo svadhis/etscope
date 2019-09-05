@@ -17,6 +17,8 @@ const initialState = {
 
 export default (state = initialState, action) => {
 	switch (action.type) {
+
+		// Update room state from server call
 		case 'UPDATE_ROOM_STATE':
 			return {
 				...state,
@@ -28,6 +30,7 @@ export default (state = initialState, action) => {
 			}
 			break
 
+		// Basic actions to set, add and toggle
 		case 'SET': // Set local state
 			return {
 				...state,
@@ -49,48 +52,12 @@ export default (state = initialState, action) => {
 			}
 			break
 
-		case 'UPDATE_GAME_DATA':
-			return {
-				...state,
-				gameData: action.data // array
-			}
-			break
-
-		case 'IS_CONNECTED':
-			return {
-				...state,
-				connected: action.connected
-			}
-			break
-
-		case 'IS_OWNER':
-			return {
-				...state,
-				owner: action.owner
-			}
-			break
-
+		// Others
 		case 'IS_PLAYER':
 			return {
 				...state,
 				player: action.player,
 				playerName: action.name
-			}
-			break
-
-		case 'SET_TIMER' :
-			return {
-				...state,
-				timer: action.time
-			}
-			break
-
-		case 'LEAVE_ROOM':
-			return {
-				...state,
-				room: {
-					view: 'Home'
-				}
 			}
 			break
 
