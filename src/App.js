@@ -60,8 +60,8 @@ const App = props => {
     React.createElement("div", null, 
       React.createElement("div", {className: 'container'}, 
         React.createElement(
-          useView(state.room.view, viewClient).view,
-          { ...state.room.props, ...useView(state.room.view, viewClient).props } || null
+          useView(state.room.view, viewClient),
+          { ...state.room.props} || null
         )
       ),
       console.log(state),

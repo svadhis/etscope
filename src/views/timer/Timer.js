@@ -8,10 +8,6 @@ export default () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (step === 'ended') {
-            socket.emit('set-view', ['Home'])
-        }
-
         if (timer === 100) {
             socket.emit('end-step')
             dispatch(setState('timer', 0))      

@@ -20,8 +20,8 @@ export default () => {
         <div>
         LOBBY OWNER : {room.number}
         <div>
-            {room.players.map((player) => {
-                return <li>{player.name}</li>
+            {room.players.map((player, i) => {
+                return <li key={i}>{player.name}</li>
             })}
         </div>
         {room.players.length >= 0 && 

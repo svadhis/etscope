@@ -4,10 +4,11 @@ import { TextField, Button } from '@material-ui/core';
 
 export default () => {
 
-    const [socket, playerName, players, problems, step] = useSelector(state => [state.socket, state.playerName, state.room.players, state.room.problems, state.room.step])
+    const [socket, playerName, players, step] = useSelector(state => [state.socket, state.playerName, state.room.players, state.room.step])
 
-    const renderProblem = problem => {
-        let render = problem.split('**')
+    const renderProblem = () => {
+        let problem = players.map(player => player.name === playerName && player.problem)
+        let render = problem[0].split('**')
 
         return (
             <div>
@@ -52,11 +53,8 @@ export default () => {
 
     return (
         <div>
-            {players.map((player, i) => {
-                return player.name === playerName && 
-                renderProblem(problems[i])
-            })}
-             <Button 
+            {renderProblem()}
+            <Button 
                 id="send"
                 size="large"
                 variant="outlined" 

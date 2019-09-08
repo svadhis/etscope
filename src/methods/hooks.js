@@ -1,8 +1,8 @@
-import { views } from '../mapper/views'
+import views from '../mapper/views'
 
 export const useView = (view, client) => {
     const index = client === 'player' ? 1 : 0
-    return { view: views[view][index][0], props: views[view][index][1] }
+    return views[view][index]
 }
 
 export const useSendOrder = order => {

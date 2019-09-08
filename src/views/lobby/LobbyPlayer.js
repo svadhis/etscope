@@ -20,11 +20,6 @@ export default () => {
 
     return (
         <div>
-            LOBBY PLAYER
-            {room.players.map((player) => {
-                return <li>{player.name}</li>
-            })}
-            {console.log(room.players[0].name, ' = ', player)}
             {room.players[0].name === player &&
             <div>
                 <FormControlLabel
