@@ -18,7 +18,7 @@ export default () => {
     useEffect(() => {
         let element = document.querySelector('.Home')
         snabbt(element, {
-            position: [0, 300, 0]
+            position: [0, 100, 0]
           });
     }, [])
 

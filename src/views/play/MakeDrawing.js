@@ -7,7 +7,7 @@ import './Play.css'
 
 export default () => {
 
-    const [socket, playerName, players, step, played] = useSelector(state => [state.socket, state.playerName, state.room.players, state.problemDefault, state.room.step, state.played])
+    const [socket, playerName, players, step, played] = useSelector(state => [state.socket, state.playerName, state.room.players, state.room.step, state.played])
     const dispatch = useDispatch()
 
     let self = {}
@@ -26,8 +26,7 @@ export default () => {
     }, [])
     
     const sendData = () => {
-        let drawing = localStorage.getItem('drawing')
-        let sendButton = document.querySelector('#send')
+        let drawing = canvas.current.getSaveData()
 
         let data = {
             step: 'drawing',
@@ -36,6 +35,7 @@ export default () => {
 
         //TODO : desactiver le canvas
 
+        console.log('sent')
         dispatch(setState('played', true))
         socket.emit('send-data', data)
     }
@@ -44,7 +44,6 @@ export default () => {
         navigator.vibrate(Array(9).fill(50))
         dispatch(setState('played', false))
         let interval = setInterval(() => {
-            console.log('saved')
             localStorage.setItem('drawing', canvas.current.getSaveData())
         }, 1000)
         return () => {
@@ -67,6 +66,7 @@ export default () => {
                 catenaryColor="transparent"
                 canvasWidth="100vw"
                 canvasHeight="100vw"
+                disabled={played}
             />
             <Button 
                 id="send"

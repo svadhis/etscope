@@ -34,7 +34,7 @@ export default () => {
 
         case 'StartDrawing':
             
-            talking.time = 3
+            talking.time = 1
 
             talking.view = () => {
                 if (timer === 0) {
@@ -60,7 +60,7 @@ export default () => {
 
         case 'GetProblem':
             
-            talking.time = 3
+            talking.time = 1
 
             talking.view = () => {
                 timer === 0 && socket.emit('set-view', ['MakeDrawing'])
@@ -83,7 +83,7 @@ export default () => {
 
         case 'StartData':
             
-            talking.time = 3
+            talking.time = 1
 
             talking.view = () => {
                 timer === 0 && socket.emit('set-view', ['MakeData'])

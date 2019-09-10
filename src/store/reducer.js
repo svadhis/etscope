@@ -29,6 +29,16 @@ export default (state = initialState, action) => {
 			s[action.state] = !s[action.state]
 			break
 
+		case 'PUSH': // Push to array
+
+			s[action.state] = [ ...s[action.state], action.value ]
+			break
+
+		case 'KEY': // Add key into object
+
+			s[action.state] = { ...s[action.state], [action.key]: action.value }
+			break
+
 		// Others
 		case 'IS_PLAYER':
 

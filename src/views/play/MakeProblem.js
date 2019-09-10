@@ -17,6 +17,7 @@ export default () => {
     })
 
     let problem = self.problem
+    console.log(self)
 
     const renderProblem = () => {
         let render = problem.phrase.split('**')

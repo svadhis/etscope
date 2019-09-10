@@ -29,6 +29,23 @@ export const toggleState = state => {
     }
 }
 
+export const pushToArray = (state, value) => {
+    return {
+        type: 'PUSH',
+        state: state,
+        value: value
+    }
+}
+
+export const pushToObject = (state, key, value) => {
+    return {
+        type: 'KEY',
+        state: state,
+        key: key,
+        value: value
+    }
+}
+
 export const isPlayer = (bool, name) => {
     return {
         type: 'IS_PLAYER',

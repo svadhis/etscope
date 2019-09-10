@@ -11,11 +11,15 @@ export default () => {
 
     switch (view) {
         case 'MakeProblem':
-            speed = 6
+            speed = 10
             break
 
         case 'MakeDrawing':
-            speed = 5
+            speed = 10
+            break
+
+        default:
+            speed = 10
             break
     }
 
@@ -25,7 +29,7 @@ export default () => {
             
     useEffect(() => {
         if (timer >= 100) {
-            socket.emit('end-step')   
+            socket.emit('end-step')
         } 
 
         let timeout = setTimeout(() => {  
