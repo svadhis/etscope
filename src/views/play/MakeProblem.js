@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setState } from '../../store/actions'
 import { TextField, Button } from '@material-ui/core'
@@ -6,7 +6,7 @@ import './Play.css'
 
 export default () => {
 
-    const [socket, view, playerName, players, problemDefault, step, played] = useSelector(state => [state.socket, state.room.view, state.playerName, state.room.players, state.problemDefault, state.room.step, state.played])
+    const [socket, playerName, players, problemDefault, step, played] = useSelector(state => [state.socket, state.playerName, state.room.players, state.problemDefault, state.room.step, state.played])
     const dispatch = useDispatch()
 
     let self = {}
@@ -16,37 +16,22 @@ export default () => {
         }
     })
 
-    switch (view) {
-        case 'MakeProblem':
-            return <MakeProblem />
-            break
+    let problem = self.problem
 
-        case 'MakeDrawing':
-            return <MakeDrawing />
-            break
+    const renderProblem = () => {
+        let render = problem.phrase.split('**')
 
-        case 'MakeData':
-            return <MakeData />
-            break
-    
-        default:
-            break
+        return (
+            <div>
+                <div>{render[0]}</div>
+                <TextField id="problem" variant="outlined" placeholder="" disabled={played}/>
+                <div>{render[1]}</div>
+            </div>
+        )
     }
-
-    
-
- /*    const setGameData = () => {
-        let data = [
-            document.querySelector('input#problem-1').value,
-            document.querySelector('input#problem-2').value
-        ]
-        dispatch(updateGameData(data))
-    } */
 
     const sendData = bool => {
         let input = document.querySelector('input#problem')
-        let sendButton = document.querySelector('#send')
-        let autoButton = document.querySelector('#auto')
 
         let data = {
             step: 'problem',
@@ -54,8 +39,6 @@ export default () => {
         }
 
         input.value = data.value
-        // sendButton.innerHTML = '-'
-        // autoButton.innerHTML = '-'
 
         dispatch(setState('played', true))
         socket.emit('send-data', data)
@@ -63,6 +46,7 @@ export default () => {
 
     useEffect(() => {
         navigator.vibrate(Array(9).fill(50))
+        dispatch(setState('played', false))
     }, [])
 
     useEffect(() => {
@@ -85,7 +69,14 @@ export default () => {
     }, [problemDefault])
 
     useEffect(() => {
-        step === 'end' && sendData()
+        if (step === 'end') {
+            if (document.querySelector('input').value === '') {
+                sendData(0)
+            }
+            else {
+                sendData(1)
+            }
+        }
     }, [step])
 
     return (

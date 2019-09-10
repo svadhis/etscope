@@ -4,21 +4,36 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import { setState } from '../../store/actions';
 
 export default () => {
-    const [socket, timer, step] = useSelector(state => [state.socket, state.timer, state.room.step])
+    const [socket, timer, view, step] = useSelector(state => [state.socket, state.timer, state.room.view, state.room.step])
     const dispatch = useDispatch()
 
+    let speed = 1
+
+    switch (view) {
+        case 'MakeProblem':
+            speed = 6
+            break
+
+        case 'MakeDrawing':
+            speed = 5
+            break
+    }
+
     useEffect(() => {
-        if (timer === 100) {
-            socket.emit('end-step')
-            dispatch(setState('timer', 0))      
+        dispatch(setState('timer', 0))   
+    }, [])
+            
+    useEffect(() => {
+        if (timer >= 100) {
+            socket.emit('end-step')   
         } 
-        
+
         let timeout = setTimeout(() => {  
-            dispatch(setState('timer', timer + 1))
-        }, 100);
+            dispatch(setState('timer', timer + (speed / 10)))
+        }, 100)
         return () => {
             clearTimeout(timeout)
-        };
+        }
     }, [timer, step])
 
     return (

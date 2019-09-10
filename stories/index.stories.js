@@ -4,26 +4,20 @@ import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { linkTo } from '@storybook/addon-links'
 
-import { Button, Welcome } from '@storybook/react/demo'
-
-import Connecting from '../src/components/spinners/Connecting'
-
-storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />)
+import { Button, TextField } from '@material-ui/core';
 
 storiesOf('Button', module)
 
-  .add('with text', () => 
-    <Button onClick={action('clicked')}>Hello Button lel</Button>
+  .add('default', () => 
+    <Button>Default</Button>
   )
 
-  .add('with some emoji', () => (
-    <Button onClick={action('clicked')}>
-      <span role="img" aria-label="so cool">
-        😀 😎 👍 💯
-      </span>
-    </Button>
-  ))
+storiesOf('Text Input', module)
 
-  .add('Connecting', () => 
-    <Connecting />
+  .add('Home Player', () => 
+    <TextField id="" label="Room" />
+  )
+
+  .add('Make Problems', () => 
+    <TextField id="" placeholder="Test" />
   )

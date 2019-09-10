@@ -6,24 +6,29 @@ import Timer from '../views/timer/Timer'
 import HomePlayer from '../views/home/HomePlayer'
 import LobbyPlayer from '../views/lobby/LobbyPlayer'
 import Idle from '../views/idle/Idle'
-import Play from '../views/play/Play'
+import MakeProblem from '../views/play/MakeProblem'
+import MakeDrawing from '../views/play/MakeDrawing'
+import MakeData from '../views/play/MakeData'
+import MakePresentation from '../views/play/MakePresentation'
+import MakeVote from '../views/play/MakeVote'
 
 export default {
     Home:               [Home, HomePlayer],
     Lobby:              [Lobby, LobbyPlayer],
     CreatingStep:       [Talking, Idle],
-    MakeProblems:       [Timer, Play, {step: 'problems'}],
-    /* StartDrawing:       [Talking, Idle, {step: 'drawing'}],
-    MakeDrawing:        [Timer, Play, {step: 'drawing'}],
-    StartData:          [Talking, Idle, {step: 'data'}],
-    MakeData:           [Timer, Play, {step: 'data'}],
-    PresentingStep:     [Talking, Idle, {step: 'presenting-step'}],
-    StartPresentation:  [CallPlayer, ReadyUp],
-    MakePresentation:   [Presentation, Play, {step: 'presentation'}],
-    EndPresentation:    [Talking, Idle, {step: 'presentation'}],
-    VotingStep:         [Talking, Idle, {step: 'voting-step'}],
-    MakeVotes:          [Votes, Play, {step: 'votes'}],
-    Results:            [Results, Idle],
-    End:                [End, EndPlayer] */
+    MakeProblem:        [Timer, MakeProblem],
+    StartDrawing:       [Talking, Idle],
+    GetProblem:         [Talking, Idle],
+    MakeDrawing:        [Timer, MakeDrawing],
+    StartData:          [Talking, Idle],
+    MakeData:           [Timer, MakeData],
+    PresentingStep:     [Talking, Idle],
+    // StartPresentation:  [CallPlayer, ReadyUp],
+    // MakePresentation:   [Presentation, MakePresentation],
+    // EndPresentation:    [Talking, Idle],
+    // VotingStep:         [Talking, Idle],
+    // MakeVote:          [Votes, MakeVote],
+    // Results:            [Results, Idle],
+    // End:                [End, EndPlayer]
 }
 
