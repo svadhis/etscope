@@ -1,10 +1,24 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import LinearProgress from '@material-ui/core/LinearProgress';
-import { setState } from '../../store/actions';
+import LinearProgress from '@material-ui/core/LinearProgress'
+import { setState } from '../../store/actions'
 
 export default () => {
-    const [socket, timer, view, step] = useSelector(state => [state.socket, state.timer, state.room.view, state.room.step])
+
+    const [
+        socket, 
+        timer, 
+        view, 
+        step, 
+        presenting
+    ] = useSelector(state => [
+        state.socket, 
+        state.timer, 
+        state.room.view, 
+        state.room.step, 
+        state.room.presenting
+    ])
+
     const dispatch = useDispatch()
 
     let speed = 1
@@ -15,6 +29,10 @@ export default () => {
             break
 
         case 'MakeDrawing':
+            speed = 10
+            break
+
+        case 'StartPresentation':
             speed = 10
             break
 
@@ -43,6 +61,11 @@ export default () => {
     return (
         <div>
             <LinearProgress variant="determinate" value={timer} />
+            {view === 'StartPresentation' &&
+            <div>
+                <h4>C'est à toi</h4>
+                <h3>{ presenting }</h3>
+            </div>}
         </div>
     )
 }

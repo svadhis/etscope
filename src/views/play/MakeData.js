@@ -6,7 +6,24 @@ import './Play.css'
 
 export default () => {
 
-    const [socket, playerName, players, step, dataPart, gameData, played] = useSelector(state => [state.socket, state.playerName, state.room.players, state.room.step, state.dataPart, state.gameData, state.played])
+    const [
+        socket, 
+        playerName, 
+        players, 
+        step, 
+        dataPart, 
+        gameData, 
+        played
+    ] = useSelector(state => [
+        state.socket, 
+        state.playerName, 
+        state.room.players, 
+        state.room.step, 
+        state.dataPart, 
+        state.gameData, 
+        state.played
+    ])
+    
     const dispatch = useDispatch()
 
     let self = {}

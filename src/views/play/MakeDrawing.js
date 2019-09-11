@@ -33,9 +33,6 @@ export default () => {
             value: drawing
         }
 
-        //TODO : desactiver le canvas
-
-        console.log('sent')
         dispatch(setState('played', true))
         socket.emit('send-data', data)
     }
@@ -64,8 +61,8 @@ export default () => {
                 brushRadius={6}
                 hideGrid={true}
                 catenaryColor="transparent"
-                canvasWidth="100vw"
-                canvasHeight="100vw"
+                canvasWidth={window.innerWidth}
+                canvasHeight={window.innerWidth}
                 disabled={played}
             />
             <Button 

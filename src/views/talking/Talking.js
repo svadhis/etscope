@@ -3,7 +3,23 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setState } from '../../store/actions'
 
 export default () => {
-    const [socket, view, timer, instructions, players] = useSelector(state => [state.socket, state.room.view, state.timer, state.room.instructions, state.room.players.length])
+
+    const [
+        socket, 
+        view,
+        timer, 
+        instructions, 
+        presentOrder,
+        players
+    ] = useSelector(state => [
+        state.socket, 
+        state.room.view, 
+        state.timer, 
+        state.room.instructions, 
+        state.room.presentOrder,
+        state.room.players.length
+    ])
+
     const dispatch = useDispatch()
 
     const talking = {}
@@ -100,6 +116,80 @@ export default () => {
                 </div> : timer > 0 &&
                 <div>
                     TITRE ET SLOGAN !
+                </div>     
+            }
+            break
+
+        case 'PresentingStep':
+            
+            talking.time = 1
+
+            talking.view = () => {
+                timer === 0 && socket.emit('set-view', ['StartPresentation'])
+
+                return timer > 15 ?
+                <div>
+                    premieres instructions
+                </div> : timer > 10 ?
+                <div>
+                    deuxiemes instructions
+                </div> : timer > 5 ?
+                <div>
+                    troisiemes instructions
+                </div> : timer > 0 &&
+                <div>
+                    MAINTENANT ON VA PRESENTER TOUT CA
+                </div>     
+            }
+            break
+
+        case 'EndPresentation':
+            
+            talking.time = 1
+
+            talking.view = () => {
+                if (timer === 0) {
+                    dispatch(setState('timer', -1))
+                    presentOrder[0] ? 
+                    socket.emit('set-view', ['StartPresentation']) :
+                    socket.emit('set-view', ['VotingStep'])
+                }
+
+                return timer > 15 ?
+                <div>
+                    premieres instructions
+                </div> : timer > 10 ?
+                <div>
+                    deuxiemes instructions
+                </div> : timer > 5 ?
+                <div>
+                    troisiemes instructions
+                </div> : timer > 0 &&
+                <div>
+                    WA COOL PRESENTATION !
+                </div>     
+            }
+            break
+
+        case 'VotingStep':
+            
+            talking.time = 1
+
+            talking.view = () => {
+                timer === 0 && socket.emit('set-view', ['MakeVote'])
+
+                return timer > 15 ?
+                <div>
+                    premieres instructions
+                </div> : timer > 10 ?
+                <div>
+                    deuxiemes instructions
+                </div> : timer > 5 ?
+                <div>
+                    troisiemes instructions
+                </div> : timer > 0 &&
+                <div>
+                    MAINTENANT ON VA VOTER !!
                 </div>     
             }
             break
