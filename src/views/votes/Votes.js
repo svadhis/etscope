@@ -55,7 +55,7 @@ export default () => {
         } 
 
         let timeout = setTimeout(() => {  
-            dispatch(setState('timer', timer + 1))
+            dispatch(setState('timer', timer + 0.5))
         }, 100)
         return () => {
             clearTimeout(timeout)

@@ -13,10 +13,10 @@ export default () => {
 
     const join = () => {
         noSleep.enable()
-        dispatch(isPlayer(1, document.querySelector('input#name').value))
+        dispatch(isPlayer(1, document.querySelector('input#name').value.toUpperCase()))
         socket.emit('join-room', {
-            room: document.querySelector('input#room').value,
-            player: document.querySelector('input#name').value
+            room: document.querySelector('input#room').value.toUpperCase(),
+            player: document.querySelector('input#name').value.toUpperCase()
         })
     }
 

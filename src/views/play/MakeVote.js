@@ -33,30 +33,32 @@ export default () => {
             <div>
                 {players.map(player => player.name !== playerName &&
                     <div onClick={() => {sendData(player.name)}}>
-                        {Array(investment[player.name]).map(coin => <span>o</span>)}
+                        {investment[player.name]}
                         <h4>{player.name}</h4>
                         <h3>{solutions[player.name].data.name}</h3>
                     </div>
                 )}
-                {Array(money).map(() => <span>o</span>)}
+                {money}
                 
             </div>
         )
     }
 
     const sendData = target => {  
-        if (target === 'end') {
-            dispatch(setState('money', 0))
-        }
-        else {
-            dispatch(addToState('money', -1))
-            dispatch(setState('investment', {...investment, [target]: investment[target] + 1 || 1}))
-        }  
+        if (money > 0) {
+            if (target === 'end') {
+                dispatch(setState('money', 0))
+            }
+            else {
+                dispatch(addToState('money', -1))
+                dispatch(setState('investment', {...investment, [target]: investment[target] + money || money}))
+            }  
+        }   
     }
 
     useEffect(() => {
         navigator.vibrate(Array(9).fill(50))
-        dispatch(setState('money', players.length))
+        dispatch(setState('money', players.length - 1))
         dispatch(setState('played', false))
     }, [])
 

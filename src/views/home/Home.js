@@ -5,6 +5,7 @@ import { useSendOrder } from '../../methods/hooks'
 import './Home.css'
 import  { Breakpoint } from 'react-socks';
 import { newRoom, startRoom } from '../../mapper/orders'
+import { Box, Button } from '@material-ui/core'
 
 export default () => {
 
@@ -12,7 +13,7 @@ export default () => {
 
     const newRoom = () => {
         noSleep.enable()
-        socket.emit('new-room', [...Array(4)].map(i => (~~(Math.random() * 26 + 10)).toString(36)).join(""))
+        socket.emit('new-room', [...Array(4)].map(i => (~~(Math.random() * 26 + 10)).toString(36)).join("").toUpperCase())
     }
 
     useEffect(() => {
@@ -23,14 +24,23 @@ export default () => {
     }, [])
 
     return (
-        <div>
+        <Box display="flex" justifyContent="center" alignItems="center">
             <div className="Home">
-                <div>
-                    <button onClick={() => {newRoom()}}>
-                        NEW ROOM
-                    </button>
-                </div>   
+            <div>
+                <h1 className="game-title">
+                GAME-3000
+                </h1>
+                <Button 
+                id="send"
+                size="large"
+                variant="outlined" 
+                onClick={() => {newRoom()}}
+                color="primary" 
+                >
+                NOUVELLE PARTIE
+                </Button>
+            </div>   
             </div>
-        </div>
+        </Box>
     )
 }

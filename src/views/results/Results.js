@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import LinearProgress from '@material-ui/core/LinearProgress'
 import CanvasDraw from 'react-canvas-draw'
 import { setState, addToState } from '../../store/actions'
 import { TextField, Button } from '@material-ui/core'
@@ -9,14 +8,12 @@ export default () => {
 
     const [
         socket,  
-        timer,
         players, 
         step,  
         solutions,
         results
     ] = useSelector(state => [
         state.socket, 
-        state.timer,
         state.room.players, 
         state.room.step,  
         state.room.solutions,
@@ -30,7 +27,7 @@ export default () => {
             <div>
                 {players.map(player =>
                     <div>
-                        {Array(results[player.name]).map(() => <span>o</span>)}
+                        {results[player.name]}
                         <h4>{player.name}</h4>
                         <h3>{solutions[player.name].data.name}</h3>
                         <h5>{solutions[player.name].data.catch}</h5>
@@ -48,27 +45,22 @@ export default () => {
         )
     }
 
-    useEffect(() => {
-        dispatch(setState('timer', 0))   
-    }, [])
-            
-    useEffect(() => {
-        if (timer >= 100) {
-            socket.emit('set-view', 'End')
-        } 
-
-        let timeout = setTimeout(() => {  
-            dispatch(setState('timer', timer + 1))
-        }, 100)
-        return () => {
-            clearTimeout(timeout)
-        }
-    }, [timer, step])
+    const restart = () => {
+        socket.emit('restart')
+    }
 
     return (
         <div>
-            <LinearProgress variant="determinate" value={timer} />
             {showVotes()}
+            <Button 
+                id="restart"
+                size="large"
+                variant="outlined" 
+                color="primary" 
+                onClick={() => {restart()}}
+            >
+                RELANCER UNE PARTIE
+            </Button>
         </div>
     )
 }

@@ -32,7 +32,6 @@ export default {
     EndPresentation:    [Talking, Idle],
     VotingStep:         [Talking, Idle],
     MakeVote:           [Votes, MakeVote],
-    Results:            [Results, Idle], // set owner to Talking
-    // End:                [End, EndPlayer]
+    Results:            [Results, Idle]
 }
 
