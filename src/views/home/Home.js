@@ -28,7 +28,7 @@ export default () => {
             <div className="Home">
             <div>
                 <h1 className="game-title">
-                GAME-3000
+                GAME:3000
                 </h1>
                 <Button 
                 id="send"

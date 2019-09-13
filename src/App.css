@@ -29,7 +29,6 @@ body {
 
 .Home {
   text-align: center;
-  margin-top: 20vh;
 }
 
 .big {
@@ -37,13 +36,14 @@ body {
 }
 
 .very-big {
-  font-size: 4em;
+  font-size: 5em;
 }
 
 /* GAME TITLE */
 .game-title {
   font-family: 'Montserrat', sans-serif;
-  margin-bottom: 80px;
+  margin-bottom: 15vh;
+  text-shadow: 0 0 5px #380053, 0 0 15px rgba(255, 255, 255, 0.3), 0 0 120px rgba(255, 255, 255, 0.3);
 }
 
 .game-title span:first-child { color: #d580ff; }
@@ -56,17 +56,66 @@ body {
 .game-title span:nth-child(8) { color: #8800cc; }
 .game-title span:nth-child(9) { color: #7700b3; }
 
+/* HOME BUTTON */
+.home-button {
+  border-color: #ffb6ee !important;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.home-button span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2em;
+  padding: 0 50px;
+  color: #ffb6ee;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
 /* DEFAULT BUTTON */
 .default-button {
-  border-color: #fbd4c2 !important;
+  border-color: #ffb6ee !important;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
 }
 
 .default-button span {
   font-family: 'Montserrat', sans-serif;
-  font-size: 2em;
-  padding: 0 50px;
-  color: #fc80df;
-  outline-color: white;
+  font-size: 1.5em;
+  color: #ffb6ee;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.MuiInputBase-input  {
+  color: white !important;
+  border-bottom: 1px solid #ffb6ee !important;
+}
+
+.MuiInputLabel-root   {
+  color: #ffb6ee !important;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.player-join {
+  margin-bottom: 15vh;
+}
+
+.robot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+}
+
+.robot-player {
+  position: absolute;
+  top: 50vh;
+  left: 30;
+  width: 30vw;
+}
+
+.face-player {
+  position: absolute;
+  top: 50vh;
+  left: 30;
+  width: 30vw;
 }
 
 .room-ribbon {

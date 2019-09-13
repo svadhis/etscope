@@ -15,6 +15,8 @@ import MakeData from '../views/play/MakeData'
 import StartPresentation from '../views/play/StartPresentation'
 import MakePresentation from '../views/play/MakePresentation'
 import MakeVote from '../views/play/MakeVote'
+import Test from '../views/Test'
+
 
 export default {
     Home:               [Home, HomePlayer],
