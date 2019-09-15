@@ -4,7 +4,8 @@ import { useSendOrder } from '../../methods/hooks'
 import './Home.css'
 import { isPlayer } from '../../store/actions'
 import { joinRoom } from '../../mapper/orders'
-import { Button, TextField } from '@material-ui/core'
+import { Box } from '@material-ui/core'
+import { Button, Title, Input } from '../../mapper/components'
 
 export default () => {
 
@@ -21,21 +22,24 @@ export default () => {
     }
 
     return (
-        <div>
-            <div className="HomePlayer">
-                <TextField id="name" label="Nom" />
-                <TextField id="room" label="Room" />
-                
-                <Button 
-                    size="large"
-                    variant="outlined" 
-                    color="primary" 
-                    onClick={() => {join()}}
-                >
-                    REJOINDRE LA PARTIE
-                </Button>
-            
-            </div>
+        <div className="home player-screen">
+            <Box height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+                <Title size="big" />
+                <div className="player-join">
+                    <div>
+                        <Input type="home" id="name" value="nom" />
+                    </div> 
+                    <div>
+                        <Input type="home" id="room" value="room" />
+                    </div>
+                </div>
+                <Button
+                    id="send"
+                    type="homeplayer"
+                    value="rejoindre"
+                    onClick={join}
+                />
+            </Box>
         </div>
     )
 }

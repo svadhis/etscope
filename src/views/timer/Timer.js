@@ -7,12 +7,14 @@ export default () => {
 
     const [
         socket, 
+        instructions,
         timer, 
         view, 
         step, 
         presenting
     ] = useSelector(state => [
         state.socket, 
+        state.room.instructions,
         state.timer, 
         state.room.view, 
         state.room.step, 
@@ -50,7 +52,7 @@ export default () => {
     }
 
     useEffect(() => {
-        dispatch(setState('timer', 0))   
+        dispatch(setState('timer', instructions === true ? -15 : 0))   
     }, [])
             
     useEffect(() => {

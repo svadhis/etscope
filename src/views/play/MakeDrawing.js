@@ -2,12 +2,30 @@ import React, { useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setState } from '../../store/actions'
 import CanvasDraw from 'react-canvas-draw'
-import { TextField, Button } from '@material-ui/core'
+import { Button, ColorButton } from '../../mapper/components'
 import './Play.css'
+import { Box } from '@material-ui/core'
 
 export default () => {
 
-    const [socket, playerName, players, step, brush, played] = useSelector(state => [state.socket, state.playerName, state.room.players, state.room.step, state.brush, state.played])
+    const [
+        socket,
+        instructions,
+        showIns,
+        playerName,
+        players,
+        step,
+        brush,
+        played
+    ] = useSelector(state => [
+        state.socket, 
+        state.room.instructions,
+        state.showIns,
+        state.playerName, 
+        state.room.players, 
+        state.room.step, 
+        state.brush, 
+        state.played])
     const dispatch = useDispatch()
 
     let self = {}
@@ -20,6 +38,52 @@ export default () => {
     let problem = self.entry.problem
 
     const canvas = useRef(null)
+
+    const renderDrawing = () => {
+        if (instructions === showIns === true) {
+            return (
+                <div>
+                    INSTRUCTIONS !!
+                </div>
+            )
+        }
+        else {
+            return (
+                <div className="drawing player-screen">
+                    <Box height="100vh" display="flex" flexDirection="column" justifyContent="space-evenly" alignItems="center">
+                    <h3>{problem}</h3>
+                    <div className="player-canvas">
+                        <CanvasDraw 
+                            ref={canvas}
+                            lazyRadius={1}
+                            brushRadius={4}
+                            brushColor={brush}
+                            hideGrid={true}
+                            catenaryColor="transparent"
+                            canvasWidth={window.innerWidth * 0.9}
+                            canvasHeight={window.innerWidth * 0.9}
+                            disabled={played}
+                        />
+                    </div>
+                    <Box width="100vw" display="flex" justifyContent="space-evenly">
+                        <ColorButton value="undo" onClick={undo}/>
+                        <ColorButton value="default" color="#444" onClick={setColor} />
+                        <ColorButton value="red" color="#F00" onClick={setColor} />
+                        <ColorButton value="green" color="#0F0" onClick={setColor} />
+                        <ColorButton value="blue" color="#00F" onClick={setColor} />
+                        <ColorButton value="yellow" color="#FF0" onClick={setColor} />
+                    </Box>                 
+                    <Button 
+                        id="send"
+                        type="default"
+                        value="valider"
+                        onClick={sendData}
+                    />
+                    </Box>
+                </div>
+            )
+        }
+    }
     
     const sendData = () => {
         let drawing = canvas.current.getSaveData()
@@ -31,6 +95,10 @@ export default () => {
 
         dispatch(setState('played', true))
         socket.emit('send-data', data)
+    }
+
+    const undo = () => {
+        canvas.current.undo()
     }
 
     const setColor = color => {
@@ -48,6 +116,11 @@ export default () => {
             clearInterval(interval)
         } */
 
+        instructions === showIns === true && setTimeout(() => {
+            dispatch(setState('showIns', false))
+        }, 3000)
+        
+        return () => dispatch(setState('showIns', true))
     }, [])
 
     useEffect(() => {
@@ -56,76 +129,7 @@ export default () => {
 
     return (
         <div>
-            <h3>{problem}</h3>
-            <CanvasDraw 
-                ref={canvas}
-                lazyRadius={2}
-                brushRadius={4}
-                brushColor={brush}
-                hideGrid={true}
-                catenaryColor="transparent"
-                canvasWidth={window.innerWidth}
-                canvasHeight={window.innerWidth}
-                disabled={played}
-            />
-            <Button 
-                id="undo"
-                variant="outlined" 
-                color="primary" 
-                onClick={() => {canvas.current.undo()}}
-            >
-                CORRIGER
-            </Button>
-            <Button 
-                id="default-color"
-                variant="outlined" 
-                color="primary" 
-                onClick={() => {setColor('#444')}}
-            >
-                NOIR
-            </Button>
-            <Button 
-                id="red"
-                variant="outlined" 
-                color="primary" 
-                onClick={() => {setColor('#F00')}}
-            >
-                ROUGE
-            </Button>
-            <Button 
-                id="green"
-                variant="outlined" 
-                color="primary" 
-                onClick={() => {setColor('#0F0')}}
-            >
-                VERT
-            </Button>
-            <Button 
-                id="blue"
-                variant="outlined" 
-                color="primary" 
-                onClick={() => {setColor('#00F')}}
-            >
-                BLEU
-            </Button>
-            <Button 
-                id="yellow"
-                variant="outlined" 
-                color="primary" 
-                onClick={() => {setColor('#FF0')}}
-            >
-                JAUNE
-            </Button>
-            <Button 
-                id="send"
-                size="large"
-                variant="outlined" 
-                color="primary" 
-                disabled={played}
-                onClick={() => {sendData()}}
-            >
-                VALIDER
-            </Button>
+            {renderDrawing()}
         </div>
     )
 }

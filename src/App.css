@@ -12,22 +12,7 @@ body {
   min-width: 100vw;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
 .home {
-  border: 2px solid black;
-  padding: 15px;
-  width: 100px;
-  border-radius: 15px;
-}
-
-body {
-  background-color: #260a31;
-}
-
-.Home {
   text-align: center;
 }
 
@@ -50,19 +35,19 @@ body {
 .game-title span:nth-child(2) { color: #cc66ff; }
 .game-title span:nth-child(3) { color: #c44dff; }
 .game-title span:nth-child(4) { color: #bb33ff; }
-.game-title span:nth-child(5) { color: #b31aff; }
+.game-title span:nth-child(5) { position: relative; color: #b31aff; top: -4px; }
 .game-title span:nth-child(6) { color: #aa00ff; }
 .game-title span:nth-child(7) { color: #9900e6; }
 .game-title span:nth-child(8) { color: #8800cc; }
 .game-title span:nth-child(9) { color: #7700b3; }
 
 /* HOME BUTTON */
-.home-button {
+.home-button2 {
   border-color: #ffb6ee !important;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
-.home-button span {
+.home-button2 span {
   font-family: 'Montserrat', sans-serif;
   font-size: 2em;
   padding: 0 50px;
@@ -71,12 +56,12 @@ body {
 }
 
 /* DEFAULT BUTTON */
-.default-button {
+.default-button2 {
   border-color: #ffb6ee !important;
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
 }
 
-.default-button span {
+.default-button2 span {
   font-family: 'Montserrat', sans-serif;
   font-size: 1.5em;
   color: #ffb6ee;

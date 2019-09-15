@@ -1,0 +1,67 @@
+// BASE TEXT
+@mixin myText($size: 0.8em) {
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-size: $size;
+    color: lighten($mainColor, 35%);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+}
+
+// BASE BUTTON
+@mixin baseButton($size: 1.4em) {
+    @include myText($size);
+    background-color: darken($mainColor, 38%);
+    border-color: lighten($mainColor, 30%);
+    border-radius: 5px;  
+    font-size: $size;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+
+    &:active {
+        color: lighten($mainColor, 40%);
+        background-color: darken($mainColor, 40%);
+        border-color: lighten($mainColor, 40%);
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
+    }
+}
+
+// COLOR BUTTON
+@mixin myColorButton {
+    @include baseButton();
+    width: 40px;
+    height: 40px;
+    padding: 3px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    border-color: lighten($mainColor, 30%);
+    border-radius: 45%;
+
+    div { 
+        width: 30px;
+        height: 30px;
+        border-radius: 45%;
+    }
+}
+
+// INPUT
+@mixin myInput($size: 1em) {
+    input {
+        text-transform: uppercase;
+        font-size: $size;
+        background-color: transparent;
+        border: 0;
+        color: lighten($mainColor, 35%);
+        width: 200px;
+    
+        &::placeholder {
+            color: lighten($mainColor, 35%);
+            opacity: 0.4;
+        }
+    }
+
+    .line {
+        margin: 5px 0 30px;
+        width: 200px;
+        height: 0px;
+        border: 0.5px solid lighten($mainColor, 35%);
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+}

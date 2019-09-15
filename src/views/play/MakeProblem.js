@@ -6,7 +6,26 @@ import './Play.css'
 
 export default () => {
 
-    const [socket, playerName, players, problemDefault, step, played] = useSelector(state => [state.socket, state.playerName, state.room.players, state.problemDefault, state.room.step, state.played])
+    const [
+        socket,
+        instructions,
+        showIns,
+        playerName,
+        players,
+        problemDefault,
+        step,
+        played
+    ] = useSelector(state => [
+        state.socket,
+        state.room.instructions,
+        state.showIns,
+        state.playerName,
+        state.room.players,
+        state.problemDefault,
+        state.room.step,
+        state.played
+    ])
+
     const dispatch = useDispatch()
 
     let self = {}
@@ -20,15 +39,45 @@ export default () => {
     console.log(self)
 
     const renderProblem = () => {
-        let render = problem.phrase.split('**')
 
-        return (
-            <div>
-                <div>{render[0]}</div>
-                <TextField id="problem" variant="outlined" placeholder="" disabled={played}/>
-                <div>{render[1]}</div>
-            </div>
-        )
+        if (instructions === showIns === true) {
+            return (
+                <div>
+                    INSTRUCTIONS !!
+                </div>
+            )
+        }
+        else {
+            let render = problem.phrase.split('**')
+
+            return (
+                <div>
+                    <div>{render[0]}</div>
+                    <TextField id="problem" variant="outlined" placeholder="" disabled={played}/>
+                    <div>{render[1]}</div>
+                    <Button 
+                        id="send"
+                        size="large"
+                        variant="outlined" 
+                        color="primary" 
+                        disabled={played}
+                        onClick={() => {sendData(1)}}
+                    >
+                        VALIDER
+                    </Button>
+                    <Button 
+                        id="auto"
+                        size="large"
+                        variant="outlined" 
+                        color="primary" 
+                        disabled={played}
+                        onClick={() => {sendData(0)}}
+                    >
+                        RANDOM
+                    </Button>
+                </div>
+            )
+        }
     }
 
     const sendData = bool => {
@@ -48,26 +97,34 @@ export default () => {
     useEffect(() => {
         navigator.vibrate(Array(9).fill(50))
         dispatch(setState('played', false))
+
+        instructions === showIns === true && setTimeout(() => {
+            dispatch(setState('showIns', false))
+        }, 3000)
+        
+        return () => dispatch(setState('showIns', true))
     }, [])
 
     useEffect(() => {
-        let input = document.querySelector('input')
-        let messageRendu = ''
-        let message = problem.default[problemDefault]
-        let i = 0
-        const int = setInterval(() => {
-            messageRendu += message[i]
-            input.placeholder = messageRendu
-            i++
-            if (i == message.length) {
-                clearInterval(int)
-            }
-        }, 60);
-        const newDefault = problem.default[problemDefault + 1] ? problemDefault + 1 : 0
-        setTimeout(() => {
-            dispatch(setState('problemDefault', newDefault))
-        }, 3000)
-    }, [problemDefault])
+        if (instructions === false || showIns === false) {
+            let input = document.querySelector('input')
+            let messageRendu = ''
+            let message = problem.default[problemDefault]
+            let i = 0
+            const int = setInterval(() => {
+                messageRendu += message[i]
+                input.placeholder = messageRendu
+                i++
+                if (i == message.length) {
+                    clearInterval(int)
+                }
+            }, 60);
+            const newDefault = problem.default[problemDefault + 1] ? problemDefault + 1 : 0
+            setTimeout(() => {
+                dispatch(setState('problemDefault', newDefault))
+            }, 3000)
+        }
+    }, [problemDefault, showIns])
 
     useEffect(() => {
         if (step === 'end') {
@@ -83,26 +140,6 @@ export default () => {
     return (
         <div className="play">
             {renderProblem()}
-            <Button 
-                id="send"
-                size="large"
-                variant="outlined" 
-                color="primary" 
-                disabled={played}
-                onClick={() => {sendData(1)}}
-            >
-                VALIDER
-            </Button>
-            <Button 
-                id="auto"
-                size="large"
-                variant="outlined" 
-                color="primary" 
-                disabled={played}
-                onClick={() => {sendData(0)}}
-            >
-                RANDOM
-            </Button>
         </div>
     )
 }

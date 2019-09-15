@@ -1,12 +1,12 @@
 import React from 'react'
 import { useEffect } from 'react'
-import './App.css'
+import './App.scss'
 import io from "socket.io-client"
 import { useCurrentWidth } from 'react-socks'
 import { useSelector, useDispatch } from 'react-redux'
 import { useView } from './methods/hooks'
 import * as Actions from './store/actions'
-import RoomRibbon from './components/RoomRibbon'
+import Ribbon from './components/ribbon/Ribbon'
 import Connecting from './components/spinners/Connecting'
 import { withSnackbar } from 'notistack';
 
@@ -65,7 +65,7 @@ const App = props => {
         )
       ),
       console.log(state),
-      state.room.number && state.owner === 1 && React.createElement(RoomRibbon),
+      state.room.number && state.owner === 1 && React.createElement(Ribbon),
       state.connected === 0 && React.createElement(Connecting)
     )
   )

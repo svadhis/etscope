@@ -18,16 +18,16 @@ export default () => {
 
     return (
         <div>
-        LOBBY OWNER : {room.number}
-        <div>
-            {room.players.map((player, i) => {
-                return <li key={i}>{player.name}</li>
-            })}
+            LOBBY OWNER : {room.number}
+            <div>
+                {room.players.map((player, i) => {
+                    return <li key={i}>{player.name}</li>
+                })}
+            </div>
+            {room.players.length >= 0 && 
+            <Button onClick={() => {start()}}>
+                Lancer la partie
+            </Button>}
         </div>
-        {room.players.length >= 0 && 
-        <Button onClick={() => {start()}}>
-            Lancer la partie
-        </Button>}
-    </div>
     )
 }

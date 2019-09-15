@@ -8,6 +8,8 @@ export default () => {
 
     const [
         socket, 
+        instructions,
+        showIns,
         playerName, 
         players, 
         step, 
@@ -16,6 +18,8 @@ export default () => {
         played
     ] = useSelector(state => [
         state.socket, 
+        state.room.instructions,
+        state.showIns,
         state.playerName, 
         state.room.players, 
         state.room.step, 
@@ -34,14 +38,34 @@ export default () => {
     })
 
     const renderData = () => {
-        let title = dataPart === 'start' ? 'Nom de votre solution' : 'Slogan'
 
-        return (
-            <div>
-                <h3>{title}</h3>
-                <TextField id={dataPart} variant="outlined" placeholder="" disabled={played}/>
-            </div>
-        )
+        if (instructions === showIns === true) {
+            return (
+                <div>
+                    INSTRUCTIONS !!
+                </div>
+            )
+        }
+        else {
+            let title = dataPart === 'start' ? 'Nom de votre solution' : 'Slogan'
+
+            return (
+                <div>
+                    <h3>{title}</h3>
+                    <TextField id={dataPart} variant="outlined" placeholder="" disabled={played}/>
+                    <Button 
+                        id="send"
+                        size="large"
+                        variant="outlined" 
+                        color="primary" 
+                        disabled={played}
+                        onClick={() => {sendData()}}
+                    >
+                        VALIDER
+                    </Button>
+                </div>
+            )
+        }
     }
 
     const sendData = bool => {   
@@ -67,16 +91,24 @@ export default () => {
     useEffect(() => {
         navigator.vibrate(Array(9).fill(50))
         dispatch(setState('played', false))
+
+        instructions === showIns === true && setTimeout(() => {
+            dispatch(setState('showIns', false))
+        }, 3000)
+        
+        return () => dispatch(setState('showIns', true))
     }, [])
 
     useEffect(() => {
-        let input = document.querySelector('input')
+        if (instructions === false || showIns === false) {
+            let input = document.querySelector('input')
 
-        dataPart !== 'start' && dispatch(pushToObject('gameData', dataPart, input.value))
-
-        input.value = ''
-        input.focus()
-    }, [dataPart])
+            dataPart !== 'start' && dispatch(pushToObject('gameData', dataPart, input.value))
+    
+            input.value = ''
+            input.focus()
+        }
+    }, [dataPart, showIns])
 
     useEffect(() => {
         if (dataPart === 'catch') {
@@ -99,16 +131,6 @@ export default () => {
     return (
         <div className="play">
             {renderData()}
-            <Button 
-                id="send"
-                size="large"
-                variant="outlined" 
-                color="primary" 
-                disabled={played}
-                onClick={() => {sendData()}}
-            >
-                VALIDER
-            </Button>
         </div>
     )
 }
