@@ -30,7 +30,7 @@ export default () => {
 
             timer === 0 && socket.emit('set-view', ['MakeProblem'])
             
-            talking.time = 1
+            talking.time = 5
 
             talking.image = "https://www.setaswall.com/wp-content/uploads/2018/05/Space-Planet-2-Wallpaper-800x480.jpg"
 
@@ -58,7 +58,9 @@ export default () => {
                 socket.emit('set-view', ['GetProblem'])
             }
             
-            talking.time = 1
+            talking.time = 5
+
+            talking.image = "https://www.setaswall.com/wp-content/uploads/2018/05/Space-Planet-2-Wallpaper-800x480.jpg"
 
             talking.view = () => {
                 return timer > 15 ?
@@ -81,7 +83,9 @@ export default () => {
 
             timer === 0 && socket.emit('set-view', ['MakeDrawing'])
             
-            talking.time = 1
+            talking.time = 5
+
+            talking.image = "https://www.setaswall.com/wp-content/uploads/2018/05/Space-Planet-2-Wallpaper-800x480.jpg"
 
             talking.view = () => {
                 return timer > 15 ?
@@ -101,12 +105,14 @@ export default () => {
             break
 
         case 'StartData':
+
+            timer === 0 && socket.emit('set-view', ['MakeData'])
             
-            talking.time = 1
+            talking.time = 5
+
+            talking.image = "https://www.setaswall.com/wp-content/uploads/2018/05/Space-Planet-2-Wallpaper-800x480.jpg"
 
             talking.view = () => {
-                timer === 0 && socket.emit('set-view', ['MakeData'])
-
                 return timer > 15 ?
                 <div>
                     premieres instructions
@@ -124,12 +130,14 @@ export default () => {
             break
 
         case 'PresentingStep':
+
+            timer === 0 && socket.emit('set-view', ['StartPresentation'])
             
-            talking.time = 1
+            talking.time = 5
+
+            talking.image = "https://www.setaswall.com/wp-content/uploads/2018/05/Space-Planet-2-Wallpaper-800x480.jpg"
 
             talking.view = () => {
-                timer === 0 && socket.emit('set-view', ['StartPresentation'])
-
                 return timer > 15 ?
                 <div>
                     premieres instructions
@@ -147,17 +155,19 @@ export default () => {
             break
 
         case 'EndPresentation':
+
+            if (timer === 0) {
+                dispatch(setState('timer', -1))
+                presentOrder[0] ? 
+                socket.emit('set-view', ['StartPresentation']) :
+                socket.emit('set-view', ['VotingStep'])
+            }
             
-            talking.time = 1
+            talking.time = 5
+
+            talking.image = "https://www.setaswall.com/wp-content/uploads/2018/05/Space-Planet-2-Wallpaper-800x480.jpg"
 
             talking.view = () => {
-                if (timer === 0) {
-                    dispatch(setState('timer', -1))
-                    presentOrder[0] ? 
-                    socket.emit('set-view', ['StartPresentation']) :
-                    socket.emit('set-view', ['VotingStep'])
-                }
-
                 return timer > 15 ?
                 <div>
                     premieres instructions
@@ -175,12 +185,14 @@ export default () => {
             break
 
         case 'VotingStep':
+
+            timer === 0 && socket.emit('set-view', ['MakeVote'])
             
-            talking.time = 1
+            talking.time = 5
+
+            talking.image = "https://www.setaswall.com/wp-content/uploads/2018/05/Space-Planet-2-Wallpaper-800x480.jpg"
 
             talking.view = () => {
-                timer === 0 && socket.emit('set-view', ['MakeVote'])
-
                 return timer > 15 ?
                 <div>
                     premieres instructions

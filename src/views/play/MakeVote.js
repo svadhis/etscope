@@ -79,14 +79,17 @@ export default () => {
 
     useEffect(() => {
         navigator.vibrate(Array(9).fill(50))
-        dispatch(setState('money', players.length - 1))
+        dispatch(setState('money', players.length <= 3 ? 2 : 3))
         dispatch(setState('played', false))
 
         instructions === showIns === true && setTimeout(() => {
             dispatch(setState('showIns', false))
         }, 3000)
         
-        return () => dispatch(setState('showIns', true))
+        return () => {
+            dispatch(setState('played', false))
+            dispatch(setState('showIns', true))
+        }
     }, [])
 
     useEffect(() => {

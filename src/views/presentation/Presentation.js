@@ -24,7 +24,8 @@ export default () => {
     const showPresentation = () => {
         return (
             <div className="owner-screen">
-                <Box height="100vh" display="flex" justifyContent="space-evenly" alignItems="center">
+                <h1>probleme : {presentation.problem}</h1>
+                <Box height="85vh" display="flex" justifyContent="space-evenly" alignItems="center">
                     <Box width="45vw" display="flex" flexDirection="column" justifyContent="space-evenly" alignItems="center">
                         {presentation.steps[0] &&
                         <h1 className="very-big">{presentation.data.name}</h1>}
@@ -35,8 +36,8 @@ export default () => {
                         {presentation.steps[2] &&
                         <CanvasDraw 
                             hideGrid={true}
-                            canvasWidth={Math.round(window.innerWidth * 0.4)}
-                            canvasHeight={Math.round(window.innerWidth * 0.4)}
+                            canvasWidth={Math.round(window.innerWidth * 0.36)}
+                            canvasHeight={Math.round(window.innerWidth * 0.36)}
                             disabled={true}
                             saveData={presentation.drawing}
                             immediateLoading={true}
@@ -57,7 +58,7 @@ export default () => {
         } 
 
         let timeout = setTimeout(() => {  
-            dispatch(setState('timer', timer + 1))
+            dispatch(setState('timer', timer + 0.2))
         }, 100)
         return () => {
             clearTimeout(timeout)

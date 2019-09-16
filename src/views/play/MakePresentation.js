@@ -25,23 +25,7 @@ export default () => {
         if (presenting === playerName) {
             return (
                 <div className="player-screen">
-                    <Box height="100vh" display="flex" flexDirection="column" justifyContent="space-evenly" alignItems="center">
-                        {!presentation.steps[0] &&
-                        <Button
-                            id="name"
-                            type="card-name"
-                            value={presentation.data.name}
-                            onClick={sendData}
-                            data="0"
-                        />}
-                        {!presentation.steps[1] &&
-                        <Button
-                            id="catch"
-                            type="card-slogan"
-                            value={presentation.data.catch}
-                            onClick={sendData}
-                            data="1"
-                        />}
+                    <Box height="100vh" display="flex" flexDirection="column" alignItems="center">
                         {!presentation.steps[2] &&
                         <Button
                             id="drawing"
@@ -60,6 +44,22 @@ export default () => {
                             }
                             onClick={sendData}
                             data="2"
+                        />}
+                        {!presentation.steps[0] &&
+                        <Button
+                            id="name"
+                            type="card-name"
+                            value={presentation.data.name}
+                            onClick={sendData}
+                            data="0"
+                        />}
+                        {!presentation.steps[1] &&
+                        <Button
+                            id="catch"
+                            type="card-slogan"
+                            value={presentation.data.catch}
+                            onClick={sendData}
+                            data="1"
                         />}
                         <Button
                             id="end"

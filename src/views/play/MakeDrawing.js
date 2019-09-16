@@ -125,7 +125,10 @@ export default () => {
             dispatch(setState('showIns', false))
         }, 3000)
         
-        return () => dispatch(setState('showIns', true))
+        return () => {
+            dispatch(setState('played', false))
+            dispatch(setState('showIns', true))
+        }
     }, [])
 
     useEffect(() => {

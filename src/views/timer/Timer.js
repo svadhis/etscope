@@ -28,27 +28,27 @@ export default () => {
 
     switch (view) {
         case 'MakeProblem':
-            speed = 5
+            speed = 50
             break
 
         case 'MakeDrawing':
-            speed = 3
+            speed = 20
             break
 
         case 'MakeData':
-            speed = 5
+            speed = 50
             break
 
         case 'MakeVote':
-            speed = 5
+            speed = 50
             break
 
         case 'StartPresentation':
-            speed = 8
+            speed = 80
             break
 
         default:
-            speed = 5
+            speed = 50
             break
     }
 
@@ -62,7 +62,7 @@ export default () => {
         } 
 
         let timeout = setTimeout(() => {  
-            dispatch(setState('timer', timer + (speed / 10)))
+            dispatch(setState('timer', timer + (speed / 100)))
         }, 100)
         return () => {
             clearTimeout(timeout)

@@ -21,16 +21,20 @@ export default () => {
         })
     }
 
+    const focus = () => {
+        document.querySelector('input#room').focus()
+    }
+
     return (
         <div className="home player-screen">
             <Box height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
                 <Title size="big" />
                 <div className="player-join">
                     <div>
-                        <Input type="home" id="name" value="nom" />
+                        <Input type="home" id="name" value="nom" onKeyPress={focus} />
                     </div> 
                     <div>
-                        <Input type="home" id="room" value="room" />
+                        <Input type="home" id="room" value="room" onKeyPress={join} />
                     </div>
                 </div>
                 <Button

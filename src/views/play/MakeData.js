@@ -59,7 +59,7 @@ export default () => {
                     <Box height="100vh" display="flex" flexDirection="column" justifyContent="space-evenly" alignItems="center">
                         <div>
                             <h3>{title}</h3>
-                            <Input type="playing2" disabled={played} />
+                            <Input type="playing2" disabled={played}  onKeyPress={sendData} />
                         </div>
                         <Button
                             id="send"
@@ -102,7 +102,10 @@ export default () => {
             dispatch(setState('showIns', false))
         }, 3000)
         
-        return () => dispatch(setState('showIns', true))
+        return () => {
+            dispatch(setState('played', false))
+            dispatch(setState('showIns', true))
+        }
     }, [])
 
     useEffect(() => {

@@ -8,6 +8,7 @@ import { useView } from './methods/hooks'
 import * as Actions from './store/actions'
 import Ribbon from './components/ribbon/Ribbon'
 import Connecting from './components/spinners/Connecting'
+import Played from './components/spinners/Played'
 import { withSnackbar } from 'notistack';
 
 // MAIN APP COMPONENT
@@ -66,9 +67,17 @@ const App = props => {
       ),
       console.log(state),
       state.room.number && state.owner === 1 && React.createElement(Ribbon),
+      state.played === true && state.room.view && React.createElement(Played),
       state.connected === 0 && React.createElement(Connecting)
     )
   )
 }
 
 export default withSnackbar(App)
+
+// TODO
+
+// Gerer les votes : pas deux fois sur le meme
+// Faire la page de resultats
+
+// Gerer qu'une deconnexion ne nique pas tout le jeu

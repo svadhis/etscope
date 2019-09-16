@@ -1,5 +1,5 @@
 import React from 'react'
-import './Spinners.css'
+import './Spinners.scss'
 
 export default () => (
     <div className="lds-container">

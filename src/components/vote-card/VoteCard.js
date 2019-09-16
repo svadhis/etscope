@@ -21,6 +21,5 @@ export default props => (
         <h3>{props.catch}</h3>
       </div>
     </Box>
-    <h4 className="vote-player-name">{props.player}</h4>
   </div>
 )
