@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { Button } from '@material-ui/core'
+import { Box } from '@material-ui/core'
 import CanvasDraw from 'react-canvas-draw'
 import './Play.css'
+import Button from '../../components/button/Button';
 
 export default () => {
 
@@ -23,66 +24,60 @@ export default () => {
     const renderPresentation = () => {
         if (presenting === playerName) {
             return (
-                <div>
-                    {!presentation.steps[0] &&
-                    <div>
-                        <Button 
+                <div className="player-screen">
+                    <Box height="100vh" display="flex" flexDirection="column" justifyContent="space-evenly" alignItems="center">
+                        {!presentation.steps[0] &&
+                        <Button
                             id="name"
-                            variant="outlined" 
-                            color="primary" 
-                            onClick={() => {sendData(0)}}
-                        >
-                            NOM
-                        </Button>
-                        <h4>{presentation.data.name}</h4>
-                    </div>}
-                    {!presentation.steps[1] &&
-                    <div>
-                        <Button 
+                            type="card-name"
+                            value={presentation.data.name}
+                            onClick={sendData}
+                            data="0"
+                        />}
+                        {!presentation.steps[1] &&
+                        <Button
                             id="catch"
-                            variant="outlined" 
-                            color="primary" 
-                            onClick={() => {sendData(1)}}
-                        >
-                            SLOGAN
-                        </Button>
-                        <h4>{presentation.data.catch}</h4>
-                    </div>}
-                    {!presentation.steps[2] &&
-                    <div>
-                        <Button 
+                            type="card-slogan"
+                            value={presentation.data.catch}
+                            onClick={sendData}
+                            data="1"
+                        />}
+                        {!presentation.steps[2] &&
+                        <Button
                             id="drawing"
-                            variant="outlined" 
-                            color="primary" 
-                            onClick={() => {sendData(2)}}
-                        >
-                            ILLUSTRATION
-                        </Button>
-                        <CanvasDraw 
-                            hideGrid={true}
-                            canvasWidth={Math.round(window.innerWidth * 0.5)}
-                            canvasHeight={Math.round(window.innerWidth * 0.5)}
-                            disabled={true}
-                            saveData={presentation.drawing}
-                            immediateLoading={true}
+                            type="card"
+                            value={
+                                <Box display="flex" justifyContent="center">
+                                    <CanvasDraw 
+                                        hideGrid={true}
+                                        canvasWidth={Math.round(window.innerWidth * 0.3)}
+                                        canvasHeight={Math.round(window.innerWidth * 0.3)}
+                                        disabled={true}
+                                        saveData={presentation.drawing}
+                                        immediateLoading={true}
+                                    />
+                                </Box>
+                            }
+                            onClick={sendData}
+                            data="2"
+                        />}
+                        <Button
+                            id="end"
+                            type="card"
+                            value="terminer"
+                            onClick={sendData}
+                            data="end"
                         />
-                    </div>}
-                    <Button 
-                        id="end"
-                        size="large"
-                        variant="outlined" 
-                        color="primary" 
-                        onClick={() => {sendData('end')}}
-                    >
-                        TERMINER
-                    </Button>
+                    </Box>
                 </div>
             )
         }
         else {
             return (
-                <div>
-                    <h3>EN ATTENTE</h3>
+                <div className="player-screen">
+                    <Box height="100vh" display="flex" flexDirection="column" justifyContent="space-evenly" alignItems="center">
+                        <h3>c'est bientôt ton tour...</h3>
+                    </Box>
                 </div>
             )
         }

@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setState, addToState } from '../../store/actions'
-import { TextField, Button } from '@material-ui/core'
+import { Box } from '@material-ui/core'
 import './Play.css'
+import Button from '../../components/button/Button';
 
 export default () => {
 
@@ -35,23 +36,30 @@ export default () => {
     const renderVote = () => {
         if (instructions === showIns === true) {
             return (
-                <div>
-                    INSTRUCTIONS !!
+                <div className="player-screen">
+                    <Box height="100vh" display="flex" flexDirection="column" justifyContent="space-evenly" alignItems="center">
+                        <h2>Ergo ego senator inimicus, si ita vultis, homini, amicus esse, sicut semper fui, rei publicae debeo</h2>
+                        <h2>Quid? si ipsas inimicitias, depono rei publicae causa, quis me tandem iure reprehendet, praesertim cum ego omnium meorum consiliorum atque factorum exempla</h2>
+                        <h2>semper ex summorum hominum</h2>
+                    </Box>
                 </div>
             )
         }
         else {
             return (
-                <div>
-                    {players.map(player => player.name !== playerName &&
-                        <div onClick={() => {sendData(player.name)}}>
-                            {investment[player.name]}
-                            <h4>{player.name}</h4>
-                            <h3>{solutions[player.name].data.name}</h3>
-                        </div>
-                    )}
-                    {money}
-                    
+                <div className="player-screen">
+                    <Box height="100vh" display="flex" flexDirection="column" justifyContent="space-evenly" alignItems="center">
+                        <h3>ordre de préférence</h3>
+                        {players.map((player, i) => player.name !== playerName &&
+                        <Button
+                            id={'player-' + i}
+                            type="card-slogan"
+                            value={solutions[player.name].data.name}
+                            onClick={sendData}
+                            data={player.name}
+                        />
+                        )}
+                    </Box>
                 </div>
             )
         }

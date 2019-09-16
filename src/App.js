@@ -57,7 +57,7 @@ const App = props => {
   }, [state.connected])
 
   return (
-    React.createElement("div", null, 
+    React.createElement("div", {className: 'App'}, 
       React.createElement("div", {className: 'container'}, 
         React.createElement(
           useView(state.room.view, viewClient),

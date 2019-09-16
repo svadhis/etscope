@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import LinearProgress from '@material-ui/core/LinearProgress'
 import CanvasDraw from 'react-canvas-draw'
 import { setState } from '../../store/actions'
+import { Box } from '@material-ui/core';
 
 export default () => {
 
@@ -22,25 +23,26 @@ export default () => {
 
     const showPresentation = () => {
         return (
-            <div>
-                {presentation.steps[0] &&
-                <div>
-                    <h1>{presentation.data.name}</h1>
-                </div>}
-                {presentation.steps[1] &&
-                <div>
-                    <h3>{presentation.data.catch}</h3>
-                </div>}
-                {presentation.steps[2] &&
-                <div>
-                    <CanvasDraw 
-                        hideGrid={true}
-                        canvasWidth={Math.round(window.innerHeight * 0.7)}
-                        canvasHeight={Math.round(window.innerHeight * 0.7)}
-                        disabled={true}
-                        saveData={presentation.drawing}
-                    />
-                </div>}
+            <div className="owner-screen">
+                <Box height="100vh" display="flex" justifyContent="space-evenly" alignItems="center">
+                    <Box width="45vw" display="flex" flexDirection="column" justifyContent="space-evenly" alignItems="center">
+                        {presentation.steps[0] &&
+                        <h1 className="very-big">{presentation.data.name}</h1>}
+                        {presentation.steps[1] &&
+                        <h1>{presentation.data.catch}</h1>}
+                    </Box>
+                    <Box width="45vw" display="flex" justifyContent="center" alignItems="center">
+                        {presentation.steps[2] &&
+                        <CanvasDraw 
+                            hideGrid={true}
+                            canvasWidth={Math.round(window.innerWidth * 0.4)}
+                            canvasHeight={Math.round(window.innerWidth * 0.4)}
+                            disabled={true}
+                            saveData={presentation.drawing}
+                            immediateLoading={true}
+                        />}
+                    </Box>
+                </Box>
             </div>
         )
     }

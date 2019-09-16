@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import LinearProgress from '@material-ui/core/LinearProgress'
-import CanvasDraw from 'react-canvas-draw'
 import { setState, addToState } from '../../store/actions'
-import { TextField, Button } from '@material-ui/core'
+import { TextField, Button, Box } from '@material-ui/core'
+import { VoteCard } from '../../mapper/components'
 
 export default () => {
 
@@ -25,22 +25,18 @@ export default () => {
 
     const showVotes = () => {
         return (
-            <div>
+            <div className="owner-screen">
+                <LinearProgress variant="determinate" value={timer} />
+                <Box width="100vw" height="80vh" display="flex" flexWrap="wrap" justifyContent="space-evenly" alignItems="center">
                 {players.map(player =>
-                    <div>
-                        <h4>{player.name}</h4>
-                        <h3>{solutions[player.name].data.name}</h3>
-                        <h5>{solutions[player.name].data.catch}</h5>
-                        <CanvasDraw 
-                        hideGrid={true}
-                        canvasWidth={Math.round(window.innerHeight * 0.2)}
-                        canvasHeight={Math.round(window.innerHeight * 0.2)}
-                        disabled={true}
-                        saveData={solutions[player.name].drawing}
-                        immediateLoading={true}
+                    <VoteCard 
+                        player={player.name}
+                        name={solutions[player.name].data.name}
+                        catch={solutions[player.name].data.catch}
+                        drawing={solutions[player.name].drawing}
                     />
-                    </div>
                 )}
+                </Box>
             </div>
         )
     }
@@ -64,7 +60,6 @@ export default () => {
 
     return (
         <div>
-            <LinearProgress variant="determinate" value={timer} />
             {showVotes()}
         </div>
     )

@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setState } from '../../store/actions'
-import { TextField, Button } from '@material-ui/core'
+import { Box } from '@material-ui/core'
 import './Play.css'
+import { Input, Button } from '../../mapper/components';
 
 export default () => {
 
@@ -42,8 +43,12 @@ export default () => {
 
         if (instructions === showIns === true) {
             return (
-                <div>
-                    INSTRUCTIONS !!
+                <div className="player-screen">
+                    <Box height="100vh" display="flex" flexDirection="column" justifyContent="space-evenly" alignItems="center">
+                        <h2>Ergo ego senator inimicus, si ita vultis, homini, amicus esse, sicut semper fui, rei publicae debeo</h2>
+                        <h2>Quid? si ipsas inimicitias, depono rei publicae causa, quis me tandem iure reprehendet, praesertim cum ego omnium meorum consiliorum atque factorum exempla</h2>
+                        <h2>semper ex summorum hominum</h2>
+                    </Box>
                 </div>
             )
         }
@@ -51,41 +56,43 @@ export default () => {
             let render = problem.phrase.split('**')
 
             return (
-                <div>
-                    <div>{render[0]}</div>
-                    <TextField id="problem" variant="outlined" placeholder="" disabled={played}/>
-                    <div>{render[1]}</div>
-                    <Button 
-                        id="send"
-                        size="large"
-                        variant="outlined" 
-                        color="primary" 
-                        disabled={played}
-                        onClick={() => {sendData(1)}}
-                    >
-                        VALIDER
-                    </Button>
-                    <Button 
-                        id="auto"
-                        size="large"
-                        variant="outlined" 
-                        color="primary" 
-                        disabled={played}
-                        onClick={() => {sendData(0)}}
-                    >
-                        RANDOM
-                    </Button>
+                <div className="player-screen">
+                    <Box height="100vh" display="flex" flexDirection="column" justifyContent="space-evenly" alignItems="center">
+                        <Box height="160px" display="flex" flexDirection="column" justifyContent="space-evenly">
+                            <div>{render[0]}</div>
+                                <Input type="playing" disabled={played}/>
+                            <div>{render[1]}</div>
+                        </Box>
+                        <div>
+                            <Button 
+                                type="default" 
+                                id="send"
+                                onClick={sendData}
+                                data="1"
+                                disabled={played}
+                                value="valider"
+                            />
+                            <Button 
+                                type="default" 
+                                id="auto"
+                                onClick={sendData}
+                                data="0"
+                                disabled={played}
+                                value="aléatoire"
+                            />
+                        </div>
+                    </Box>
                 </div>
             )
         }
     }
 
     const sendData = bool => {
-        let input = document.querySelector('input#problem')
+        let input = document.querySelector('input')
 
         let data = {
             step: 'problem',
-            value: bool ? input.value : problem.default[Math.floor(Math.random() * Math.floor(problem.default.length))]
+            value: bool === '1' ? input.value : problem.default[Math.floor(Math.random() * Math.floor(problem.default.length))]
         }
 
         input.value = data.value

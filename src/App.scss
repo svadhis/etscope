@@ -20,8 +20,8 @@ body {
 .App {
     overflow: hidden;
     text-align: center;
-    min-height: 100vh;
-    min-width: 100vw;
+    height: 100vh;
+    width: 100vw;
 }
 
 .home {
@@ -77,6 +77,30 @@ body {
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
 }
 
+.card-button {
+    @include baseButton;
+    width: 90vw;
+    padding: 20px 20px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.card-name-button {
+    @include baseButton(1em);
+    width: 90vw;
+    padding: 20px 20px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.card-slogan-button {
+    @include baseButton(0.7em);
+    width: 90vw;
+    padding: 20px 20px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
 .homeplayer-button {
     @include baseButton(1.8em);
     padding: 12px 20px;
@@ -95,7 +119,7 @@ body {
 .color-button {
     @include myColorButton;
 
-    .undo { font-size: 1.6em; }
+    .undo { font-size: 1.3em; }
 
     .default { background-color: #333; }
     .red { background-color: rgb(211, 34, 34); }
@@ -106,8 +130,32 @@ body {
 
 // INPUTS
 .default-input {
-    @include myInput;
+    @include myInput;  
     text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+}
+
+.playing-input {
+    @include myInput;
+
+    margin: 20px 0 0;
+    
+    input {
+        text-align: center;
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+    }
+    
+}
+
+.playing2-input {
+    @include myInput;
+
+    margin: 40px 0 0;
+    
+    input {
+        text-align: center;
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+    }
+    
 }
 
 .home-input {
@@ -208,8 +256,16 @@ button:focus, input:focus { outline: 0; }
     margin-top: 150px;
 }
 
+.card {
+    @include baseButton(0.7em);
+    width: 90vw;
+    margin: 15px 0;
+    padding: 10px;
+    border: 2px solid;
+}
+
 .vote-card {
-    @include baseButton(1em);
+    @include baseButton(0.8em);
     border: 2px solid;
     border-radius: 10px;
 
@@ -219,36 +275,22 @@ button:focus, input:focus { outline: 0; }
 
     .player-picture {
         margin: 0 5px;
-        width: 75px;
-        height: 75px;
+        width: 6.5vw;
+        height: 6.5vw;
         border-radius: 5px;
-
-        img {
-            height: 75px;
-        }
     }
 }
 
 .vote-player-name {
     position: relative;
-    top: -100px;
-    right: 10px;
+    top: -15px;
+    right: 30px;
     text-align: right;
 }
 
 .vote-card-data {
-    width: 38vw;
+    width: 32vw;
     text-align: left;
-}
-
-#vote-card-1 {
-    zoom: 1.12;
-    
-}
-
-#vote-card-6 {
-    zoom: 0.9;
-    opacity: 0.7
 }
 
   .MuiLinearProgress-root {
@@ -262,3 +304,83 @@ button:focus, input:focus { outline: 0; }
       background-color: lighten($mainColor, 40%) !important;
       box-shadow: 0 0 30px rgba(255, 255, 255, 1);
   }
+
+.illustration {
+    @include baseButton;
+    margin: 0 auto;
+    width: 160vh;
+    height: 97vh;
+
+    img {
+        width: 160vh;
+        height: 97vh;
+    }
+
+}
+
+.subtitle {
+    @include baseButton;
+    position: relative;
+    top: -120px;
+    width: 96vw;
+    font-size: 1.8em;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    background-color: darken($mainColor, 45%);
+    padding: 10px;
+}
+
+.player-label {
+    @include myText(1.4em);
+    display: block;
+    position: relative;
+    text-align: left;
+    padding-top: 3px;
+    padding-left: 80px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+}
+
+.checkmark {
+    @include baseButton;
+    position: absolute;
+    top: 0;
+    left: 30px;
+    height: 20px;
+    width: 20px;
+    border: 2px solid;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.player-label input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.player-label .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}

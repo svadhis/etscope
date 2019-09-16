@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setState, pushToObject } from '../../store/actions'
-import { TextField, Button } from '@material-ui/core'
+import { Box } from '@material-ui/core'
 import './Play.css'
+import { Input, Button } from '../../mapper/components';
 
 export default () => {
 
@@ -41,8 +42,12 @@ export default () => {
 
         if (instructions === showIns === true) {
             return (
-                <div>
-                    INSTRUCTIONS !!
+                <div className="player-screen">
+                    <Box height="100vh" display="flex" flexDirection="column" justifyContent="space-evenly" alignItems="center">
+                        <h2>Ergo ego senator inimicus, si ita vultis, homini, amicus esse, sicut semper fui, rei publicae debeo</h2>
+                        <h2>Quid? si ipsas inimicitias, depono rei publicae causa, quis me tandem iure reprehendet, praesertim cum ego omnium meorum consiliorum atque factorum exempla</h2>
+                        <h2>semper ex summorum hominum</h2>
+                    </Box>
                 </div>
             )
         }
@@ -50,19 +55,20 @@ export default () => {
             let title = dataPart === 'start' ? 'Nom de votre solution' : 'Slogan'
 
             return (
-                <div>
-                    <h3>{title}</h3>
-                    <TextField id={dataPart} variant="outlined" placeholder="" disabled={played}/>
-                    <Button 
-                        id="send"
-                        size="large"
-                        variant="outlined" 
-                        color="primary" 
-                        disabled={played}
-                        onClick={() => {sendData()}}
-                    >
-                        VALIDER
-                    </Button>
+                <div className="player-screen">
+                    <Box height="100vh" display="flex" flexDirection="column" justifyContent="space-evenly" alignItems="center">
+                        <div>
+                            <h3>{title}</h3>
+                            <Input type="playing2" disabled={played} />
+                        </div>
+                        <Button
+                            id="send"
+                            type="default"
+                            value="valider"
+                            onClick={sendData}
+                            disabled={played}
+                        />
+                    </Box>
                 </div>
             )
         }

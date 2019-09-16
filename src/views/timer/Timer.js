@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import LinearProgress from '@material-ui/core/LinearProgress'
 import { setState } from '../../store/actions'
+import { Box } from '@material-ui/core';
 
 export default () => {
 
@@ -43,11 +44,11 @@ export default () => {
             break
 
         case 'StartPresentation':
-            speed = 10
+            speed = 8
             break
 
         default:
-            speed = 10
+            speed = 5
             break
     }
 
@@ -69,13 +70,16 @@ export default () => {
     }, [timer, step])
 
     return (
-        <div>
+        <div className="owner-screen">
             <LinearProgress variant="determinate" value={timer} />
-            {view === 'StartPresentation' &&
-            <div>
-                <h4>C'est à toi</h4>
-                <h3>{ presenting }</h3>
-            </div>}
+            <Box height="80vh" display="flex" justifyContent="center" alignItems="center">
+                {view === 'StartPresentation' ?
+                <div>
+                    <h1 className="big">C'est à toi</h1>
+                    <h1 className="very-big">{presenting}</h1>
+                </div> :
+                <h1 className="big">tic tac tic tac</h1>}
+            </Box>
         </div>
     )
 }

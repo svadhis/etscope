@@ -9,7 +9,7 @@ export default () => {
         let element = document.querySelector('.connecting-container')
         snabbt(element, {
             fromOpacity: 0,
-            opacity: 0.7,
+            opacity: 0.4,
             duration: 300
         })
     }, [])

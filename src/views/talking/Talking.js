@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setState } from '../../store/actions'
+import { Illustration } from '../../mapper/components'
 
 export default () => {
 
@@ -8,14 +9,14 @@ export default () => {
         socket, 
         view,
         timer, 
-        instructions, 
+        subtitles,
         presentOrder,
         players
     ] = useSelector(state => [
         state.socket, 
         state.room.view, 
         state.timer, 
-        state.room.instructions, 
+        state.room.subtitles,
         state.room.presentOrder,
         state.room.players.length
     ])
@@ -26,12 +27,14 @@ export default () => {
 
     switch (view) {
         case 'CreatingStep':
+
+            timer === 0 && socket.emit('set-view', ['MakeProblem'])
             
-            talking.time = instructions ? 1 : 5
+            talking.time = 1
+
+            talking.image = "https://www.setaswall.com/wp-content/uploads/2018/05/Space-Planet-2-Wallpaper-800x480.jpg"
 
             talking.view = () => {
-                timer === 0 && socket.emit('set-view', ['MakeProblem'])
-
                 return timer > 15 ?
                 <div>
                     premieres instructions
@@ -49,15 +52,15 @@ export default () => {
             break
 
         case 'StartDrawing':
+
+            if (timer === 0) {
+                dispatch(setState('timer', -1))
+                socket.emit('set-view', ['GetProblem'])
+            }
             
             talking.time = 1
 
             talking.view = () => {
-                if (timer === 0) {
-                    dispatch(setState('timer', -1))
-                    socket.emit('set-view', ['GetProblem'])
-                }
-
                 return timer > 15 ?
                 <div>
                     premieres instructions
@@ -75,12 +78,12 @@ export default () => {
             break
 
         case 'GetProblem':
+
+            timer === 0 && socket.emit('set-view', ['MakeDrawing'])
             
             talking.time = 1
 
             talking.view = () => {
-                timer === 0 && socket.emit('set-view', ['MakeDrawing'])
-
                 return timer > 15 ?
                 <div>
                     premieres instructions
@@ -211,9 +214,12 @@ export default () => {
     }, [timer])
 
     return (
-        <div>
-            {timer}
-            {talking.view()}
+        <div className="owner-screen">
+            <Illustration image={talking.image} />
+            {subtitles === true && 
+            <div className="subtitle">
+                {talking.view()}
+            </div>}
         </div>
     )
 }

@@ -1,5 +1,5 @@
 // BASE TEXT
-@mixin myText($size: 0.8em) {
+@mixin myText($size: 1em) {
     font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
     font-size: $size;
@@ -10,6 +10,7 @@
 // BASE BUTTON
 @mixin baseButton($size: 1.4em) {
     @include myText($size);
+    margin: 5px 10px;
     background-color: darken($mainColor, 38%);
     border-color: lighten($mainColor, 30%);
     border-radius: 5px;  

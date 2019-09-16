@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setState } from '../../store/actions'
-import { Button } from '@material-ui/core'
+import { Box } from '@material-ui/core'
 import './Play.css'
+import Button from '../../components/button/Button';
 
 export default () => {
 
@@ -28,32 +29,37 @@ export default () => {
         if (presenting === playerName) {
             if (instructions === showIns === true) {
                 return (
-                    <div>
-                        INSTRUCTIONS !!
+                    <div className="player-screen">
+                        <Box height="100vh" display="flex" flexDirection="column" justifyContent="space-evenly" alignItems="center">
+                            <h2>Ergo ego senator inimicus, si ita vultis, homini, amicus esse, sicut semper fui, rei publicae debeo</h2>
+                            <h2>Quid? si ipsas inimicitias, depono rei publicae causa, quis me tandem iure reprehendet, praesertim cum ego omnium meorum consiliorum atque factorum exempla</h2>
+                            <h2>semper ex summorum hominum</h2>
+                        </Box>
                     </div>
                 )
             }
             else {
                 return (
-                    <div>
-                        <h3>A toi de présenter ta solution !</h3>
-                        <Button 
-                            id="start"
-                            size="large"
-                            variant="outlined" 
-                            color="primary" 
-                            onClick={() => {sendData()}}
-                        >
-                            COMMENCER
-                        </Button>
+                    <div className="player-screen">
+                        <Box height="100vh" display="flex" flexDirection="column" justifyContent="space-evenly" alignItems="center">
+                            <h3>vends ta solution !</h3>
+                            <Button
+                                id="start"
+                                type="default"
+                                value="commencer"
+                                onClick={sendData}
+                            />
+                        </Box>
                     </div>
                 )
             }
         }
         else {
             return (
-                <div>
-                    <h3>EN ATTENTE</h3>
+                <div className="player-screen">
+                    <Box height="100vh" display="flex" flexDirection="column" justifyContent="space-evenly" alignItems="center">
+                        <h3>c'est bientôt ton tour...</h3>
+                    </Box>
                 </div>
             )
         }
