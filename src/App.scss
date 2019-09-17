@@ -25,7 +25,14 @@ body {
 }
 
 .home {
+    background-image: url("images/home.jpg");
+    background-size: cover;
+    background-position: right;
     text-align: center;
+
+    .title-screen {
+        padding-left: 10vw;
+    }
 }
 
 .owner-screen {
@@ -45,7 +52,11 @@ body {
     color: $mainColor;
     font-family: 'Montserrat', sans-serif;
     margin-bottom: 15vh;
-    text-shadow: 0 0 5px #380053, 0 0 20px rgba(255, 255, 255, 0.3);
+
+    &.very-big {
+        text-shadow: 1px 0 0 rgb(74, 15, 109), -1px 0 0 rgb(74, 15, 109), 0 1px 0 rgb(74, 15, 109), 0 -1px 0 rgb(74, 15, 109), 1px 1px rgb(74, 15, 109), -1px -1px 0 rgb(74, 15, 109), 1px -1px 0 rgb(74, 15, 109), -1px 1px 0 rgb(74, 15, 109), 0 0 20px rgba(255, 255, 255, 0.8);
+    }
+    
 }
 
 @for $i from 1 through 4 {

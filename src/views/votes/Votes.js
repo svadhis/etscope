@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import LinearProgress from '@material-ui/core/LinearProgress'
 import { setState, addToState } from '../../store/actions'
-import { TextField, Button, Box } from '@material-ui/core'
+import { Box } from '@material-ui/core'
 import { VoteCard } from '../../mapper/components'
 
 export default () => {
@@ -44,15 +44,16 @@ export default () => {
     useEffect(() => {
         dispatch(setState('timer', 0))   
     }, [])
-            
-    useEffect(() => {
-        if (timer >= 100) {
-            socket.emit('end-step')
-        } 
 
-        let timeout = setTimeout(() => {  
+    useEffect(() => {
+        let timeout = timer >= 100 ?
+        setInterval(() => {
+            socket.emit('end-step')
+        }, 2000) :
+        setTimeout(() => {
             dispatch(setState('timer', timer + 0.2))
         }, 100)
+        
         return () => {
             clearTimeout(timeout)
         }

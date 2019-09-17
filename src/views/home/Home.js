@@ -17,18 +17,20 @@ export default () => {
     }
 
     return (
-        <div className="home owner-screen">
-            <Box height="100vh" display="flex" justifyContent="center" alignItems="center">
-            <div>
-                <Title size="very-big" />
-                <Button
-                    id="send"
-                    type="home"
-                    value="nouvelle partie"
-                    onClick={newRoom}
-                />
-            </div>   
-            </Box>
+        <div className="owner-screen">
+            <div className="home">
+                    <Box height="100vh" display="flex" justifyContent="center" alignItems="center">
+                    <div className="title-screen">
+                        <Title size="very-big" />
+                        <Button
+                            id="send"
+                            type="home"
+                            value="nouvelle partie"
+                            onClick={newRoom}
+                        />
+                    </div>   
+                </Box>
+            </div>
         </div>
     )
 }

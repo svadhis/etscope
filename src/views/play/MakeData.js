@@ -44,9 +44,8 @@ export default () => {
             return (
                 <div className="player-screen">
                     <Box height="100vh" display="flex" flexDirection="column" justifyContent="space-evenly" alignItems="center">
-                        <h2>Ergo ego senator inimicus, si ita vultis, homini, amicus esse, sicut semper fui, rei publicae debeo</h2>
-                        <h2>Quid? si ipsas inimicitias, depono rei publicae causa, quis me tandem iure reprehendet, praesertim cum ego omnium meorum consiliorum atque factorum exempla</h2>
-                        <h2>semper ex summorum hominum</h2>
+                        <h2>Définis un nom pour ton objet, et trouve un slogan aguicheur.</h2>
+                        <h2>Creuse-toi la tête pour que ce soit vendeur ! </h2>
                     </Box>
                 </div>
             )
@@ -100,7 +99,7 @@ export default () => {
 
         instructions === showIns === true && setTimeout(() => {
             dispatch(setState('showIns', false))
-        }, 3000)
+        }, 6000)
         
         return () => {
             dispatch(setState('played', false))
@@ -132,7 +131,7 @@ export default () => {
     }, [gameData])
 
     useEffect(() => {
-        if (step === 'end') {
+        if (step === 'end' && played === false) {
             sendData(1)
         }
     }, [step])

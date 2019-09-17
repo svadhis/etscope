@@ -53,13 +53,14 @@ export default () => {
     }, [])
             
     useEffect(() => {
-        if (timer >= 100) {
+        let timeout = timer >= 100 ?
+        setInterval(() => {
             socket.emit('end-step')
-        } 
-
-        let timeout = setTimeout(() => {  
+        }, 2000) :
+        setTimeout(() => {
             dispatch(setState('timer', timer + 0.2))
         }, 100)
+        
         return () => {
             clearTimeout(timeout)
         }

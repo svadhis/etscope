@@ -30,23 +30,23 @@ export default () => {
 
             timer === 0 && socket.emit('set-view', ['MakeProblem'])
             
-            talking.time = 5
+            talking.time = 20
 
             talking.image = "https://www.setaswall.com/wp-content/uploads/2018/05/Space-Planet-2-Wallpaper-800x480.jpg"
 
             talking.view = () => {
                 return timer > 15 ?
                 <div>
-                    premieres instructions
+                     Nous sommes entourés de toutes sortes d'objets pratiques qui répondent à nos besoins. 
                 </div> : timer > 10 ?
                 <div>
-                    deuxiemes instructions
+                    Beaucoup proviennent de Corp 3000, une entreprise florissante qui propose des solutions innovantes dans toute la Galaxie.
                 </div> : timer > 5 ?
                 <div>
-                    troisiemes instructions
+                    Mais savez-vous comment sont conçus ces produits utiles à la vie de tous les jours ?
                 </div> : timer > 0 &&
                 <div>
-                    la partie va commencer !
+                    Tout commence au département de recensement, qui se charge d'identifier les problèmes auxquels nous faisons face au quotidien.
                 </div>     
             }
             break
@@ -74,7 +74,7 @@ export default () => {
                     troisiemes instructions
                 </div> : timer > 0 &&
                 <div>
-                    ALLEZ ON DESSINE !!
+                    On confie alors ces problèmes à l'équipe des ingénieurs, qui mettent au point des solutions efficaces.
                 </div>     
             }
             break
@@ -124,7 +124,7 @@ export default () => {
                     troisiemes instructions
                 </div> : timer > 0 &&
                 <div>
-                    TITRE ET SLOGAN !
+                    Une fois les objets conçus, c'est au département marketing d'entrer en action pour assurer la réussite commerciale de ces produits.
                 </div>     
             }
             break
@@ -149,7 +149,7 @@ export default () => {
                     troisiemes instructions
                 </div> : timer > 0 &&
                 <div>
-                    MAINTENANT ON VA PRESENTER TOUT CA
+                    Les projets ainsi terminés sont alors présentés devant le comité de l'entreprise.
                 </div>     
             }
             break
@@ -179,7 +179,7 @@ export default () => {
                     troisiemes instructions
                 </div> : timer > 0 &&
                 <div>
-                    WA COOL PRESENTATION !
+                    Superbe présentation !
                 </div>     
             }
             break
@@ -204,7 +204,7 @@ export default () => {
                     troisiemes instructions
                 </div> : timer > 0 &&
                 <div>
-                    MAINTENANT ON VA VOTER !!
+                    Enfin, le commitee procède à un vote pour sélectionner le meilleur produit à mettre sur le marché.
                 </div>     
             }
             break

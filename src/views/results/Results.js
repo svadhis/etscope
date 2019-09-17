@@ -2,7 +2,8 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import CanvasDraw from 'react-canvas-draw'
 import { setState, addToState } from '../../store/actions'
-import { TextField, Button } from '@material-ui/core'
+import { Box } from '@material-ui/core'
+import { VoteCard, Button } from '../../mapper/components'
 
 export default () => {
 
@@ -22,25 +23,43 @@ export default () => {
     
     const dispatch = useDispatch()
 
-    const showVotes = () => {
+    let winner = ''
+
+    const getWinner = () => {
+        let score = 0
+        
+        for (let [key, value] of Object.entries(results)) {
+            if (value > score) {
+                score = value
+                winner = key
+            }
+        }
+
+        return winner
+    }
+
+    const showResults = () => {
         return (
-            <div>
+            <div className="owner-screen">
+                
                 {players.map(player =>
-                    <div>
-                        {results[player.name]}
-                        <h4>{player.name}</h4>
-                        <h3>{solutions[player.name].data.name}</h3>
-                        <h5>{solutions[player.name].data.catch}</h5>
-                        <CanvasDraw 
-                        hideGrid={true}
-                        canvasWidth={Math.round(window.innerHeight * 0.2)}
-                        canvasHeight={Math.round(window.innerHeight * 0.2)}
-                        disabled={true}
-                        saveData={solutions[player.name].drawing}
-                        immediateLoading={true}
-                    />
-                    </div>
+                    player.name === getWinner() && 
+                    <Box width="100vw" height="60vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+                        <h1 className="big">bravo {player.name}</h1>
+                        <VoteCard 
+                            player={player.name}
+                            name={solutions[player.name].data.name}
+                            catch={solutions[player.name].data.catch}
+                            drawing={solutions[player.name].drawing}
+                        />
+                     </Box>
                 )}
+                <Button
+                    id="restart"
+                    type="default"
+                    value="rejouer"
+                    onClick={restart}
+                />
             </div>
         )
     }
@@ -51,16 +70,7 @@ export default () => {
 
     return (
         <div>
-            {showVotes()}
-            <Button 
-                id="restart"
-                size="large"
-                variant="outlined" 
-                color="primary" 
-                onClick={() => {restart()}}
-            >
-                RELANCER UNE PARTIE
-            </Button>
+            {showResults()}
         </div>
     )
 }

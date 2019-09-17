@@ -4,6 +4,7 @@ import { setState } from '../../store/actions'
 import { Box } from '@material-ui/core'
 import './Play.css'
 import Button from '../../components/button/Button';
+import { HourglassEmpty } from '@material-ui/icons';
 
 export default () => {
 
@@ -31,9 +32,8 @@ export default () => {
                 return (
                     <div className="player-screen">
                         <Box height="100vh" display="flex" flexDirection="column" justifyContent="space-evenly" alignItems="center">
-                            <h2>Ergo ego senator inimicus, si ita vultis, homini, amicus esse, sicut semper fui, rei publicae debeo</h2>
-                            <h2>Quid? si ipsas inimicitias, depono rei publicae causa, quis me tandem iure reprehendet, praesertim cum ego omnium meorum consiliorum atque factorum exempla</h2>
-                            <h2>semper ex summorum hominum</h2>
+                            <h2>Fais une présentation de ton objet, tu peux afficher sur l'écran principal les éléments de ton projet dans l'ordre de ton choix.</h2>
+                            <h2>Sois démonstratif et enthousiaste, tu dois convaincre le comité que ton idée est géniale ! </h2>
                         </Box>
                     </div>
                 )
@@ -42,7 +42,7 @@ export default () => {
                 return (
                     <div className="player-screen">
                         <Box height="100vh" display="flex" flexDirection="column" justifyContent="space-evenly" alignItems="center">
-                            <h3>vends ta solution !</h3>
+                            <h3>à toi de jouer !</h3>
                             <Button
                                 id="start"
                                 type="default"
@@ -58,7 +58,7 @@ export default () => {
             return (
                 <div className="player-screen">
                     <Box height="100vh" display="flex" flexDirection="column" justifyContent="space-evenly" alignItems="center">
-                        <h3>c'est bientôt ton tour...</h3>
+                        <HourglassEmpty />
                     </Box>
                 </div>
             )
@@ -75,7 +75,7 @@ export default () => {
 
             instructions === showIns === true && setTimeout(() => {
                 dispatch(setState('showIns', false))
-            }, 3000)
+            }, 6000)
         } 
 
         return () => dispatch(setState('showIns', true))

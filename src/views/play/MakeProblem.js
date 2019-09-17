@@ -45,9 +45,8 @@ export default () => {
             return (
                 <div className="player-screen">
                     <Box height="100vh" display="flex" flexDirection="column" justifyContent="space-evenly" alignItems="center">
-                        <h2>Ergo ego senator inimicus, si ita vultis, homini, amicus esse, sicut semper fui, rei publicae debeo</h2>
-                        <h2>Quid? si ipsas inimicitias, depono rei publicae causa, quis me tandem iure reprehendet, praesertim cum ego omnium meorum consiliorum atque factorum exempla</h2>
-                        <h2>semper ex summorum hominum</h2>
+                        <h2>Définis un problème auquel on peut être confronté, ou choisis-en un parmi ceux recensés.</h2>
+                        <h2>N'hésite pas à te montrer imaginatif ! </h2>
                     </Box>
                 </div>
             )
@@ -107,7 +106,7 @@ export default () => {
 
         instructions === showIns === true && setTimeout(() => {
             dispatch(setState('showIns', false))
-        }, 3000)
+        }, 6000)
         
         return () => {
             dispatch(setState('played', false))
@@ -137,15 +136,28 @@ export default () => {
     }, [problemDefault, showIns])
 
     useEffect(() => {
-        if (step === 'end') {
-            if (document.querySelector('input').value === '') {
-                sendData(0)
+        if (step === 'end' && played === false) {
+            if (document.querySelector('input').value.length > 0) {
+                sendData('1')
             }
             else {
-                sendData(1)
+                sendData('0')
             }
         }
     }, [step])
+
+    // SI BESOIN DE RENVOYER LES DATA A CHAQUE APPEL
+    /* useEffect(() => {
+        if (step === 'end') {
+            if (document.querySelector('input').value.length > 0) {
+                sendData('1')
+            }
+            else {
+                sendData('0')
+            }
+            dispatch(pushToObject('room', 'step', ''))
+        }
+    }, [step]) */
 
     return (
         <div className="play">

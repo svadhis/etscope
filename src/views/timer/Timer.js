@@ -28,23 +28,23 @@ export default () => {
 
     switch (view) {
         case 'MakeProblem':
-            speed = 50
+            speed = 40
             break
 
         case 'MakeDrawing':
-            speed = 20
+            speed = 15
             break
 
         case 'MakeData':
-            speed = 50
+            speed = 30
             break
 
         case 'MakeVote':
-            speed = 50
+            speed = 40
             break
 
         case 'StartPresentation':
-            speed = 80
+            speed = 60
             break
 
         default:
@@ -52,18 +52,27 @@ export default () => {
             break
     }
 
+/*     const customInterval = (ms, callback) => {
+        return setInterval(callback, ms)
+    }
+
+    const customTimeout = (ms, callback) => {
+        return setTimeout(callback, ms)
+    } */
+
     useEffect(() => {
         dispatch(setState('timer', instructions === true ? -15 : 0))   
     }, [])
             
     useEffect(() => {
-        if (timer >= 100) {
+        let timeout = timer >= 100 ?
+        setInterval(() => {
             socket.emit('end-step')
-        } 
-
-        let timeout = setTimeout(() => {  
+        }, 2000) :
+        setTimeout(() => {
             dispatch(setState('timer', timer + (speed / 100)))
         }, 100)
+        
         return () => {
             clearTimeout(timeout)
         }
@@ -78,7 +87,7 @@ export default () => {
                     <h1 className="big">C'est à toi</h1>
                     <h1 className="very-big">{presenting}</h1>
                 </div> :
-                <h1 className="big">tic tac tic tac</h1>}
+                <h1 className="big">à vous de jouer</h1>}
             </Box>
         </div>
     )

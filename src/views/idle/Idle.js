@@ -20,6 +20,12 @@ export default () => {
         problem = self.entry.problem
     }
 
+    useEffect(() => {
+        if (view === 'GetProblem') {
+            navigator.vibrate(Array(5).fill(100))
+        }
+    }, [])
+
     return (
         <div className="player-screen">
             <Box height="100vh" display="flex" justifyContent="center" alignItems="center">

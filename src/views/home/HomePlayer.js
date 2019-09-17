@@ -26,7 +26,7 @@ export default () => {
     }
 
     return (
-        <div className="home player-screen">
+        <div className="homeplayer player-screen">
             <Box height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
                 <Title size="big" />
                 <div className="player-join">

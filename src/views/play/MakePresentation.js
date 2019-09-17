@@ -4,6 +4,7 @@ import { Box } from '@material-ui/core'
 import CanvasDraw from 'react-canvas-draw'
 import './Play.css'
 import Button from '../../components/button/Button';
+import { HourglassEmpty } from '@material-ui/icons';
 
 export default () => {
 
@@ -76,7 +77,7 @@ export default () => {
             return (
                 <div className="player-screen">
                     <Box height="100vh" display="flex" flexDirection="column" justifyContent="space-evenly" alignItems="center">
-                        <h3>c'est bientôt ton tour...</h3>
+                        <HourglassEmpty />
                     </Box>
                 </div>
             )

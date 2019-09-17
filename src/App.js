@@ -45,6 +45,27 @@ const App = props => {
   }, [])
 
   useEffect(() => {
+    let heartbeat = setInterval(() => {
+      if (state.room.number) {
+        if (state.player === 1) {
+          socket.emit('heartbeat', {
+            room: state.room.number,
+            player: state.playerName
+          })
+        } 
+        else if (state.owner === 1) {
+          socket.emit('heartbeat', {
+            room: state.room.number,
+          })
+        }
+      }
+    }, 1000)
+    return () => {
+      clearInterval(heartbeat)
+    }
+  }, [state.room.number])
+
+  useEffect(() => {
     if (state.connected === 0) {
       props.enqueueSnackbar('Pas de connexion au serveur...', { 
         variant: 'error',

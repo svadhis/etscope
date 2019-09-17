@@ -44,9 +44,9 @@ export default () => {
             return (
                 <div className="player-screen">
                     <Box height="100vh" display="flex" flexDirection="column" justifyContent="space-evenly" alignItems="center">
-                        <h2>Ergo ego senator inimicus, si ita vultis, homini, amicus esse, sicut semper fui, rei publicae debeo</h2>
-                        <h2>Quid? si ipsas inimicitias, depono rei publicae causa, quis me tandem iure reprehendet, praesertim cum ego omnium meorum consiliorum atque factorum exempla</h2>
-                        <h2>semper ex summorum hominum</h2>
+                        <h2>Tu dois résoudre le problème qui t'a été assigné.</h2>
+                        <h2>Tu as quelques minutes pour imaginer une solution et dessiner ton objet.</h2>
+                        <h2>Sois créatif, un bon ingénieur est un ingénieur inspiré !</h2>
                     </Box>
                 </div>
             )
@@ -123,7 +123,7 @@ export default () => {
 
         instructions === showIns === true && setTimeout(() => {
             dispatch(setState('showIns', false))
-        }, 3000)
+        }, 6000)
         
         return () => {
             dispatch(setState('played', false))
@@ -132,7 +132,9 @@ export default () => {
     }, [])
 
     useEffect(() => {
-        step === 'end' && sendData()
+        if (step === 'end' && played === false) {
+            sendData()
+        }
     }, [step])
 
     return (
