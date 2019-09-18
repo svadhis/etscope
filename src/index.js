@@ -9,12 +9,15 @@ import store from './store/store'
 
 import  { BreakpointProvider } from 'react-socks'
 import { SnackbarProvider } from 'notistack'
+import { CookiesProvider } from 'react-cookie';
 
 ReactDOM.render(
     <Provider store={store}>
         <BreakpointProvider>
             <SnackbarProvider maxSnack={3}>
-                <App />
+                <CookiesProvider>
+                    <App />
+                </CookiesProvider>
             </SnackbarProvider>
         </BreakpointProvider>   
     </Provider>, 

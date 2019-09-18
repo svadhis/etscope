@@ -10,7 +10,7 @@ export default props => {
 
     return (
         <Box className={props.type + '-input'} display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-            <input type="text" id={props.id} placeholder={props.value} disabled={props.disabled} onKeyPress={handleKeyPress} />
+            <input type="text" id={props.id} placeholder={props.placeholder} value={props.value} disabled={props.disabled} onChange={props.onChange} onKeyPress={handleKeyPress} />
             <div className="line"></div>
         </Box>
     )
