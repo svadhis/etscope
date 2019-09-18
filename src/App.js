@@ -116,10 +116,7 @@ export default withSnackbar(App)
 // TODO
 
 // Compresser les dessins
-
-// PWA !
+// TIMERS
 
 // Gerer les votes : pas deux fois sur le meme
 // Faire la page de resultats
-
-// Gerer qu'une deconnexion ne nique pas tout le jeu

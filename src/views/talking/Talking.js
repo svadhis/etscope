@@ -31,7 +31,7 @@ export default () => {
 
             timer === 0 && socket.emit('set-view', ['MakeProblem'])
             
-            talking.time = 1
+            talking.time = 20
 
             talking.image = "https://www.setaswall.com/wp-content/uploads/2018/05/Space-Planet-2-Wallpaper-800x480.jpg"
 
