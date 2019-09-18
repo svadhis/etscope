@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setState } from '../../store/actions'
 import { Illustration } from '../../mapper/components'
+import './Talking.scss'
 
 export default () => {
 
@@ -30,7 +31,7 @@ export default () => {
 
             timer === 0 && socket.emit('set-view', ['MakeProblem'])
             
-            talking.time = 20
+            talking.time = 1
 
             talking.image = "https://www.setaswall.com/wp-content/uploads/2018/05/Space-Planet-2-Wallpaper-800x480.jpg"
 

@@ -1,0 +1,61 @@
+@import '../../style/global.scss';
+
+@mixin myInput($size: 1em) {
+    input {
+        text-transform: uppercase;
+        font-size: $size;
+        background-color: transparent;
+        border: 0;
+        color: lighten($mainColor, 35%);
+        width: 200px;
+    
+        &::placeholder {
+            color: lighten($mainColor, 35%);
+            opacity: 0.4;
+        }
+    }
+
+    .line {
+        margin: 5px 0 30px;
+        width: 200px;
+        height: 0px;
+        border: 0.5px solid lighten($mainColor, 35%);
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+}
+
+input:focus { outline: 0; }
+
+.default-input {
+    @include myInput;  
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+}
+
+.playing-input {
+    @include myInput;
+
+    margin: 20px 0 0;
+    
+    input {
+        text-align: center;
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+    }
+    
+}
+
+.playing2-input {
+    @include myInput;
+
+    margin: 40px 0 0;
+    
+    input {
+        text-align: center;
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+    }
+    
+}
+
+.home-input {
+    @include myInput(1.4em);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+}

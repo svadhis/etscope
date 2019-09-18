@@ -1,12 +1,22 @@
 import React from 'react'
-import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setState } from '../../store/actions'
 import { Box } from '@material-ui/core';
 import { Button } from '../../mapper/components';
 
 export default () => {
-    const [player, room, socket, noSleep] = useSelector(state => [state.playerName, state.room, state.socket, state.noSleep])
+    const [
+        player, 
+        room, 
+        socket, 
+        noSleep
+    ] = useSelector(state => [
+        state.playerName, 
+        state.room, 
+        state.socket, 
+        state.noSleep
+    ])
+    
     const dispatch = useDispatch()
 
     const leave = () => {
@@ -22,6 +32,7 @@ export default () => {
     return (
         <div className="player-screen">
             <Box height="100vh" display="flex" flexDirection="column" justifyContent="space-evenly">
+                
                 {room.players[0].name === player &&
                 <div>
                 <label className="player-label"> INSTRUCTIONS

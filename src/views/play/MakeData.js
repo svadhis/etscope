@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setState, pushToObject } from '../../store/actions'
 import { Box } from '@material-ui/core'
-import './Play.css'
+import './Play.scss'
 import { Input, Button } from '../../mapper/components';
 
 export default () => {

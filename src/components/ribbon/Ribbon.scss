@@ -1,0 +1,19 @@
+@import '../../style/global.scss';
+
+.room-ribbon {
+    @include baseContainer;
+    position: fixed;
+    width: 250px;
+    background: darken($mainColor, 42%);
+    top: 20px;
+    right: -75px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.8em;
+    line-height: 65px;
+    letter-spacing: 4px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    
+  }

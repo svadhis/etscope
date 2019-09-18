@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setState } from '../../store/actions'
 import CanvasDraw from 'react-canvas-draw'
 import { Button, ColorButton } from '../../mapper/components'
-import './Play.css'
+import './Play.scss'
 import { Box } from '@material-ui/core'
 
 export default () => {

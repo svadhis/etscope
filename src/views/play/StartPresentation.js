@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setState } from '../../store/actions'
 import { Box } from '@material-ui/core'
-import './Play.css'
+import './Play.scss'
 import Button from '../../components/button/Button';
 import { HourglassEmpty } from '@material-ui/icons';
 

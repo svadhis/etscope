@@ -1,0 +1,12 @@
+@import '../../style/global.scss';
+
+.subtitle {
+    @include baseContainer;
+    position: relative;
+    top: -120px;
+    width: 96vw;
+    font-size: 1.8em;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    background-color: darken($mainColor, 45%);
+    padding: 10px;
+}

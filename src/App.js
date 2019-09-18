@@ -1,26 +1,46 @@
-import React from 'react'
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import './App.scss'
-import io from "socket.io-client"
 import { useCurrentWidth } from 'react-socks'
 import { useSelector, useDispatch } from 'react-redux'
 import { useView } from './methods/hooks'
 import * as Actions from './store/actions'
 import Ribbon from './components/ribbon/Ribbon'
-import Connecting from './components/spinners/Connecting'
-import Played from './components/spinners/Played'
+import Connecting from './components/overview/Connecting'
+import Played from './components/overview/Played'
 import { withSnackbar } from 'notistack';
 
 // MAIN APP COMPONENT
 const App = props => {
-  const state = useSelector(state => state)
-  const dispatch = useDispatch()
+  const [
+    state,
+    roomNumber,
+    roomView,
+    roomProps,
+    socket,
+    playerName,
+    player,
+    owner,
+    played,
+    connected
 
-  const socket = state.socket
+  ] = useSelector(state => [
+    state, 
+    state.room.number,
+    state.room.view,
+    state.room.props,
+    state.socket,
+    state.playerName,
+    state.player,
+    state.owner,
+    state.played,
+    state.connected
+  ])
+
+  const dispatch = useDispatch()
 
   const width = useCurrentWidth()
   // Set view to Owner or Player depending on 1: state, 2: viewport width. Value 1 = player, 0 = owner
-  const viewClient = state.player === 1 ? 'player' : state.owner === 1 ? 'owner' : width <= 576 ? 'player' : 'owner'
+  const viewClient = player === 1 ? 'player' : owner === 1 ? 'owner' : width <= 576 ? 'player' : 'owner'
 
   useEffect(() => {
     socket.on('connect_error', (error) => {
@@ -45,51 +65,48 @@ const App = props => {
   }, [])
 
   useEffect(() => {
-    let heartbeat = setInterval(() => {
-      if (state.room.number) {
-        if (state.player === 1) {
-          socket.emit('heartbeat', {
-            room: state.room.number,
-            player: state.playerName
-          })
-        } 
-        else if (state.owner === 1) {
-          socket.emit('heartbeat', {
-            room: state.room.number,
-          })
-        }
-      }
-    }, 1000)
-    return () => {
-      clearInterval(heartbeat)
-    }
-  }, [state.room.number])
+    socket.on('connect', () => {
+      if (player === 1) {
+        socket.emit('heartbeat', {
+          status: 'player',
+          room: roomNumber,
+          player: playerName
+        })
+      } 
+      else if (owner === 1) {
+        socket.emit('heartbeat', {
+          status: 'player',
+          room: roomNumber,
+        })
+      } 
+    })
+  }, [roomNumber])
 
   useEffect(() => {
-    if (state.connected === 0) {
+    if (connected === 0) {
       props.enqueueSnackbar('Pas de connexion au serveur...', { 
         variant: 'error',
         persist: true,
         preventDuplicate: true,
-    })
+      })
     }
     else {
       props.closeSnackbar()
     }
-  }, [state.connected])
+  }, [connected])
 
   return (
     React.createElement("div", {className: 'App'}, 
       React.createElement("div", {className: 'container'}, 
         React.createElement(
-          useView(state.room.view, viewClient),
-          { ...state.room.props} || null
+          useView(roomView, viewClient),
+          { ...roomProps} || null
         )
       ),
       console.log(state),
-      state.room.number && state.owner === 1 && React.createElement(Ribbon),
-      state.played === true && state.room.view && React.createElement(Played),
-      state.connected === 0 && React.createElement(Connecting)
+      roomNumber && owner === 1 && React.createElement(Ribbon),
+      played === true && roomView && React.createElement(Played),
+      connected === 0 && React.createElement(Connecting)
     )
   )
 }

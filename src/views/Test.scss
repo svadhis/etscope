@@ -7,6 +7,27 @@ body {
     width: 500px;
     margin: auto;
   }
+
+  .robot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+  }
+  
+  .robot-player {
+    position: absolute;
+    top: 50vh;
+    left: 30;
+    width: 30vw;
+  }
+  
+  .face-player {
+    position: absolute;
+    top: 50vh;
+    left: 30;
+    width: 30vw;
+  }
   
   /*Neon*/
   p {

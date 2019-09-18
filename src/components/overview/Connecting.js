@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react'
 import snabbt from 'snabbt.js'
-import './Spinners.scss'
+import './Overview.scss'
 
 export default () => {
 

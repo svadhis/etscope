@@ -1,0 +1,23 @@
+@import '../../style/global.scss';
+
+.vote-card {
+    @include baseContainer(0.8em);
+    border: 2px solid;
+    border-radius: 10px;
+
+    h1, h3 {
+        margin: 10px;
+    }
+
+    .player-picture {
+        margin: 0 5px;
+        width: 6.5vw;
+        height: 6.5vw;
+        border-radius: 5px;
+    }
+}
+
+.vote-card-data {
+    width: 32vw;
+    text-align: left;
+}

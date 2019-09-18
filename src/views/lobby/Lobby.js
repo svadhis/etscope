@@ -1,21 +1,11 @@
 import React from 'react'
-import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setState } from '../../store/actions'
 import { Box } from '@material-ui/core'
 import { Button } from '../../mapper/components'
 
 export default () => {
     const [room, socket] = useSelector(state => [state.room, state.socket])
     const dispatch = useDispatch()
-
-    const start = () => {
-        socket.emit('start-game')
-    }
-
-    useEffect(() => {
-        dispatch(setState('owner', 1))
-    }, [])
 
     return (
         <div className="owner-screen">

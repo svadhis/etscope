@@ -1,0 +1,390 @@
+// GLOBAL VARIABLES
+@import 'style/global.scss';
+
+
+//MIXINS
+@import 'style/mixins.scss';
+
+html,
+body {
+    overscroll-behavior-y: contain;
+}
+
+body {
+    @include myText;
+    text-align: center;
+    background-color: darken($mainColor, 40%);
+    user-select: none;
+}
+
+.App {
+    overflow: hidden;
+    text-align: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.home {
+    background-image: url("images/home.jpg");
+    background-size: cover;
+    background-position: right;
+    text-align: center;
+
+    .title-screen {
+        padding-left: 10vw;
+    }
+}
+
+.owner-screen {
+    text-align: center;
+}
+
+.big {
+    font-size: 2.5em;
+}
+  
+.very-big {
+    font-size: 5em;
+}
+
+// GAME TITLE
+/* .mytitle {
+    color: $mainColor;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 15vh;
+
+    &.very-big {
+        text-shadow: 1px 0 0 rgb(74, 15, 109), -1px 0 0 rgb(74, 15, 109), 0 1px 0 rgb(74, 15, 109), 0 -1px 0 rgb(74, 15, 109), 1px 1px rgb(74, 15, 109), -1px -1px 0 rgb(74, 15, 109), 1px -1px 0 rgb(74, 15, 109), -1px 1px 0 rgb(74, 15, 109), 0 0 20px rgba(255, 255, 255, 0.8);
+    }
+    
+}
+
+@for $i from 1 through 4 {
+    .mytitle span:nth-child(#{$i}) {
+        color: lighten($mainColor, (5 - $i) * 6%);
+        @if $i == 5 {
+            position: relative;
+            top: -4px;
+        }
+    }
+}
+
+@for $i from 6 through 9 {
+    .mytitle span:nth-child(#{$i}) {
+        color: darken($mainColor, ($i - 5) * 6%);
+    }
+}
+
+.mytitle span:nth-child(5) {
+    position: relative;
+    top: -3px;
+} */
+
+// BUTTONS
+/* .default-button {
+    @include baseButton;
+    padding: 12px 20px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.card-button {
+    @include baseButton;
+    width: 90vw;
+    padding: 20px 20px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.card-name-button {
+    @include baseButton(1em);
+    width: 90vw;
+    padding: 20px 20px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.card-slogan-button {
+    @include baseButton(0.7em);
+    width: 90vw;
+    padding: 20px 20px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.homeplayer-button {
+    @include baseButton(1.8em);
+    padding: 12px 20px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.home-button {
+    @include baseButton(2.2em);
+    padding: 20px 40px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+} */
+
+// COLOR BUTTON
+/* .color-button {
+    @include myColorButton;
+
+    .undo { font-size: 1.3em; }
+
+    .default { background-color: #333; }
+    .red { background-color: rgb(211, 34, 34); }
+    .blue { background-color: rgb(34, 75, 211); }
+    .green { background-color: rgb(34, 211, 58); }
+    .yellow { background-color: rgb(211, 193, 34); }
+} */
+
+// INPUTS
+/* .default-input {
+    @include myInput;  
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+}
+
+.playing-input {
+    @include myInput;
+
+    margin: 20px 0 0;
+    
+    input {
+        text-align: center;
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+    }
+    
+}
+
+.playing2-input {
+    @include myInput;
+
+    margin: 40px 0 0;
+    
+    input {
+        text-align: center;
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+    }
+    
+}
+
+.home-input {
+    @include myInput(1.4em);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+} */
+
+// button:focus, input:focus { outline: 0; }
+
+// CANVAS
+.player-canvas {
+    border: 2px solid white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.player-join {
+    margin-bottom: 15vh;
+  }
+  
+  /* .robot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+  }
+  
+  .robot-player {
+    position: absolute;
+    top: 50vh;
+    left: 30;
+    width: 30vw;
+  }
+  
+  .face-player {
+    position: absolute;
+    top: 50vh;
+    left: 30;
+    width: 30vw;
+  } */
+  
+  /* .room-ribbon {
+    @include baseContainer;
+    position: fixed;
+    width: 250px;
+    background: darken($mainColor, 42%);
+    top: 20px;
+    right: -75px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.8em;
+    line-height: 65px;
+    letter-spacing: 4px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    
+  } */
+  
+  .flash-message {
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    padding: 15px;
+    display: "none";
+  }
+  
+  .alert {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+  }
+  
+  .flash-error {
+    background-color: red;
+  }
+
+.player-card {
+    font-size: 1.4em;
+}
+
+.player-picture {
+    @include baseContainer;
+    overflow: hidden;
+    width: 90px;
+    height: 90px;
+    border: 2px solid;
+    border-radius: 50%;
+    margin: 0 auto -10px;
+
+    img {
+        height: 90px;
+    }
+}
+
+.even-player {
+    margin-top: 150px;
+}
+
+.card {
+    @include baseContainer(0.7em);
+    width: 90vw;
+    margin: 15px 0;
+    padding: 10px;
+    border: 2px solid;
+}
+
+/* .vote-card {
+    @include baseContainer(0.8em);
+    border: 2px solid;
+    border-radius: 10px;
+
+    h1, h3 {
+        margin: 10px;
+    }
+
+    .player-picture {
+        margin: 0 5px;
+        width: 6.5vw;
+        height: 6.5vw;
+        border-radius: 5px;
+    }
+}
+
+.vote-card-data {
+    width: 32vw;
+    text-align: left;
+} */
+
+  .MuiLinearProgress-root {
+      @include baseContainer;
+      background-color: darken($mainColor, 20%) !important;
+      height: 15px !important;
+      border-radius: 2px;
+  }
+
+  .MuiLinearProgress-bar {
+      background-color: lighten($mainColor, 40%) !important;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 1);
+  }
+
+/* .illustration {
+    @include baseContainer;
+    margin: 0 auto;
+    width: 160vh;
+    height: 97vh;
+
+    img {
+        width: 160vh;
+        height: 97vh;
+    }
+
+} */
+
+.subtitle {
+    @include baseContainer;
+    position: relative;
+    top: -120px;
+    width: 96vw;
+    font-size: 1.8em;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    background-color: darken($mainColor, 45%);
+    padding: 10px;
+}
+
+/* .player-label {
+    @include myText(1.4em);
+    display: block;
+    position: relative;
+    text-align: left;
+    padding-top: 3px;
+    padding-left: 80px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+}
+
+.checkmark {
+    @include baseButton;
+    position: absolute;
+    top: 0;
+    left: 30px;
+    height: 20px;
+    width: 20px;
+    border: 2px solid;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.player-label input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.player-label .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+} */

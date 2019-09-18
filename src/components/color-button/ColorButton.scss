@@ -1,0 +1,26 @@
+@import '../../style/global.scss';
+
+.color-button {
+    @include baseButton();
+
+    width: 40px;
+    height: 40px;
+    padding: 3px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    border-color: lighten($mainColor, 30%);
+    border-radius: 45%;
+
+    div { 
+        width: 30px;
+        height: 30px;
+        border-radius: 45%;
+    }
+
+    .undo { font-size: 1.3em; }
+
+    .default { background-color: #333; }
+    .red { background-color: rgb(211, 34, 34); }
+    .blue { background-color: rgb(34, 75, 211); }
+    .green { background-color: rgb(34, 211, 58); }
+    .yellow { background-color: rgb(211, 193, 34); }
+}

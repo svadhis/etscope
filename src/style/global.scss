@@ -1,2 +1,34 @@
 $mainColor: #ae00ff; //aa00ff ff9100
 $secondColor: blue;
+
+// BASE TEXT
+@mixin myText($size: 1em) {
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-size: $size;
+    color: lighten($mainColor, 35%);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+}
+
+// BASE CONTAINER
+@mixin baseContainer($size: 1.4em) {
+    @include myText($size);
+    margin: 5px 10px;
+    background-color: darken($mainColor, 38%);
+    border-color: lighten($mainColor, 30%);
+    border-radius: 5px;  
+    font-size: $size;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+// BASE BUTTON
+@mixin baseButton($size: 1.4em) {
+    @include baseContainer($size);
+
+    &:active {
+        color: lighten($mainColor, 40%);
+        background-color: darken($mainColor, 40%);
+        border-color: lighten($mainColor, 40%);
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
+    }
+}

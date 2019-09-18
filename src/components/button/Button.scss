@@ -1,0 +1,109 @@
+@import '../../style/global.scss';
+
+button:focus { outline: 0; }
+
+.default-button {
+    @include baseButton;
+    padding: 12px 20px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.card-button {
+    @include baseButton;
+    width: 90vw;
+    padding: 20px 20px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.card-name-button {
+    @include baseButton(1em);
+    width: 90vw;
+    padding: 20px 20px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.card-slogan-button {
+    @include baseButton(0.7em);
+    width: 90vw;
+    padding: 20px 20px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.homeplayer-button {
+    @include baseButton(1.8em);
+    padding: 12px 20px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.home-button {
+    @include baseButton(2.2em);
+    padding: 20px 40px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+.player-join {
+    margin-bottom: 15vh;
+}
+
+// Checkmark
+.player-label {
+    @include myText(1.4em);
+    display: block;
+    position: relative;
+    text-align: left;
+    padding-top: 3px;
+    padding-left: 80px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+}
+
+.checkmark {
+    @include baseButton;
+    position: absolute;
+    top: 0;
+    left: 30px;
+    height: 20px;
+    width: 20px;
+    border: 2px solid;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.player-label input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.player-label .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEffect } from 'react'
-import './Spinners.scss'
+import './Overview.scss'
 import { Box } from '@material-ui/core'
 
 export default () => {

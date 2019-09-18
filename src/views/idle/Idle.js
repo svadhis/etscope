@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { setState } from '../../store/actions';
+import { useSelector } from 'react-redux'
 import { Box } from '@material-ui/core';
 import { HourglassEmpty } from '@material-ui/icons';
 
 export default () => {
     const [view, playerName, players] = useSelector(state => [state.room.view, state.playerName, state.room.players])
-    const dispatch = useDispatch()
 
     let problem = ''
 

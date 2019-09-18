@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useSendOrder } from '../../methods/hooks'
-import './Home.css'
+import './Home.scss'
 import { isPlayer } from '../../store/actions'
-import { joinRoom } from '../../mapper/orders'
 import { Box } from '@material-ui/core'
 import { Button, Title, Input } from '../../mapper/components'
 

@@ -1,0 +1,33 @@
+@import '../../style/global.scss';
+
+.mytitle {
+    color: $mainColor;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 15vh;
+
+    &.very-big {
+        text-shadow: 1px 0 0 rgb(74, 15, 109), -1px 0 0 rgb(74, 15, 109), 0 1px 0 rgb(74, 15, 109), 0 -1px 0 rgb(74, 15, 109), 1px 1px rgb(74, 15, 109), -1px -1px 0 rgb(74, 15, 109), 1px -1px 0 rgb(74, 15, 109), -1px 1px 0 rgb(74, 15, 109), 0 0 20px rgba(255, 255, 255, 0.8);
+    }
+    
+}
+
+@for $i from 1 through 4 {
+    .mytitle span:nth-child(#{$i}) {
+        color: lighten($mainColor, (5 - $i) * 6%);
+        @if $i == 5 {
+            position: relative;
+            top: -4px;
+        }
+    }
+}
+
+@for $i from 6 through 9 {
+    .mytitle span:nth-child(#{$i}) {
+        color: darken($mainColor, ($i - 5) * 6%);
+    }
+}
+
+.mytitle span:nth-child(5) {
+    position: relative;
+    top: -3px;
+}

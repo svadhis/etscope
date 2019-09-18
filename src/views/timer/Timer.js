@@ -28,11 +28,11 @@ export default () => {
 
     switch (view) {
         case 'MakeProblem':
-            speed = 40
+            speed = 80
             break
 
         case 'MakeDrawing':
-            speed = 15
+            speed = 80
             break
 
         case 'MakeData':

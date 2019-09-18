@@ -1,0 +1,14 @@
+@import '../../style/global.scss';
+
+.illustration {
+    @include baseContainer;
+    margin: 0 auto;
+    width: 160vh;
+    height: 97vh;
+
+    img {
+        width: 160vh;
+        height: 97vh;
+    }
+
+}

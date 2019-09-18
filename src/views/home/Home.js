@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useSendOrder } from '../../methods/hooks'
-import './Home.css'
+import { setState } from '../../store/actions'
+import './Home.scss'
 import  { Breakpoint } from 'react-socks';
-import { newRoom, startRoom } from '../../mapper/orders'
 import { Box } from '@material-ui/core'
 import { Button, Title } from '../../mapper/components'
 
@@ -11,8 +11,11 @@ export default () => {
 
     const [socket, noSleep] = useSelector(state => [state.socket, state.noSleep])
 
+    const dispatch = useDispatch()
+
     const newRoom = () => {
         noSleep.enable()
+        dispatch(setState('owner', 1))
         socket.emit('new-room', [...Array(4)].map(i => (~~(Math.random() * 26 + 10)).toString(36)).join("").toUpperCase())
     }
 
