@@ -14,7 +14,7 @@ import { SnackbarProvider } from 'notistack'
 import { CookiesProvider } from 'react-cookie'
 
 ReactDOM.render(
-
+    <HttpsRedirect>
         <Provider store={store}>
             <BreakpointProvider>
                 <SnackbarProvider maxSnack={3}>
@@ -23,7 +23,8 @@ ReactDOM.render(
                     </CookiesProvider>
                 </SnackbarProvider>
             </BreakpointProvider>   
-        </Provider>,
+        </Provider>
+    </HttpsRedirect>,
     document.getElementById('root')
 )
 
