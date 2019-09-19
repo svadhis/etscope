@@ -42,7 +42,23 @@ const App = props => {
   // Set view to Owner or Player depending on 1: state, 2: viewport width. Value 1 = player, 0 = owner
   const viewClient = player === 1 ? 'player' : owner === 1 ? 'owner' : width <= 576 ? 'player' : 'owner'
 
+  // Handle back button
+  const popState = () => {
+    console.log(roomView)
+    if (roomView === 'Home') {
+      props.enqueueSnackbar("encore une fois pour quitter l'application", {variant: 'info', autoHideDuration: 2000})
+      setTimeout(() => {
+          window.history.pushState({}, '')
+      }, 2000)
+    }
+    else {
+      dispatch(Actions.pushToObject('room', 'view', 'Home'))
+    }
+  }
+
   useEffect(() => {
+    window.history.pushState({}, '')
+
     socket.on('connect_error', (error) => {
       dispatch(Actions.setState('connected', 0))
     })
@@ -81,6 +97,13 @@ const App = props => {
       } 
     })
   }, [roomNumber])
+
+  useEffect(() => {
+      window.addEventListener('popstate', popState)
+      return () => {
+        window.removeEventListener('popstate', popState)
+      }
+  }, [roomView])
 
   useEffect(() => {
     if (connected === 0) {

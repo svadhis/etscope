@@ -6,6 +6,12 @@ export const updateRoomState = payload => {
     }
 }
 
+export const reinitState = () => {
+    return {
+        type: 'REINIT'
+    }
+}
+
 export const setState = (state, value) => {
     return {
         type: 'SET',

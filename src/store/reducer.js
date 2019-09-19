@@ -13,6 +13,12 @@ export default (state = initialState, action) => {
 			s.room = { ...s.room, ...action.room }
 			break
 
+		// Update room state from server call
+		case 'REINIT':	
+		
+			s = initialState
+			break
+
 		// Basic actions to set, add and toggle
 		case 'SET': // Set local state
 
