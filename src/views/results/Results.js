@@ -65,7 +65,7 @@ export default () => {
     }
 
     const restart = () => {
-        socket.emit('restart')
+        socket.emit('restart', [...Array(4)].map(i => (~~(Math.random() * 26 + 10)).toString(36)).join("").toUpperCase())
     }
 
     return (

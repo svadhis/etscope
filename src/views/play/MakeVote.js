@@ -49,7 +49,8 @@ export default () => {
                 <div className="player-screen">
                     <Box height="100vh" display="flex" flexDirection="column" justifyContent="space-evenly" alignItems="center">
                         <h3>ordre de préférence</h3>
-                        {players.map((player, i) => player.name !== playerName &&
+                        {players.map((player, i) => 
+                        player.name !== playerName && !investment[player.name] &&
                         <Button
                             id={'player-' + i}
                             type="card-slogan"
@@ -86,6 +87,7 @@ export default () => {
         }, 6000)
         
         return () => {
+            dispatch(setState('money', -1))
             dispatch(setState('played', false))
             dispatch(setState('showIns', true))
         }

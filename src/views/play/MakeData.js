@@ -96,6 +96,7 @@ export default () => {
     useEffect(() => {
         navigator.vibrate(Array(9).fill(50))
         dispatch(setState('played', false))
+        dispatch(setState('dataPart', 'start'))
 
         instructions === showIns === true && setTimeout(() => {
             dispatch(setState('showIns', false))
@@ -103,6 +104,7 @@ export default () => {
         
         return () => {
             dispatch(setState('played', false))
+            dispatch(setState('dataPart', 'start'))
             dispatch(setState('showIns', true))
         }
     }, [])

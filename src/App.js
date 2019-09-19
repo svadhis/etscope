@@ -116,7 +116,6 @@ export default withSnackbar(App)
 // TODO
 
 // Compresser les dessins
-// TIMERS
 
 // Gerer les votes : pas deux fois sur le meme
 // Faire la page de resultats
