@@ -21,7 +21,9 @@ const App = props => {
     player,
     owner,
     played,
-    connected
+    connected,
+    noSleep,
+    exit
 
   ] = useSelector(state => [
     state, 
@@ -33,7 +35,9 @@ const App = props => {
     state.player,
     state.owner,
     state.played,
-    state.connected
+    state.connected,
+    state.noSleep,
+    state.exit
   ])
 
   const dispatch = useDispatch()
@@ -44,15 +48,29 @@ const App = props => {
 
   // Handle back button
   const popState = () => {
-    console.log(roomView)
-    if (roomView === 'Home') {
-      props.enqueueSnackbar("encore une fois pour quitter l'application", {variant: 'info', autoHideDuration: 2000})
-      setTimeout(() => {
-          window.history.pushState({}, '')
-      }, 2000)
-    }
-    else {
-      dispatch(Actions.pushToObject('room', 'view', 'Home'))
+    if (player === 1) {
+      if (roomView === 'Home') {
+        props.enqueueSnackbar("encore une fois pour quitter l'application", {variant: 'info', autoHideDuration: 2000})
+        setTimeout(() => {
+            window.history.pushState({}, '')
+        }, 2000)
+      }
+      else {
+        if (exit === false) {
+          dispatch(Actions.toggleState('exit'))
+          props.enqueueSnackbar("encore une fois pour quitter la partie", {variant: 'info', autoHideDuration: 2000})
+          setTimeout(() => {
+              window.history.pushState({}, '')
+              dispatch(Actions.toggleState('exit'))
+          }, 2000)
+          
+        }
+        else {
+          noSleep.disable()
+          socket.emit('leave-room')
+          dispatch(Actions.reinitState())
+        }
+      }
     }
   }
 

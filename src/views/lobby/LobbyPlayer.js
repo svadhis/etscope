@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setState } from '../../store/actions'
+import { reinitState } from '../../store/actions'
 import { Box } from '@material-ui/core';
 import { Button } from '../../mapper/components';
 
@@ -22,7 +22,7 @@ export default () => {
     const leave = () => {
         noSleep.disable()
         socket.emit('leave-room')
-        dispatch(setState('room', {view: 'Home'}))
+        dispatch(reinitState())
     }
 
     const start = () => {

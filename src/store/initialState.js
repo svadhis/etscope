@@ -5,6 +5,7 @@ export default {
 	socket: io('https://server-3000.herokuapp.com'),
 	// socket: io('localhost:4001'),
 	noSleep: new NoSleep(),
+	exit: false,
 	timer: -1,
 	showIns: true,
 	problemDefault: 0,
