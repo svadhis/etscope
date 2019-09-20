@@ -66,7 +66,7 @@ export default () => {
     }
 
     const sendData = () => {    
-        socket.emit('set-view', ['MakePresentation'])
+        socket.emit('set-view', 'MakePresentation')
     }
 
     useEffect(() => {

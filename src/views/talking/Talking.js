@@ -29,7 +29,7 @@ export default () => {
     switch (view) {
         case 'CreatingStep':
 
-            timer === 0 && socket.emit('set-view', ['MakeProblem'])
+            timer === 0 && socket.emit('set-view', 'MakeProblem')
             
             talking.time = 20
 
@@ -56,7 +56,7 @@ export default () => {
 
             if (timer === 0) {
                 dispatch(setState('timer', -1))
-                socket.emit('set-view', ['GetProblem'])
+                socket.emit('set-view', 'GetProblem')
             }
             
             talking.time = 5
@@ -82,7 +82,7 @@ export default () => {
 
         case 'GetProblem':
 
-            timer === 0 && socket.emit('set-view', ['MakeDrawing'])
+            timer === 0 && socket.emit('set-view', 'MakeDrawing')
             
             talking.time = 5
 
@@ -107,7 +107,7 @@ export default () => {
 
         case 'StartData':
 
-            timer === 0 && socket.emit('set-view', ['MakeData'])
+            timer === 0 && socket.emit('set-view', 'MakeData')
             
             talking.time = 5
 
@@ -132,7 +132,7 @@ export default () => {
 
         case 'PresentingStep':
 
-            timer === 0 && socket.emit('set-view', ['StartPresentation'])
+            timer === 0 && socket.emit('set-view', 'StartPresentation')
             
             talking.time = 5
 
@@ -160,8 +160,8 @@ export default () => {
             if (timer === 0) {
                 dispatch(setState('timer', -1))
                 presentOrder[0] ? 
-                socket.emit('set-view', ['StartPresentation']) :
-                socket.emit('set-view', ['VotingStep'])
+                socket.emit('set-view', 'StartPresentation') :
+                socket.emit('set-view', 'VotingStep')
             }
             
             talking.time = 5
@@ -187,7 +187,7 @@ export default () => {
 
         case 'VotingStep':
 
-            timer === 0 && socket.emit('set-view', ['MakeVote'])
+            timer === 0 && socket.emit('set-view', 'MakeVote')
             
             talking.time = 5
 

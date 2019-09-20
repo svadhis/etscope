@@ -1,3 +1,5 @@
+import sound from './sounds'
+
 import Home from '../views/home/Home'
 import Lobby from '../views/lobby/Lobby'
 import Talking from '../views/talking/Talking'
@@ -17,23 +19,24 @@ import MakePresentation from '../views/play/MakePresentation'
 import MakeVote from '../views/play/MakeVote'
 import Test from '../views/Test'
 
+const [title, main, timer, presentation] = [sound.title, sound.main, sound.timer, sound.presentation]
 
 export default {
     Home:               [Home, HomePlayer],
-    Lobby:              [Lobby, LobbyPlayer],
-    CreatingStep:       [Talking, Idle],
-    MakeProblem:        [Timer, MakeProblem],
-    StartDrawing:       [Talking, Idle],
-    GetProblem:         [Talking, Idle],
-    MakeDrawing:        [Timer, MakeDrawing],
-    StartData:          [Talking, Idle],
-    MakeData:           [Timer, MakeData],
-    PresentingStep:     [Talking, Idle],
-    StartPresentation:  [Timer, StartPresentation],
-    MakePresentation:   [Presentation, MakePresentation],
-    EndPresentation:    [Talking, Idle],
-    VotingStep:         [Talking, Idle],
-    MakeVote:           [Votes, MakeVote],
-    Results:            [Results, Idle]
+    Lobby:              [Lobby, LobbyPlayer, title],
+    CreatingStep:       [Talking, Idle, main],
+    MakeProblem:        [Timer, MakeProblem, timer],
+    StartDrawing:       [Talking, Idle, main],
+    GetProblem:         [Talking, Idle, main],
+    MakeDrawing:        [Timer, MakeDrawing, timer],
+    StartData:          [Talking, Idle, main],
+    MakeData:           [Timer, MakeData, timer],
+    PresentingStep:     [Talking, Idle, main],
+    StartPresentation:  [Timer, StartPresentation, main],
+    MakePresentation:   [Presentation, MakePresentation, presentation],
+    EndPresentation:    [Talking, Idle, main],
+    VotingStep:         [Talking, Idle, main],
+    MakeVote:           [Votes, MakeVote, timer],
+    Results:            [Results, Idle, title]
 }
 

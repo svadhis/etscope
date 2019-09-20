@@ -21,5 +21,7 @@ export default {
 	money: -1,
 	investment: {},
 	drawing: '',
+	soundPlaying: 'STOPPED',
+	soundTime: {},
 	room: { view: 'Home' }
 }

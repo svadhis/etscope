@@ -2,14 +2,11 @@ import React, { useEffect } from 'react'
 import './App.scss'
 import { useCurrentWidth } from 'react-socks'
 import { useSelector, useDispatch } from 'react-redux'
-import { useView } from './methods/hooks'
+import { setView } from './methods/hooks'
 import * as Actions from './store/actions'
-import Ribbon from './components/ribbon/Ribbon'
-import Connecting from './components/layer/Connecting'
-import Loading from './components/layer/Loading'
-import Played from './components/layer/Played'
+import { Ribbon, Connecting, Loading, Played } from './mapper/components'
 import { withSnackbar } from 'notistack'
-import Sound from 'react-sound'
+import Sound from './components/sound/Sound'
 
 // MAIN APP COMPONENT
 const App = props => {
@@ -18,6 +15,7 @@ const App = props => {
     roomNumber,
     roomView,
     roomProps,
+    roomLoaded,
     socket,
     playerName,
     player,
@@ -32,6 +30,7 @@ const App = props => {
     state.room.number,
     state.room.view,
     state.room.props,
+    state.room.loaded,
     state.socket,
     state.playerName,
     state.player,
@@ -76,70 +75,7 @@ const App = props => {
     }
   }
 
-  const playMusic = () => {
-    if (viewClient === 'owner') {
-      switch (roomView) {
-        case 'Home':
-        case 'Lobby':
-        case 'Results':
-          return (
-            <Sound
-              url="music/bensound-hey.mp3"
-              playStatus={Sound.status.PLAYING}
-              loop={true}
-            />
-          )
-          break
   
-        case 'CreatingStep':
-        case 'StartDrawing':
-        case 'GetProblem':
-        case 'StartData':
-        case 'PresentingStep':
-        case 'StartPresentation':
-        case 'EndPresentation':
-        case 'VotingStep':
-        case 'StartPresentation':
-          return (
-            <Sound
-              url="music/bensound-psychedelic.mp3"
-              playStatus={Sound.status.PLAYING}
-              loop={true}
-              autoLoad={true}
-            />
-          )
-          break
-  
-        case 'MakeProblem':
-        case 'MakeDrawing':
-        case 'MakeData':
-        case 'MakeVote':
-          return (
-            <Sound
-              url="music/bensound-theelevatorbossanova.mp3"
-              playStatus={Sound.status.PLAYING}
-              loop={true}
-              autoLoad={true}
-            />
-          )
-          break
-  
-        case 'MakePresentation':
-          return (
-            <Sound
-              url="music/bensound-countryboy.mp3"
-              playStatus={Sound.status.PLAYING}
-              loop={true}
-              autoLoad={true}
-            />
-          )
-          break
-      
-        default:
-          break
-      }
-    }
-  }
 
   useEffect(() => {
     window.history.pushState({}, '')
@@ -204,18 +140,21 @@ const App = props => {
   }, [connected])
 
   return (
-    React.createElement("div", {className: 'App'}, 
+    
+    React.createElement("div", {className: 'App ' + viewClient}, 
       React.createElement("div", {className: 'container'}, 
+        (roomLoaded || roomView === 'Home') ?
         React.createElement(
-          useView(roomView, viewClient),
+          setView(roomView, viewClient),
           { ...roomProps} || null
-        )
+        ) :
+        React.createElement(Loading)
       ),
       console.log(state),
+      React.createElement(Sound, {owner: owner}),
       roomNumber && owner === 1 && React.createElement(Ribbon),
       played === true && roomView && React.createElement(Played),
-      connected === 0 && React.createElement(Connecting),
-      playMusic()
+      connected === 0 && React.createElement(Connecting)
     )
   )
 }
