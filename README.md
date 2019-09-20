@@ -78,9 +78,9 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 ## Authors
 
 *  **Nicolas Miquel** - *Development*
-*  **Emeline Caron** - *Art*
+<!-- *  **Emeline Caron** - *Art*
 *  **Perle Mathias** - *Content*
-*  **Marc Verrière** - *Name*
+*  **Marc Verrière** - *Name* -->
 
 <!-- See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project. -->
 
