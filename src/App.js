@@ -5,9 +5,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useView } from './methods/hooks'
 import * as Actions from './store/actions'
 import Ribbon from './components/ribbon/Ribbon'
-import Connecting from './components/overview/Connecting'
-import Played from './components/overview/Played'
-import { withSnackbar } from 'notistack';
+import Connecting from './components/layer/Connecting'
+import Loading from './components/layer/Loading'
+import Played from './components/layer/Played'
+import { withSnackbar } from 'notistack'
+import Sound from 'react-sound'
 
 // MAIN APP COMPONENT
 const App = props => {
@@ -70,6 +72,71 @@ const App = props => {
           socket.emit('leave-room')
           dispatch(Actions.reinitState())
         }
+      }
+    }
+  }
+
+  const playMusic = () => {
+    if (viewClient === 'owner') {
+      switch (roomView) {
+        case 'Home':
+        case 'Lobby':
+        case 'Results':
+          return (
+            <Sound
+              url="music/bensound-hey.mp3"
+              playStatus={Sound.status.PLAYING}
+              loop={true}
+            />
+          )
+          break
+  
+        case 'CreatingStep':
+        case 'StartDrawing':
+        case 'GetProblem':
+        case 'StartData':
+        case 'PresentingStep':
+        case 'StartPresentation':
+        case 'EndPresentation':
+        case 'VotingStep':
+        case 'StartPresentation':
+          return (
+            <Sound
+              url="music/bensound-psychedelic.mp3"
+              playStatus={Sound.status.PLAYING}
+              loop={true}
+              autoLoad={true}
+            />
+          )
+          break
+  
+        case 'MakeProblem':
+        case 'MakeDrawing':
+        case 'MakeData':
+        case 'MakeVote':
+          return (
+            <Sound
+              url="music/bensound-theelevatorbossanova.mp3"
+              playStatus={Sound.status.PLAYING}
+              loop={true}
+              autoLoad={true}
+            />
+          )
+          break
+  
+        case 'MakePresentation':
+          return (
+            <Sound
+              url="music/bensound-countryboy.mp3"
+              playStatus={Sound.status.PLAYING}
+              loop={true}
+              autoLoad={true}
+            />
+          )
+          break
+      
+        default:
+          break
       }
     }
   }
@@ -147,7 +214,8 @@ const App = props => {
       console.log(state),
       roomNumber && owner === 1 && React.createElement(Ribbon),
       played === true && roomView && React.createElement(Played),
-      connected === 0 && React.createElement(Connecting)
+      connected === 0 && React.createElement(Connecting),
+      playMusic()
     )
   )
 }
