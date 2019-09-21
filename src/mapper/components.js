@@ -1,3 +1,5 @@
+// Mapping every component in this file so we can call them in same import
+
 export { default as Connecting } from '../components/layer/Connecting'
 export { default as Loading } from '../components/layer/Loading'
 export { default as Played } from '../components/layer/Played'

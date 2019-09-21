@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+
 import LinearProgress from '@material-ui/core/LinearProgress'
+import { Box } from '@material-ui/core'
+
 import { setState } from '../../store/actions'
-import { Box } from '@material-ui/core';
 
 export default () => {
 
@@ -51,14 +53,6 @@ export default () => {
             speed = 50
             break
     }
-
-/*     const customInterval = (ms, callback) => {
-        return setInterval(callback, ms)
-    }
-
-    const customTimeout = (ms, callback) => {
-        return setTimeout(callback, ms)
-    } */
 
     useEffect(() => {
         dispatch(setState('timer', instructions === true ? -15 : 0))   

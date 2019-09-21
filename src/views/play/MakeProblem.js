@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setState } from '../../store/actions'
+
 import { Box } from '@material-ui/core'
+
+import { setState } from '../../store/actions'
+import { Input, Button } from '../../mapper/components'
+
 import './Play.scss'
-import { Input, Button } from '../../mapper/components';
 
 export default () => {
 
@@ -29,15 +32,12 @@ export default () => {
 
     const dispatch = useDispatch()
 
-    let self = {}
+    let problem = ''
     players.forEach(player => {
         if (player.name === playerName ) {
-            self = player
+            problem = player.problem
         }
     })
-
-    let problem = self.problem
-    console.log(self)
 
     const renderProblem = () => {
 
@@ -102,6 +102,7 @@ export default () => {
 
     useEffect(() => {
         navigator.vibrate(Array(9).fill(50))
+
         dispatch(setState('played', false))
 
         instructions === showIns === true && setTimeout(() => {
@@ -145,19 +146,6 @@ export default () => {
             }
         }
     }, [step])
-
-    // SI BESOIN DE RENVOYER LES DATA A CHAQUE APPEL
-    /* useEffect(() => {
-        if (step === 'end') {
-            if (document.querySelector('input').value.length > 0) {
-                sendData('1')
-            }
-            else {
-                sendData('0')
-            }
-            dispatch(pushToObject('room', 'step', ''))
-        }
-    }, [step]) */
 
     return (
         <div className="play">

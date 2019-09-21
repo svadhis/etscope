@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+
 import LinearProgress from '@material-ui/core/LinearProgress'
 import CanvasDraw from 'react-canvas-draw'
+import { Box } from '@material-ui/core'
+
 import { setState } from '../../store/actions'
-import { Box } from '@material-ui/core';
 
 export default () => {
 

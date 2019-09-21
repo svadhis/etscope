@@ -1,17 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
-import App from './App'
-import * as serviceWorker from './serviceWorker'
+import { Provider } from 'react-redux'
 
 import HttpsRedirect from 'react-https-redirect'
-
-import { Provider } from 'react-redux'
-import store from './store/store'
-
-import  { BreakpointProvider } from 'react-socks'
+import { BreakpointProvider } from 'react-socks'
 import { SnackbarProvider } from 'notistack'
 import { CookiesProvider } from 'react-cookie'
+
+import * as serviceWorker from './serviceWorker'
+import store from './store/store'
+import App from './App'
+
+import './index.css'
 
 ReactDOM.render(
     <HttpsRedirect>

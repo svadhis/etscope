@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { Box } from '@material-ui/core'
+
 import CanvasDraw from 'react-canvas-draw'
+import { Box } from '@material-ui/core'
+import { HourglassEmpty } from '@material-ui/icons'
+
+import Button from '../../components/button/Button'
 import './Play.scss'
-import Button from '../../components/button/Button';
-import { HourglassEmpty } from '@material-ui/icons';
 
 export default () => {
 

@@ -1,3 +1,5 @@
+// Mapping audio file names to different game steps
+
 export default {
     title:          'bensound-hey',
     main:           'bensound-psychedelic',

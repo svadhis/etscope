@@ -1,27 +1,33 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { Box } from '@material-ui/core';
-import { HourglassEmpty } from '@material-ui/icons';
+
+import { Box } from '@material-ui/core'
+import { HourglassEmpty } from '@material-ui/icons'
 
 export default () => {
-    const [view, playerName, players] = useSelector(state => [state.room.view, state.playerName, state.room.players])
+    
+    const [
+        view, 
+        playerName, 
+        players
+    ] = useSelector(state => [
+        state.room.view, 
+        state.playerName, 
+        state.room.players
+    ])
 
     let problem = ''
 
     if (view === 'GetProblem') {
-        let self = {}
         players.forEach(player => {
             if (player.name === playerName ) {
-                self = player
+                problem = player.entry.problem
             }
         })
-        problem = self.entry.problem
     }
 
     useEffect(() => {
-        if (view === 'GetProblem') {
-            navigator.vibrate(Array(5).fill(100))
-        }
+        view === 'GetProblem' && navigator.vibrate(Array(5).fill(100))
     }, [])
 
     return (

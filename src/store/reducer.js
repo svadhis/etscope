@@ -6,50 +6,51 @@ export default (state = initialState, action) => {
 
 	switch (action.type) {
 
-		// Update room state from server call
+		// Update room state from server
 		case 'UPDATE_ROOM_STATE':	
 		
 			s.flash = ''
 			s.room = { ...s.room, ...action.room }
 			break
 
-		// Update room state from server call
+		// Reset the state to start a new game
 		case 'REINIT':	
 		
 			s = initialState
 			break
 
-		// Basic actions to set, add and toggle
-		case 'SET': // Set local state
+		// Basic actions to set, add, toggle, push to array and set object's key
+		case 'SET':
 
 			s[action.state] = action.value
 			break
 
-		case 'ADD': // Add to int
+		case 'ADD':
 			
 			s[action.state] = s[action.state] + action.value
 			break
 
-		case 'TOGGLE': // Toggle boolean
+		case 'TOGGLE':
 
 			s[action.state] = !s[action.state]
 			break
 
-		case 'PUSH': // Push to array
+		case 'PUSH':
 
 			s[action.state] = [ ...s[action.state], action.value ]
 			break
 
-		case 'KEY': // Add key into object
+		case 'KEY':
 
 			s[action.state] = { ...s[action.state], [action.key]: action.value }
 			break
 
-		// Others
+		// Other actions
+
 		case 'IS_PLAYER':
 
 			s.player = action.player
-			s.playerName = action.name
+			s.playerName = action.name.toUpperCase()
 			break
 
 	}

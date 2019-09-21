@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setState, addToState } from '../../store/actions'
+
 import { Box } from '@material-ui/core'
+
+import { setState, addToState } from '../../store/actions'
+import Button from '../../components/button/Button'
+
 import './Play.scss'
-import Button from '../../components/button/Button';
 
 export default () => {
 
@@ -79,6 +82,7 @@ export default () => {
 
     useEffect(() => {
         navigator.vibrate(Array(9).fill(50))
+        
         dispatch(setState('money', players.length <= 3 ? 2 : 3))
         dispatch(setState('played', false))
 

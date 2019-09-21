@@ -88,34 +88,3 @@ body {
     background-color: lighten($mainColor, 40%) !important;
     box-shadow: 0 0 30px rgba(255, 255, 255, 1);
 }
-
-/* .player-card {
-    font-size: 1.4em;
-}
-
-.player-picture {
-    @include baseContainer;
-    overflow: hidden;
-    width: 90px;
-    height: 90px;
-    border: 2px solid;
-    border-radius: 50%;
-    margin: 0 auto -10px;
-
-    img {
-        height: 90px;
-    }
-}
-
-.even-player {
-    margin-top: 150px;
-} */
-
-/* .card {
-    @include baseContainer(0.7em);
-    width: 90vw;
-    margin: 15px 0;
-    padding: 10px;
-    border: 2px solid;
-} */
-

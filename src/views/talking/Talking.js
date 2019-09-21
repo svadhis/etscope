@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+
 import { setState } from '../../store/actions'
 import { Illustration } from '../../mapper/components'
+
 import './Talking.scss'
 
 export default () => {
@@ -12,14 +14,12 @@ export default () => {
         timer, 
         subtitles,
         presentOrder,
-        players
     ] = useSelector(state => [
         state.socket, 
         state.room.view, 
         state.timer, 
         state.room.subtitles,
         state.room.presentOrder,
-        state.room.players.length
     ])
 
     const dispatch = useDispatch()

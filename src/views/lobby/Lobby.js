@@ -1,9 +1,12 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+
 import { Box } from '@material-ui/core'
+
 import { Label } from '../../mapper/components'
 
 export default () => {
+    
     const players = useSelector(state => state.room.players)
 
     return (

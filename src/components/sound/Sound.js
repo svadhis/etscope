@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setView } from '../../methods/hooks'
+import setView from '../../methods/setView'
 import { setState, pushToObject } from '../../store/actions'
 import Sound from 'react-sound'
 

@@ -1,11 +1,14 @@
 import React, { useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setState } from '../../store/actions'
+
 import CanvasDraw from 'react-canvas-draw'
-import LZ from 'lz-string'
-import { Button, ColorButton } from '../../mapper/components'
-import './Play.scss'
 import { Box } from '@material-ui/core'
+import LZ from 'lz-string'
+
+import { setState } from '../../store/actions'
+import { Button, ColorButton } from '../../mapper/components'
+
+import './Play.scss'
 
 export default () => {
 
@@ -27,6 +30,7 @@ export default () => {
         state.room.step, 
         state.brush, 
         state.played])
+
     const dispatch = useDispatch()
 
     let self = {}
@@ -113,14 +117,8 @@ export default () => {
 
     useEffect(() => {
         navigator.vibrate(Array(9).fill(50))
-        dispatch(setState('played', false))
 
-        /* let interval = setInterval(() => {
-            localStorage.setItem('drawing', canvas.current.getSaveData())
-        }, 1000)
-        return () => {
-            clearInterval(interval)
-        } */
+        dispatch(setState('played', false))
 
         instructions === showIns === true && setTimeout(() => {
             dispatch(setState('showIns', false))

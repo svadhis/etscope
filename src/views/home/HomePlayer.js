@@ -1,31 +1,43 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import './Home.scss'
-import { isPlayer, setState } from '../../store/actions'
-import { Box } from '@material-ui/core'
-import { Button, Title, Input } from '../../mapper/components'
+
 import { useCookies } from 'react-cookie'
+import { Box } from '@material-ui/core'
+
+import { isPlayer } from '../../store/actions'
+import { Button, Title, Input } from '../../mapper/components'
+
+import './Home.scss'
 
 export default () => {
 
-    const [socket, player, noSleep] = useSelector(state => [state.socket, state.playerName, state.noSleep])
-
-    const [cookie, setCookie] = useCookies(['name']);
+    const [
+        socket, 
+        noSleep
+    ] = useSelector(state => [
+        state.socket, 
+        state.noSleep
+    ])
 
     const dispatch = useDispatch()
 
-    const setName = e => {
-        dispatch(setState('playerName', e.target.value))
-    }
+    // Local state for input handling
+    const [name, setName] = useState('')
+    const [room, setRoom] = useState('')
+
+    const [cookie, setCookie] = useCookies(['name'])
 
     const join = () => {
-        let room = document.querySelector('input#room').value.toUpperCase()
+        // Avoid sleeping device
         noSleep.enable()
-        setCookie('name', player, { path: '/' });
-        dispatch(isPlayer(1, player))
+
+        setCookie('name', name, { path: '/' })
+
+        dispatch(isPlayer(1, name))
+
         socket.emit('join-room', {
-            room: room,
-            player: player
+            room: room.toUpperCase(),
+            player: name.toUpperCase()
         })
     }
 
@@ -34,7 +46,7 @@ export default () => {
     }
 
     useEffect(() => {
-        cookie.name && dispatch(setState('playerName', cookie.name))
+        cookie.name && setName(cookie.name)
     }, [])
 
     return (
@@ -43,10 +55,10 @@ export default () => {
                 <Title size="big" />
                 <div className="player-join">
                     <div>
-                        <Input type="home" id="name" placeholder="nom" value={player} onChange={setName} onKeyPress={focus} />
+                        <Input type="home" id="name" placeholder="nom" value={name} onChange={e => {setName(e.target.value)}} onKeyPress={focus} />
                     </div> 
                     <div>
-                        <Input type="home" id="room" placeholder="room" onKeyPress={join} />
+                        <Input type="home" id="room" placeholder="room" value={room} onChange={e => {setRoom(e.target.value)}} onKeyPress={join} />
                     </div>
                 </div>
                 <Button

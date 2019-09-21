@@ -1,10 +1,13 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+
+import { Box } from '@material-ui/core'
+
 import { reinitState } from '../../store/actions'
-import { Box } from '@material-ui/core';
-import { Button } from '../../mapper/components';
+import { Button } from '../../mapper/components'
 
 export default () => {
+
     const [
         player, 
         room, 
@@ -21,6 +24,7 @@ export default () => {
 
     const leave = () => {
         noSleep.disable()
+
         socket.emit('leave-room')
         dispatch(reinitState())
     }
@@ -44,6 +48,7 @@ export default () => {
                     <span className="checkmark"></span>
                 </label>
                 </div>}
+                {console.log(room.players[0].name, player)}
                 {(room.players[0].name === player && room.players.length >= 1) &&
                 <Button
                     id="start"

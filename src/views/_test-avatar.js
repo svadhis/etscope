@@ -1,9 +1,10 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setState } from '../store/actions'
+
 import Camera from 'react-html5-camera-photo'
-import 'react-html5-camera-photo/build/css/index.css'
- 
+
+import { setState } from '../store/actions'
+
 export default () => {
 
     const photo = useSelector(state => state.photo)

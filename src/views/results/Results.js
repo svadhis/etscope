@@ -1,27 +1,23 @@
-import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import CanvasDraw from 'react-canvas-draw'
-import { setState, addToState } from '../../store/actions'
+import React from 'react'
+import { useSelector } from 'react-redux'
+
 import { Box } from '@material-ui/core'
+
 import { VoteCard, Button } from '../../mapper/components'
 
 export default () => {
 
     const [
         socket,  
-        players, 
-        step,  
+        players,  
         solutions,
         results
     ] = useSelector(state => [
         state.socket, 
-        state.room.players, 
-        state.room.step,  
+        state.room.players,   
         state.room.solutions,
         state.room.results
     ])
-    
-    const dispatch = useDispatch()
 
     let winner = ''
 
@@ -41,7 +37,6 @@ export default () => {
     const showResults = () => {
         return (
             <div className="owner-screen">
-                
                 {players.map(player =>
                     player.name === getWinner() && 
                     <Box width="100vw" height="60vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
@@ -65,7 +60,8 @@ export default () => {
     }
 
     const restart = () => {
-        socket.emit('restart', [...Array(4)].map(i => (~~(Math.random() * 26 + 10)).toString(36)).join("").toUpperCase())
+        let roomNumber = [...Array(4)].map(i => (~~(Math.random() * 26 + 10)).toString(36)).join("").toUpperCase()
+        socket.emit('restart', roomNumber)
     }
 
     return (

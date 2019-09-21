@@ -1,3 +1,6 @@
+// Mapping components and audio files to game views for owner and players
+// { VIEW: [OWNER VIEW, PLAYER VIEW, AUDIO] }
+
 import sound from './sounds'
 
 import Home from '../views/home/Home'
@@ -17,7 +20,6 @@ import MakeData from '../views/play/MakeData'
 import StartPresentation from '../views/play/StartPresentation'
 import MakePresentation from '../views/play/MakePresentation'
 import MakeVote from '../views/play/MakeVote'
-import Test from '../views/Test'
 
 const [title, main, timer, presentation] = [sound.title, sound.main, sound.timer, sound.presentation]
 

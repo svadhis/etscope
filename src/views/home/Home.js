@@ -1,22 +1,33 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useSendOrder } from '../../methods/hooks'
-import { setState } from '../../store/actions'
-import './Home.scss'
-import  { Breakpoint } from 'react-socks';
+
 import { Box } from '@material-ui/core'
+
+import { setState } from '../../store/actions'
 import { Button, Title } from '../../mapper/components'
+
+import './Home.scss'
 
 export default () => {
 
-    const [socket, noSleep] = useSelector(state => [state.socket, state.noSleep])
+    const [
+        socket, 
+        noSleep 
+    ] = useSelector(state => [
+        state.socket, 
+        state.noSleep
+    ])
 
     const dispatch = useDispatch()
 
     const newRoom = () => {
+        const roomNumber = [...Array(4)].map(i => (~~(Math.random() * 26 + 10)).toString(36)).join("").toUpperCase()
+
+        // Avoid sleeping device
         noSleep.enable()
+
         dispatch(setState('owner', 1))
-        socket.emit('new-room', [...Array(4)].map(i => (~~(Math.random() * 26 + 10)).toString(36)).join("").toUpperCase())
+        socket.emit('new-room', roomNumber)
     }
 
     return (
