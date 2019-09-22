@@ -1,8 +1,12 @@
 import io from "socket.io-client"
 import NoSleep from "nosleep.js"
 
+import server from '../server'
+
+console.log(server)
+
 export default {
-	socket: io('https://server-3000.herokuapp.com'),
+	socket: io(server),
 	noSleep: new NoSleep(),
 	exit: false,
 	timer: -1,
