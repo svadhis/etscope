@@ -32,9 +32,9 @@ export default () => {
 
     return (
         <div className="owner-screen">
-            <div className="home">
-                    <Box height="100vh" display="flex" justifyContent="center" alignItems="center">
-                    <div className="title-screen">
+            <div className="home">    
+                <Box className="title-screen" width="100vw" height="100vh" display="flex" flex-direction="column" justifyContent="flex-end" alignItems="center">  
+                    <div className="title-text">
                         <Title size="very-big" />
                         <Button
                             id="send"
@@ -42,7 +42,7 @@ export default () => {
                             value="nouvelle partie"
                             onClick={newRoom}
                         />
-                    </div>   
+                    </div>  
                 </Box>
             </div>
         </div>

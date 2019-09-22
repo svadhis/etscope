@@ -1,0 +1,26 @@
+.home {
+    background-image: url("../../images/home/background.jpg");
+    background-size: cover;
+    background-position: right;
+
+    .title-screen {
+        z-index: 5;
+        background-image: url("../../images/home/tv.png");
+        background-size: cover;
+        background-position: center right;
+
+        .title-text {
+            margin-bottom: 8vh;
+            
+            @media (max-aspect-ratio: 17/9) {
+                margin-right: 59vh;
+                font-size: 1.6vh;
+            }
+
+            @media (min-aspect-ratio: 17/9) {
+                margin-right: 32vw;
+                font-size: 0.8vw;
+            }
+        }
+    }
+}
