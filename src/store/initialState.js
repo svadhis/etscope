@@ -3,8 +3,6 @@ import NoSleep from "nosleep.js"
 
 import server from '../server'
 
-console.log(server)
-
 export default {
 	socket: io(server),
 	noSleep: new NoSleep(),
