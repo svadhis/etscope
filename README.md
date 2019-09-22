@@ -1,6 +1,6 @@
 # GAME-3000
 
-A fun JavaScript game to play locally with your friends.
+A fun [React](https://github.com/facebook/react) game to play with your friends.
 
 Server : [SERVER-3000](https://github.com/svadhis/server-3000)
 
