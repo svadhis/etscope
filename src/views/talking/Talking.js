@@ -165,11 +165,11 @@ export default () => {
     }
 
     useEffect(() => {
-        dispatch(setState('timer', -1))   
+        dispatch(setState('timer', 50))   
     }, [])
 
     useEffect(() => {
-        let time = timer === -1 ? talking.time : timer - 1
+        let time = timer === 50 ? talking.time : timer - 1
         let timeout = timer !== 0 && setTimeout(() => {
             dispatch(setState('timer', time))
         }, 1000);
