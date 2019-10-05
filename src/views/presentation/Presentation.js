@@ -28,14 +28,12 @@ export default () => {
             <div className="owner-screen">
                 <h1>probleme : {presentation.problem}</h1>
                 <Box height="85vh" display="flex" justifyContent="space-evenly" alignItems="center">
-                    <Box width="45vw" display="flex" flexDirection="column" justifyContent="space-evenly" alignItems="center">
-                        {presentation.steps[0] &&
-                        <h1 className="very-big">{presentation.data.name}</h1>}
-                        {presentation.steps[1] &&
-                        <h1>{presentation.data.catch}</h1>}
+                    <Box width="45vw" display="flex" flexDirection="column" justifyContent="space-evenly" alignItems="center">              
+                        <h1 className="very-big">{presentation.steps[0] ? presentation.data.name : ''}</h1>
+                        <h1>{presentation.steps[1] ? presentation.data.catch : ''}</h1>
                     </Box>
                     <Box width="45vw" display="flex" justifyContent="center" alignItems="center">
-                        {presentation.steps[2] &&
+                        {presentation.steps[2] ?
                         <CanvasDraw 
                             hideGrid={true}
                             canvasWidth={Math.round(window.innerWidth * 0.36)}
@@ -43,7 +41,7 @@ export default () => {
                             disabled={true}
                             saveData={presentation.drawing}
                             immediateLoading={true}
-                        />}
+                        /> : ''}
                     </Box>
                 </Box>
             </div>

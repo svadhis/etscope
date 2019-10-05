@@ -48,10 +48,12 @@ export default () => {
         if (instructions === showIns === true) {
             return (
                 <div className="player-screen">
-                    <Box height="100vh" display="flex" flexDirection="column" justifyContent="space-evenly" alignItems="center">
-                        <h2>Tu dois résoudre le problème qui t'a été assigné.</h2>
-                        <h2>Tu as quelques minutes pour imaginer une solution et dessiner ton objet.</h2>
-                        <h2>Sois créatif, un bon ingénieur est un ingénieur inspiré !</h2>
+                    <Box height="100vh" display="flex" flexDirection="column" justifyContent="center">
+                        <div className="instructions">
+                            <h2>Tu dois résoudre le problème qui t'a été assigné.</h2>
+                            <h2>Tu as quelques minutes pour imaginer une solution et dessiner ton objet.</h2>
+                            <h2>Sois créatif, un bon ingénieur est un ingénieur inspiré !</h2>
+                        </div>
                     </Box>
                 </div>
             )

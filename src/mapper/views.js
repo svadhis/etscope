@@ -39,6 +39,8 @@ export default {
     EndPresentation:    [Talking, Idle, main],
     VotingStep:         [Talking, Idle, main],
     MakeVote:           [Votes, MakeVote, timer],
-    Results:            [Results, Idle, title]
+    Results:            [Results, Idle, title],
+    // Conclusion:         [Talking, Idle, title],
+    // Credits:            [Credits, Thanks, title]
 }
 

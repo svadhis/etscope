@@ -3,7 +3,8 @@
 .subtitle {
     @include baseContainer;
     position: relative;
-    top: -120px;
+    margin: 0 auto;
+    top: -140px;
     width: 96vw;
     font-size: 1.8em;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);

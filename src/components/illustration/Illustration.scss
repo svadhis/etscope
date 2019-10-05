@@ -1,14 +1,23 @@
 @import '../../style/global.scss';
 
+.story-00 { background-color: darken($mainColor, 40%); }
+.story-01 { background-image: url("../../images/story/01.jpg"); }
+.story-02 { background-image: url("../../images/story/02.jpg"); }
+.story-03 { background-image: url("../../images/story/03.jpg"); }
+.story-04 { background-image: url("../../images/story/04.jpg"); }
+.story-05 { background-image: url("../../images/story/05.jpg"); }
+.story-06 { background-image: url("../../images/story/06.jpg"); }
+.story-07 { background-image: url("../../images/story/07.jpg"); }
+.story-08 { background-image: url("../../images/story/08.jpg"); }
+.story-09 { background-image: url("../../images/story/09.jpg"); }
+.story-10 { background-image: url("../../images/story/10.jpg"); }
+
 .illustration {
     @include baseContainer;
-    margin: 0 auto;
-    width: 160vh;
-    height: 97vh;
-
-    img {
-        width: 160vh;
-        height: 97vh;
-    }
+    margin: 20px auto;
+    width: 94vw;
+    height: 96vh;
+    background-size: cover;
+    background-position: center;
 
 }

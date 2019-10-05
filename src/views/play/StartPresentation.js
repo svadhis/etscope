@@ -34,9 +34,11 @@ export default () => {
             if (instructions === showIns === true) {
                 return (
                     <div className="player-screen">
-                        <Box height="100vh" display="flex" flexDirection="column" justifyContent="space-evenly" alignItems="center">
-                            <h2>Fais une présentation de ton objet, tu peux afficher sur l'écran principal les éléments de ton projet dans l'ordre de ton choix.</h2>
-                            <h2>Sois démonstratif et enthousiaste, tu dois convaincre le comité que ton idée est géniale ! </h2>
+                        <Box height="100vh" display="flex" flexDirection="column" justifyContent="center">
+                            <div className="instructions">
+                                <h2>Fais une présentation de ton objet, tu peux afficher sur l'écran principal les éléments de ton projet dans l'ordre de ton choix.</h2>
+                                <h2>Sois démonstratif et enthousiaste, tu dois convaincre le comité que ton idée est géniale ! </h2>
+                            </div>
                         </Box>
                     </div>
                 )

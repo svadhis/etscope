@@ -24,32 +24,40 @@ export default () => {
 
     const dispatch = useDispatch()
 
-    const talking = {}
+    const talking = {view: () => {}}
 
     switch (view) {
         case 'CreatingStep':
 
             timer === 0 && socket.emit('set-view', 'MakeProblem')
             
-            talking.time = 20
+            talking.time = 25
 
-            talking.image = "https://www.setaswall.com/wp-content/uploads/2018/05/Space-Planet-2-Wallpaper-800x480.jpg"
-
-            talking.view = () => {
-                return timer > 15 ?
-                <div>
-                     Nous sommes entourés de toutes sortes d'objets pratiques qui répondent à nos besoins. 
-                </div> : timer > 10 ?
-                <div>
-                    Beaucoup proviennent de Corp 3000, une entreprise florissante qui propose des solutions innovantes dans toute la Galaxie.
-                </div> : timer > 5 ?
-                <div>
-                    Mais savez-vous comment sont conçus ces produits utiles à la vie de tous les jours ?
-                </div> : timer > 0 &&
-                <div>
-                    Tout commence au département de recensement, qui se charge d'identifier les problèmes auxquels nous faisons face au quotidien.
-                </div>     
+            if (timer > 20) {
+                talking.image = '01'
+                talking.view = () => <div>Nous sommes entourés de toutes sortes d'objets pratiques qui répondent à nos besoins.</div>
             }
+
+            else if (timer > 15) {
+                talking.image = '02'
+                talking.view = () => <div>Beaucoup proviennent de Corp 3000, une entreprise florissante qui propose des solutions innovantes dans toute la Galaxie.</div>
+            }
+            
+            else if (timer > 10) {
+                talking.image = '03'
+                talking.view = () => <div>Qui ne possède pas chez lui l'incroyable BalaiPoulpe 3000 ?</div>
+            }
+            
+            else if (timer > 5) {
+                talking.image = '04'
+                talking.view = () => <div>Mais savez-vous comment sont conçus ces produits utiles à la vie de tous les jours ?</div>
+            }
+            
+            else if (timer > 0) {
+                talking.image = '05'
+                talking.view = () => <div>Tout commence au département de recensement, qui se charge d'identifier les problèmes auxquels nous faisons face au quotidien.</div>
+            }
+    
             break
 
         case 'StartDrawing':
@@ -58,26 +66,14 @@ export default () => {
                 dispatch(setState('timer', -1))
                 socket.emit('set-view', 'GetProblem')
             }
-            
+
             talking.time = 5
 
-            talking.image = "https://www.setaswall.com/wp-content/uploads/2018/05/Space-Planet-2-Wallpaper-800x480.jpg"
-
-            talking.view = () => {
-                return timer > 15 ?
-                <div>
-                    premieres instructions
-                </div> : timer > 10 ?
-                <div>
-                    deuxiemes instructions
-                </div> : timer > 5 ?
-                <div>
-                    troisiemes instructions
-                </div> : timer > 0 &&
-                <div>
-                    On confie alors ces problèmes à l'équipe des ingénieurs, qui mettent au point des solutions efficaces.
-                </div>     
+            if (timer > 0) {
+                talking.image = '06'
+                talking.view = () => <div>On confie alors ces problèmes à l'équipe des ingénieurs, qui mettent au point des solutions efficaces.</div>
             }
+            
             break
 
         case 'GetProblem':
@@ -86,23 +82,11 @@ export default () => {
             
             talking.time = 5
 
-            talking.image = "https://www.setaswall.com/wp-content/uploads/2018/05/Space-Planet-2-Wallpaper-800x480.jpg"
-
-            talking.view = () => {
-                return timer > 15 ?
-                <div>
-                    premieres instructions
-                </div> : timer > 10 ?
-                <div>
-                    deuxiemes instructions
-                </div> : timer > 5 ?
-                <div>
-                    troisiemes instructions
-                </div> : timer > 0 &&
-                <div>
-                    VOILA TON PROBLEME !
-                </div>     
+            if (timer > 0) {
+                talking.image = '00'
+                talking.view = () => <div>Voici le problème que tu dois résoudre</div>
             }
+
             break
 
         case 'StartData':
@@ -111,48 +95,24 @@ export default () => {
             
             talking.time = 5
 
-            talking.image = "https://www.setaswall.com/wp-content/uploads/2018/05/Space-Planet-2-Wallpaper-800x480.jpg"
-
-            talking.view = () => {
-                return timer > 15 ?
-                <div>
-                    premieres instructions
-                </div> : timer > 10 ?
-                <div>
-                    deuxiemes instructions
-                </div> : timer > 5 ?
-                <div>
-                    troisiemes instructions
-                </div> : timer > 0 &&
-                <div>
-                    Une fois les objets conçus, c'est au département marketing d'entrer en action pour assurer la réussite commerciale de ces produits.
-                </div>     
+            if (timer > 0) {
+                talking.image = '07'
+                talking.view = () => <div>Une fois les objets conçus, c'est au département marketing d'entrer en action pour assurer la réussite commerciale de ces produits.</div>
             }
+
             break
 
         case 'PresentingStep':
 
             timer === 0 && socket.emit('set-view', 'StartPresentation')
-            
+
             talking.time = 5
+            
+            if (timer > 0) {
+                talking.image = '08'
+                talking.view = () => <div>Les projets ainsi terminés sont alors présentés devant le comité de l'entreprise.</div>
+            }      
 
-            talking.image = "https://www.setaswall.com/wp-content/uploads/2018/05/Space-Planet-2-Wallpaper-800x480.jpg"
-
-            talking.view = () => {
-                return timer > 15 ?
-                <div>
-                    premieres instructions
-                </div> : timer > 10 ?
-                <div>
-                    deuxiemes instructions
-                </div> : timer > 5 ?
-                <div>
-                    troisiemes instructions
-                </div> : timer > 0 &&
-                <div>
-                    Les projets ainsi terminés sont alors présentés devant le comité de l'entreprise.
-                </div>     
-            }
             break
 
         case 'EndPresentation':
@@ -165,24 +125,12 @@ export default () => {
             }
             
             talking.time = 5
+            
+            if (timer > 0) {
+                talking.image = '00'
+                talking.view = () => <div>Superbe présentation !</div>
+            }      
 
-            talking.image = "https://www.setaswall.com/wp-content/uploads/2018/05/Space-Planet-2-Wallpaper-800x480.jpg"
-
-            talking.view = () => {
-                return timer > 15 ?
-                <div>
-                    premieres instructions
-                </div> : timer > 10 ?
-                <div>
-                    deuxiemes instructions
-                </div> : timer > 5 ?
-                <div>
-                    troisiemes instructions
-                </div> : timer > 0 &&
-                <div>
-                    Superbe présentation !
-                </div>     
-            }
             break
 
         case 'VotingStep':
@@ -190,24 +138,28 @@ export default () => {
             timer === 0 && socket.emit('set-view', 'MakeVote')
             
             talking.time = 5
+            
+            if (timer > 0) {
+                talking.image = '09'
+                talking.view = () => <div>Enfin, le comité procède à un vote pour sélectionner le meilleur produit à mettre sur le marché.</div>
+            }      
 
-            talking.image = "https://www.setaswall.com/wp-content/uploads/2018/05/Space-Planet-2-Wallpaper-800x480.jpg"
+            break
 
-            talking.view = () => {
-                return timer > 15 ?
-                <div>
-                    premieres instructions
-                </div> : timer > 10 ?
-                <div>
-                    deuxiemes instructions
-                </div> : timer > 5 ?
-                <div>
-                    troisiemes instructions
-                </div> : timer > 0 &&
-                <div>
-                    Enfin, le commitee procède à un vote pour sélectionner le meilleur produit à mettre sur le marché.
-                </div>     
+        case 'Conclusion':
+
+            if (timer === 0) {
+                dispatch(setState('timer', -1))
+                socket.emit('set-view', 'Credits')
             }
+            
+            talking.time = 5
+            
+            if (timer > 0) {
+                talking.image = '10'
+                talking.view = () => <div>Le produit sera très vite fabriqué dans les usines perfectionnées de Corp 3000, et se retrouvera bientôt chez votre marchand habituel !</div>
+            }      
+
             break
 
     }
