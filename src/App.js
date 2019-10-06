@@ -8,8 +8,6 @@ import * as Actions from './store/actions'
 import setView from './methods/setView'
 import { Ribbon, Connecting, Loading, Played, Sound } from './mapper/components'
 
-import { SoundManager } from 'soundmanager2'
-
 import './App.scss'
 
 export default withSnackbar(props => {
@@ -78,11 +76,9 @@ export default withSnackbar(props => {
 
   // On mount
   useEffect(() => {
-
     // Remove mobile restrictions to play multiple sounds 
-    let soundManager = new SoundManager()
-    soundManager.setup({ ignoreMobileRestrictions: true })
-
+    window.soundManager.setup({debugMode: false, ignoreMobileRestrictions: true});
+                
     // Push state to navigation history to prevent leaving pressing back button
     window.history.pushState({}, '')
 

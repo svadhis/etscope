@@ -2,15 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import setView from '../../methods/setView'
 import { setState, pushToObject, addToState } from '../../store/actions'
-import Sound from 'react-sound'
+import Sound from 'react-sound';
 
 export default props => {
     const [socket, view, loaded, soundPlaying, soundTime] = useSelector(state => [state.socket, state.room.view, state.room.loaded, state.soundPlaying, state.soundTime])
     const dispatch = useDispatch()
 
     const onLoad = () => {
-        dispatch(setState('soundPlaying', 'PLAYING'))
-        
+        dispatch(setState('soundPlaying', 'PLAYING'))   
     }
 
     useEffect(() => {
