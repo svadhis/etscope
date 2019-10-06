@@ -52,7 +52,7 @@ export default () => {
                     <span className="checkmark"></span>
                 </label> */}
                 </div>}
-                {(room.players[0].name === player && room.players.length >= 1) ?
+                {(room.players[0].name === player && room.players.length >= 3) ?
                 <Button
                     id="start"
                     type="default"
