@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import setView from '../../methods/setView'
-import { setState, pushToObject } from '../../store/actions'
+import { setState, pushToObject, addToState } from '../../store/actions'
 import Sound from 'react-sound'
 
 export default props => {
@@ -28,7 +28,9 @@ export default props => {
                   url={'music/' + sound + '.mp3'}
                   playStatus={Sound.status[soundPlaying]}
                   position={soundTime[sound] || 0}
+                  volume={props.type === 'story' ? 100 : 50}
                   onPlaying={(data) => {dispatch(pushToObject('soundTime', sound, data.position))}}
+                  onFinishedPlaying={() => {props.type === 'story' && dispatch(addToState('soundStory', 1))}}
                   onLoad={() => onLoad()}
                   autoLoad={true}
                 />
@@ -38,7 +40,7 @@ export default props => {
 
     return (
         <div>
-            {playMusic(setView(view, 'sound'))}
+            {props.type === 'story' ? playMusic('story' + props.story) : playMusic(setView(view, 'sound'))}
         </div>
     )
 }

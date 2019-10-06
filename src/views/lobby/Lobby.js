@@ -1,13 +1,20 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { Box } from '@material-ui/core'
 
+import { joinRoom } from '../../store/actions'
 import { Label } from '../../mapper/components'
 
 export default () => {
     
     const players = useSelector(state => state.room.players)
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(joinRoom())
+    }, [])
 
     return (
         <div className="owner-screen">

@@ -6,6 +6,12 @@ export const updateRoomState = payload => {
     }
 }
 
+export const joinRoom = () => {
+    return {
+        type: 'JOIN_ROOM'
+    }
+}
+
 export const reinitState = () => {
     return {
         type: 'REINIT'

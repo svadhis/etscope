@@ -8,6 +8,7 @@ export default {
 	noSleep: new NoSleep(),
 	exit: false,
 	timer: -1,
+	talk: '',
 	showIns: true,
 	problemDefault: 0,
 	placeholder: '',
@@ -24,5 +25,6 @@ export default {
 	drawing: '',
 	soundPlaying: 'STOPPED',
 	soundTime: {},
+	soundStory: 1,
 	room: { view: 'Home' }
 }

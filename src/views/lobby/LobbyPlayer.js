@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { Box } from '@material-ui/core'
 
-import { reinitState } from '../../store/actions'
+import { reinitState, joinRoom } from '../../store/actions'
 import { Button } from '../../mapper/components'
 
 export default () => {
@@ -33,6 +33,10 @@ export default () => {
         socket.emit('start-game')
     }
 
+    useEffect(() => {
+        dispatch(joinRoom())
+    }, [])
+
     return (
         <div className="player-screen">
             <Box height="100vh" display="flex" flexDirection="column" justifyContent="space-evenly">
@@ -43,19 +47,20 @@ export default () => {
                     <input type="checkbox" checked={room.instructions} onClick={() => {socket.emit('toggle-instructions', !room.instructions)}} />
                     <span className="checkmark"></span>
                 </label>
-                <label className="player-label"> SOUS TITRES
+                {/* <label className="player-label"> SOUS TITRES
                     <input type="checkbox" checked={room.subtitles} onClick={() => {socket.emit('toggle-subtitles', !room.subtitles)}} />
                     <span className="checkmark"></span>
-                </label>
+                </label> */}
                 </div>}
-                {console.log(room.players[0].name, player)}
-                {(room.players[0].name === player && room.players.length >= 1) &&
+                {(room.players[0].name === player && room.players.length >= 1) ?
                 <Button
                     id="start"
                     type="default"
                     value="démarrer"
                     onClick={start}
-                />}
+                /> : 
+                room.players[0].name === player &&
+                <h1>{'encore ' + (3 - room.players.length) + ' joueurs...'}</h1>}
                 <Button
                     id="start"
                     type="default"
