@@ -33,19 +33,19 @@ export default () => {
 
     switch (view) {
         case 'MakeProblem':
-            speed = 50
-            break
-
-        case 'MakeDrawing':
-            speed = 30
-            break
-
-        case 'MakeData':
             speed = 40
             break
 
+        case 'MakeDrawing':
+            speed = 15
+            break
+
+        case 'MakeData':
+            speed = 25
+            break
+
         case 'MakeVote':
-            speed = 50
+            speed = 40
             break
 
         case 'StartPresentation':
@@ -88,7 +88,7 @@ export default () => {
 
     return (
         <div className="owner-screen">
-            <LinearProgress variant="determinate" value={timer} />
+            {view !== 'GetProblem' && view !== 'EndPresentation' && <LinearProgress variant="determinate" value={timer} />}
             <Box height="80vh" display="flex" justifyContent="center" alignItems="center">
                 {view === 'StartPresentation' ?
                 <div>

@@ -28,10 +28,11 @@ export default props => {
                   url={'music/' + sound + '.mp3'}
                   playStatus={Sound.status[soundPlaying]}
                   position={soundTime[sound] || 0}
-                  volume={props.type === 'story' ? 100 : 50}
+                  volume={props.type === 'story' ? 100 : 25}
                   onPlaying={(data) => {dispatch(pushToObject('soundTime', sound, data.position))}}
                   onFinishedPlaying={() => {props.type === 'story' && dispatch(addToState('soundStory', 1))}}
                   onLoad={() => onLoad()}
+                  loop={props.type === 'story' ? false : true}
                   autoLoad={true}
                 />
             )

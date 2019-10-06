@@ -8,10 +8,12 @@ import * as Actions from './store/actions'
 import setView from './methods/setView'
 import { Ribbon, Connecting, Loading, Played, Sound } from './mapper/components'
 
+import { SoundManager } from 'soundmanager2'
+
 import './App.scss'
 
 export default withSnackbar(props => {
-  
+
   const [
     roomNumber,
     roomView,
@@ -76,6 +78,10 @@ export default withSnackbar(props => {
 
   // On mount
   useEffect(() => {
+
+    // Remove mobile restrictions to play multiple sounds 
+    let soundManager = new SoundManager()
+    soundManager.setup({ ignoreMobileRestrictions: true })
 
     // Push state to navigation history to prevent leaving pressing back button
     window.history.pushState({}, '')
@@ -166,6 +172,11 @@ export default withSnackbar(props => {
 })
 
 // TODO LIST
+
+// Timers : rallonger dessin et slogan
+// Presentation: pouvoir appuyer sur le canvas
+// Sound : double son sur tablette
+// Titre : mettre en valeur
 
 // MakeDrawing : use compression o reduce drawing size (LZ string)
 // App : Back button handling not working as expected
