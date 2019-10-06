@@ -173,11 +173,8 @@ export default withSnackbar(props => {
 
 // TODO LIST
 
-// Timers : rallonger dessin et slogan
-// Presentation: pouvoir appuyer sur le canvas
-// Sound : double son sur tablette
-// Titre : mettre en valeur
+// Sound : handle sound not playing on mobile devices
 
-// MakeDrawing : use compression o reduce drawing size (LZ string)
+// MakeDrawing : use compression to reduce drawing size (LZ string)
 // App : Back button handling not working as expected
 // MakeData, MakeProblem : use state instead of input.value
