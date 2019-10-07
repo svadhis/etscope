@@ -107,3 +107,10 @@ button:focus { outline: 0; }
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
+
+.layer {
+    z-index: 100;
+    margin: -30vw auto 0;
+    width: 30vw;
+    height: 30vw;
+}

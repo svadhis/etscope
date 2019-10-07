@@ -4,16 +4,20 @@ import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { linkTo } from '@storybook/addon-links'
 import '../src/App.scss'
+import '../src/components/button/Button.scss'
 
 import { Button, TextField, Box, LinearProgress } from '@material-ui/core'
 import { Replay, HourglassEmpty } from '@material-ui/icons'
 
 import CanvasDraw from 'react-canvas-draw'
 
-const myButton = (type = 'default', value = 'BUTTON', size = 'large') => (
-  <button className={type + '-button'}>
-    {value}
-  </button>
+const myButton = (type = 'default', value = 'BUTTON', size = 'large', layer = '1') => (
+  <button 
+        className={type + '-button'}
+    >
+        {value}
+        {layer && <div className="layer"></div>}
+    </button>
 )
 
 const myColorButton = (value = 'red') => (

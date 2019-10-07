@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { setState } from '../../store/actions'
+import { setState, addToState } from '../../store/actions'
 import { Illustration, Sound } from '../../mapper/components'
 
 import './Talking.scss'
@@ -105,21 +105,16 @@ export default () => {
         }
     
         dispatch(setState('talk', setTalking()))
-    }, [soundStory])
 
-    /* useEffect(() => {
-        let time = timer === 50 ? talking.time : timer - 1
-        let timeout = timer !== 0 && setTimeout(() => {
-            dispatch(setState('timer', time))
-        }, 1000);
+        // Go to next story parrt after 8s if sound didn't play
+        let timer = setTimeout(() => {
+            dispatch(addToState('soundStory', 1))
+        }, 8000)
+
         return () => {
-            clearTimeout(timeout)
-        };
-    }, [timer]) */
-
-/*     useEffect(() => {
-        soundPlaying === 'STOPPED' && dispatch(setState('talk', 0))
-    }, [soundPlaying]) */
+            clearTimeout(timer)
+        }
+    }, [soundStory])
 
     return (
         <div className="owner-screen">    

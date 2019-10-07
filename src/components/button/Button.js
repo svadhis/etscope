@@ -9,5 +9,6 @@ export default props => (
         disabled={props.disabled}
     >
         {props.value}
+        {props.layer && <div className="layer"></div>}
     </button>
 )

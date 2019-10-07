@@ -36,7 +36,6 @@ export default () => {
                             value={
                                 <Box display="flex" justifyContent="center">
                                     <CanvasDraw 
-                                        onClick={sendData}
                                         hideGrid={true}
                                         canvasWidth={Math.round(window.innerWidth * 0.3)}
                                         canvasHeight={Math.round(window.innerWidth * 0.3)}
@@ -48,6 +47,7 @@ export default () => {
                             }
                             onClick={sendData}
                             data="2"
+                            layer="1"
                         />}
                         {!presentation.steps[0] &&
                         <Button
