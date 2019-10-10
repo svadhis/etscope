@@ -33,8 +33,7 @@
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "test:e2e": "cypress run",
-    "test:e2e:ci": "concurrently --kill-others --success=first 'npm start --progress=false --no-info' 'npm test:e2e'"
+    "cypress": "node_modules/.bin/cypress open"
   },
   "eslintConfig": {
     "extends": "react-app"
