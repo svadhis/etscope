@@ -100,7 +100,7 @@ export default withSnackbar(props => {
 
     // Listen to snack messages from server and pop it
     socket.on('flash', data => {
-      (data.target === viewClient || data.target === 'all') && props.enqueueSnackbar(data.message, {variant: data.type, autoHideDuration: 3000})
+      (!data.target || data.target === viewClient) && props.enqueueSnackbar(data.message, {variant: data.type, autoHideDuration: 3000})
     })
   }, [])
 

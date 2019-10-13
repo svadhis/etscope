@@ -8,15 +8,13 @@ export default (state = initialState, action) => {
 
 		// Update room state from server
 		case 'UPDATE_ROOM_STATE':	
-		
-			s.flash = ''
-			s.room = { ...s.room, ...action.room }
+			s.room = action.room
 			break
 
 		// Set client state, keeping room state
 		case 'JOIN_ROOM':	
 		
-			s.room = { ...s.room, subtitles: s.room.subtitles }
+			// s.room = { ...s.room, subtitles: s.room.subtitles }
 			s = { ...initialState, room: s.room, owner: s.owner, player: s.player, playerName: s.playerName, soundPlaying: s.soundPlaying, showIns: s.showIns }
 			break
 
